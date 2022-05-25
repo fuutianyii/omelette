@@ -1152,7 +1152,7 @@
           <item>
            <widget class="QStackedWidget" name="exam_stacked">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="exam_main">
              <layout class="QGridLayout" name="gridLayout">
@@ -1376,6 +1376,45 @@
                        </size>
                       </property>
                      </spacer>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="option_frame">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_24">
+                       <item>
+                        <spacer name="horizontalSpacer_8">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>539</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBox_voice">
+                         <property name="text">
+                          <string>语音</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QCheckBox" name="checkBox_random">
+                         <property name="text">
+                          <string>乱序</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
                     </item>
                    </layout>
                   </widget>
