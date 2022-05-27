@@ -430,7 +430,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 url = QUrl.fromLocalFile(mp3_path)
                 content = QMediaContent(url)  # 加载音乐
                 self.player.setMedia(content)     # 关联 QMediaPlayer控件与音乐地址
-                
                 self.player.play()                          # 播放
             else:
                 self.getmp3(word)
@@ -465,8 +464,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 # chinese=self.exam_chinese_label.text()
                 # self.mydb.update(f"update words set wrong_times=0 where english='{english}' and chinese = '{chinese}'")
             english=self.words[self.words_index][1]
-            self.play(english)
-            sleep(1.5)
+            if self.checkBox_voice.isChecked():
+                self.play(english)
+                sleep(1)
             self.exam_change()
         else:
             self.exam_english_lable.setStyleSheet('''QWidget{background-color:#FFB6C1;}''')
@@ -518,7 +518,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.remove_forget_pushButton.setHidden(True)
         self.forget_pushButton.setHidden(False)
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
-        # shuffle(self.words)
+        if self.checkBox_random.isChecked():
+            shuffle(self.words)
         if len(self.words)==0:
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
