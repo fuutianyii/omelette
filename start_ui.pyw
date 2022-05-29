@@ -518,9 +518,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.remove_forget_pushButton.setHidden(True)
         self.forget_pushButton.setHidden(False)
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
-        self.words=self.words[::-1]
         if self.checkBox_random.isChecked():
             shuffle(self.words)
+        self.words=self.words[::-1]
         if len(self.words)==0:
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
