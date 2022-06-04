@@ -613,7 +613,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
-        self.update_words=self.mydb.select(f"select rowid,* from words")
+        self.update_words=self.mydb.select(f"select rowid,* from words  order by 5 desc")
         self.update_table.setColumnWidth(0,150)
         self.update_table.setColumnWidth(1,420)
         self.update_table.setColumnWidth(2,30)
