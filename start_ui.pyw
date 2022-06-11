@@ -336,6 +336,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
+            if (self.words[self.words_index][5] !=0):
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
 
     def select_forget_words(self):
         for i in range(0,self.update_table.rowCount()+1):
@@ -353,7 +359,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         if date != "":
             search_filter.append(f" insert_date like '%{date}%' ")
         if group != "":
-            search_filter.append(f" list like '%{group}%' ")
+            search_filter.append(f" list = '{group}'")
 
         search="select rowid,* from words where"
         if (len(search_filter) != 0):
@@ -396,7 +402,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         if date != "":
             search_filter.append(f" insert_date like '%{date}%' ")
         if group != "":
-            search_filter.append(f" list like '%{group}%' ")
+            search_filter.append(f" list = '{group}'")
 
         search="select rowid,* from words where"
         if (len(search_filter) != 0):
@@ -495,10 +501,15 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
+            if (self.words[self.words_index][5] !=0):
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(True)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
+                
 
     def start_choose_exam(self):
-        self.remove_forget_pushButton.setHidden(True)
-        self.forget_pushButton.setHidden(False)
         date=str(self.exam_calendarWidget.selectedDate().toPyDate())#获取选中日期并且转为str格式
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{date}'")
         if len(self.words)==0:
@@ -515,8 +526,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.forget_label.setText("")
             
     def today_exam(self):
-        self.remove_forget_pushButton.setHidden(True)
-        self.forget_pushButton.setHidden(False)
+
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
         if self.checkBox_random.isChecked():
             shuffle(self.words)
@@ -543,8 +553,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # 6． 第六个记忆周期：4天
         # 7． 第七个记忆周期：7天
         # 8． 第八个记忆周期：15天
-        self.remove_forget_pushButton.setHidden(True)
-        self.forget_pushButton.setHidden(False)
+
         date1=str(datetime.date.today()-datetime.timedelta(days=1))
         date2=str(datetime.date.today()-datetime.timedelta(days=2))
         date3=str(datetime.date.today()-datetime.timedelta(days=4))
@@ -565,8 +574,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.forget_label.setText("")
 
     def random_exam(self):
-        self.remove_forget_pushButton.setHidden(True)
-        self.forget_pushButton.setHidden(False)
+
         random_list=[]
         for i in range(1,51):
             random_list.append(randrange(1,self.all_words_num+1))
