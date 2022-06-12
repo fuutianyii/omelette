@@ -502,8 +502,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.forget_label.setText("")
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             if (self.words[self.words_index][5] !=0):
-                self.remove_forget_pushButton.setHidden(True)
-                self.forget_pushButton.setHidden(True)
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
             else:
                 self.remove_forget_pushButton.setHidden(True)
                 self.forget_pushButton.setHidden(False)
@@ -524,6 +524,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
+            if (self.words[self.words_index][5] !=0): 
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
             
     def today_exam(self):
 
@@ -543,6 +549,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
+            if (self.words[self.words_index][5] !=0):
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
 
     def review_words(self):
         # 1． 第一个记忆周期：5分钟
@@ -572,9 +584,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
+            if (self.words[self.words_index][5] !=0):
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
 
     def random_exam(self):
-
         random_list=[]
         for i in range(1,51):
             random_list.append(randrange(1,self.all_words_num+1))
@@ -594,12 +611,18 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.word_num=len(self.words)
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
-            self.forget_label.setText("")        
+            self.forget_label.setText("")
+            if (self.words[self.words_index][5] !=0):
+                    self.remove_forget_pushButton.setHidden(False)
+                    self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
 
     def forgoten_exam(self):
         self.remove_forget_pushButton.setHidden(False)
         self.forget_pushButton.setHidden(False)
-        self.words=self.mydb.select(f"select rowid,* from words where wrong_times != 0")
+        self.words=self.mydb.select(f"select rowid,* from words where wrong_times != 0 order by 6 desc")
         if len(self.words)==0:
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
@@ -612,7 +635,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.progress_label.setText(f"{self.words_index}/{self.word_num}")
             self.exam_english_lable.setText("")
             self.forget_label.setText("")
-
+            if (self.words[self.words_index][5] !=0):
+                self.remove_forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHidden(False)
+            else:
+                self.remove_forget_pushButton.setHidden(True)
+                self.forget_pushButton.setHidden(False)
     def changepage_main(self):
         self.Stacked.setCurrentIndex(0)
 
