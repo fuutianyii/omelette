@@ -564,7 +564,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # 5． 第五个记忆周期：2天
         # 6． 第六个记忆周期：4天
         # 7． 第七个记忆周期：7天
-        # 8． 第八个记忆周期：15天
+        # 8． 第八个记忆周期i：15天
 
         date1=str(datetime.date.today()-datetime.timedelta(days=1))
         date2=str(datetime.date.today()-datetime.timedelta(days=2))
