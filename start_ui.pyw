@@ -11,7 +11,6 @@ from time import localtime,strftime
 import datetime
 from random import randrange,shuffle
 
-
 class EmptyDelegate(QItemDelegate):
     def __init__(self,parent):
         super(EmptyDelegate, self).__init__(parent)
@@ -156,6 +155,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
             self.lens+=1
 
+
         elif part_of_speech=="u":
             self.part_of_speech_dic["u"]=""
             self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
@@ -164,6 +164,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
             self.lens+=1
 
+
         elif part_of_speech=="c":
             self.part_of_speech_dic["c"]=""
             self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
@@ -171,6 +172,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
             self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
             self.lens+=1
+
 
         elif part_of_speech=="v":
             self.part_of_speech_dic["v"]=""
@@ -508,7 +510,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 self.remove_forget_pushButton.setHidden(True)
                 self.forget_pushButton.setHidden(False)
                 
-
     def start_choose_exam(self):
         date=str(self.exam_calendarWidget.selectedDate().toPyDate())#获取选中日期并且转为str格式
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{date}'")
@@ -532,7 +533,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 self.forget_pushButton.setHidden(False)
             
     def today_exam(self):
-
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
         if self.checkBox_random.isChecked():
             shuffle(self.words)
@@ -565,7 +565,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # 6． 第六个记忆周期：4天
         # 7． 第七个记忆周期：7天
         # 8． 第八个记忆周期i：15天
-
         date1=str(datetime.date.today()-datetime.timedelta(days=1))
         date2=str(datetime.date.today()-datetime.timedelta(days=2))
         date3=str(datetime.date.today()-datetime.timedelta(days=4))
