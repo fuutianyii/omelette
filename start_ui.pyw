@@ -481,11 +481,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.exam_english_lable.setText("")
     
     def display_forget(self):
+        if self.forgeted == 0:
+            english=self.words[self.words_index][1]
+            wrong_times=self.mydb.select(f"select wrong_times from words where english='{english}'")[0][0]
+            wrong_times=self.mydb.update(f"update words set wrong_times={wrong_times+1} where english='{english}'")
+            self.forget_label.setText(self.words[self.words_index][1])
         self.forgeted=1
-        english=self.words[self.words_index][1]
-        wrong_times=self.mydb.select(f"select wrong_times from words where english='{english}'")[0][0]
-        wrong_times=self.mydb.update(f"update words set wrong_times={wrong_times+1} where english='{english}'")
-        self.forget_label.setText(self.words[self.words_index][1])
 
     def reset_wrong_times(self):
         english=self.words[self.words_index][1]
