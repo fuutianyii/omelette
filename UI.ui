@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
+    <width>900</width>
     <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>850</width>
+    <width>900</width>
     <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>850</width>
-    <height>580</height>
+    <width>65535</width>
+    <height>65535</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -160,7 +160,7 @@
       <item>
        <widget class="QStackedWidget" name="Stacked">
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -966,9 +966,6 @@
         <widget class="QWidget" name="change_page">
          <layout class="QVBoxLayout" name="verticalLayout_14">
           <item>
-           <widget class="QTableWidget" name="update_table"/>
-          </item>
-          <item>
            <widget class="QFrame" name="search_frame">
             <property name="minimumSize">
              <size>
@@ -993,47 +990,35 @@
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_13">
                 <item>
-                 <widget class="QFrame" name="search_english_frame">
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
+                 <widget class="QComboBox" name="filter_list_comboBox">
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_18">
-                   <item>
-                    <widget class="QLabel" name="label">
-                     <property name="text">
-                      <string>英文</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="search_english"/>
-                   </item>
-                  </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QFrame" name="search_chinese_frame">
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
+                 <widget class="QComboBox" name="sequence_comboBox">
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_16">
-                   <item>
-                    <widget class="QLabel" name="label_2">
-                     <property name="text">
-                      <string>中文</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="search_chinese"/>
-                   </item>
-                  </layout>
                  </widget>
                 </item>
                 <item>
@@ -1044,38 +1029,113 @@
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <layout class="QHBoxLayout" name="horizontalLayout_26">
                    <item>
-                    <widget class="QLabel" name="label_3">
+                    <widget class="QPushButton" name="more_functions">
+                     <property name="minimumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
                      <property name="text">
-                      <string>日期</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="search_date_time"/>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QFrame" name="search_list_frame">
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_19">
-                   <item>
-                    <widget class="QLabel" name="label_4">
+                    <widget class="QPushButton" name="Sync">
+                     <property name="minimumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
                      <property name="text">
-                      <string>组</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="search_list"/>
+                    <widget class="QPushButton" name="display_search_line_edit">
+                     <property name="minimumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>35</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="search_edit">
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>150</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_9">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
                   </layout>
                  </widget>
@@ -1088,11 +1148,18 @@
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_22">
+                  <layout class="QHBoxLayout" name="horizontalLayout_25">
+                   <item>
+                    <widget class="QPushButton" name="start_exam">
+                     <property name="text">
+                      <string>测试</string>
+                     </property>
+                    </widget>
+                   </item>
                    <item>
                     <widget class="QPushButton" name="search_forget_words">
                      <property name="text">
-                      <string>查询遗忘</string>
+                      <string>遗忘</string>
                      </property>
                     </widget>
                    </item>
@@ -1110,37 +1177,11 @@
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
-                <item>
-                 <widget class="QPushButton" name="search">
-                  <property name="text">
-                   <string>查询</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="update">
-                  <property name="text">
-                   <string>提交修改</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="delete_choose">
-                  <property name="text">
-                   <string>删除选中</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="exam_choose">
-                  <property name="text">
-                   <string>测试</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <layout class="QHBoxLayout" name="horizontalLayout_14"/>
               </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="update_table"/>
              </item>
             </layout>
            </widget>

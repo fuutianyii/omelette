@@ -7,9 +7,11 @@ from requests import get
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl
+from PyQt5.QtGui import QPixmap,QIcon
 from time import localtime,strftime
 import datetime
 from random import randrange,shuffle
+
 
 class EmptyDelegate(QItemDelegate):
     def __init__(self,parent):
@@ -57,16 +59,169 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.add_english_lable.setText("填入你的英文")
         self.add_part_of_speech_label.setText("选择词性")
         self.add_chinese_lable.setText("填入对应的中文")
-        self.add_chinese_input_table_widget.horizontalHeader().setVisible(False)
-        self.add_chinese_input_table_widget.verticalHeader().setVisible(False)
+        # self.add_chinese_input_table_widget.horizontalHeader().setVisible(False)
+        # self.add_chinese_input_table_widget.verticalHeader().setVisible(False)
         self.add_chinese_input_table_widget.setColumnCount(2)
         self.add_chinese_input_table_widget.setColumnWidth(0,75)
         self.add_chinese_input_table_widget.setColumnWidth(1,610)
+        self.update_table.setStyleSheet("""
+        QTableWidget
+        {
+            border:none;
+        }
+        QScrollBar:vertical{ 
+            width:8px;  
+            border-style:flat;
+            border-radius: 4px;
+            border:0px;
+            background: rgba(0,0,0,0);
+        } 
+        QScrollBar::handle:vertical{ 
+            background: rgba(0,0,0,0.20);
+            border-radius: 4px;
+            width:8px; 
+            min-height:91px; 
+            border-style:flat;
+        }
+        QScrollBar::handle:vertical::hover{ 
+            background: rgba(0,0,0,0.40);
+            border-radius: 4px;
+            width:8px; 
+        }
+        QScrollBar::handle:vertical::pressed{ 
+            background: rgba(0,0,0,0.40);
+            border-radius:4px;
+            width:8px; 
+        }
+        QScrollBar::sub-page:horizontal {
+            background: rgba(0,0,0,0);
+            border-style:flat;
+        }
+        QScrollBar::add-page:horizontal {
+            background: rgba(0,0,0,0);
+            border-style:flat;
+        }
+        QScrollBar::sub-line:horizontal {
+        background: rgba(0,0,0,0);
+        }
+        QScrollBar::add-line:horizontal{
+        background: rgba(0,0,0,0);
+        }
+        QScrollBar::sub-page:vertical {
+            background: rgba(0,0,0,0);
+        border-style:flat;
+        }
+        QScrollBar::add-page:vertical {
+        background: rgba(0,0,0,0);
+        border-style:flat;
+        }
+        QScrollBar::add-line:vertical{
+        background: rgba(0,0,0,0);
+        }
+        QScrollBar::sub-line:vertical {
+        background: rgba(0,0,0,0);
+        }
+
+
+
+
+        QScrollBar:horizontal{ 
+            height:8px;  
+            border-style:flat;
+            border-radius: 4px;
+            border:0px;
+            background: rgba(0,0,0,0);
+        } 
+        QScrollBar::handle:horizontal{ 
+            background: rgba(0,0,0,0.20);
+            border-radius: 4px;
+            height:8px; 
+            min-width:91px; 
+            border-style:flat;
+        }
+        QScrollBar::handle:horizontal::hover{ 
+            background: rgba(0,0,0,0.40);
+            border-radius: 4px;
+            height:8px; 
+        }
+        QScrollBar::handle:horizontal::pressed{ 
+            background: rgba(0,0,0,0.40);
+            border-radius:4px;
+            height:8px; 
+        }
+        QScrollBar::sub-page:horizontal {
+            background: rgba(0,0,0,0);
+            border-style:flat;
+        }
+        QScrollBar::add-page:horizontal {
+        background: rgba(0,0,0,0);
+            border-style:flat;
+        }
+        QScrollBar::sub-line:horizontal {
+        background: rgba(0,0,0,0);
+        }
+        QScrollBar::add-line:horizontal{
+            background: rgba(0,0,0,0);
+        }
+        """) #设置tableweigh样式
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.horizontalHeader().setVisible(False)
         self.update_table.verticalHeader().setVisible(False)
         self.update_table.setColumnCount(5)
         self.update_table.setRowCount(self.update_table.rowCount()+1)
+        self.filter_list_comboBox.addItem("全部分组")
+        self.filter_list_comboBox.setStyleSheet("""
+            QComboBox{
+                background: rgba(0,0,0,0);
+                border:none;
+            }
+            QComboBox::down-arrow {
+                image: url(:/res/work/dateDown.png);
+            }
+            """)
+        self.sequence_comboBox.addItem("添加时间")
+        self.sequence_comboBox.setStyleSheet("""
+            QComboBox{
+                background: rgba(0,0,0,0);
+                border:none;
+            }
+            QComboBox::down-arrow {
+                image: url(:/res/work/dateDown.png);
+            }
+            """)
+        self.search_edit.setStyleSheet("border: none;border-radius: 10px;")
+        self.search_edit.setPlaceholderText("搜索单词")
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
+        self.more_functions.setIcon(icon)
+        self.more_functions.setStyleSheet("background:rgba(0,0,0,0);")
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
+        self.Sync.setIcon(icon)
+        self.Sync.setStyleSheet("background:rgba(0,0,0,0);")
+        
+
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
+        self.Sync.setIcon(icon)
+        self.Sync.setStyleSheet("background:rgba(0,0,0,0);")
+      
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
+        self.display_search_line_edit.setIcon(icon)
+        self.display_search_line_edit.setStyleSheet("background:rgba(0,0,0,0);")
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/start.png"), QIcon.Normal, QIcon.Off)
+        self.start_exam.setIcon(icon)
+        self.start_exam.setStyleSheet("background:rgba(0,0,0,0);")
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/forget.png"), QIcon.Normal, QIcon.Off)
+        self.search_forget_words.setIcon(icon)
+        self.search_forget_words.setStyleSheet("background:rgba(0,0,0,0);")
 
     def condef(self):
         self.left_first_button.clicked.connect(self.changepage_main)
@@ -78,14 +233,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.add_part_of_speech_input_next.clicked.connect(self.change_add_frame_to_chinese)
         self.add_part_of_speech_input_last.clicked.connect(self.back_add_english_widget)
         self.add_chinese_input_last.clicked.connect(self.back_add_frame_to_part_of_speech)
-        self.search.clicked.connect(self.update_page_search)
+        # self.search.clicked.connect(self.update_page_search)
         self.add_chinese_input_next.clicked.connect(self.complete_one)
         self.exam_calendarWidget.clicked.connect(self.start_choose_exam)
-        self.update.clicked.connect(self.update_all_words)
+        # self.update.clicked.connect(self.update_all_words)
         self.forget_pushButton.clicked.connect(self.display_forget)
-        self.search_forget_words.clicked.connect(self.select_forget_words)
-        self.delete_choose.clicked.connect(self.delete_words)
-        self.exam_choose.clicked.connect(self.exam_choose_words)
+        # self.search_forget_words.clicked.connect(self.select_forget_words)
+        # self.delete_choose.clicked.connect(self.delete_words)
+        # self.exam_choose.clicked.connect(self.exam_choose_words)
         self.exam_english_lable.returnPressed.connect(self.exam_submit)
         self.change_calendar.clicked.connect(self.changepage_exam_calendar)
         self.back_exam_main.clicked.connect(self.changepage_exam_main)
@@ -654,7 +809,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setColumnWidth(1,420)
         self.update_table.setColumnWidth(2,30)
         self.update_table.setColumnWidth(3,80)
-        self.update_table.setColumnWidth(4,20)
+        self.update_table.setColumnWidth(4,50)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
