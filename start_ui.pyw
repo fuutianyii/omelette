@@ -621,24 +621,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
 
-        # search=f"select rowid,* from words where list='{}'"
-        # if (len(search_filter) != 0):
-        #     search+=search_filter[0]
-        #     for i in range(1,len(search_filter)):
-        #         search+=" and "
-        #         search+=search_filter[i]
-        #     self.update_words=self.mydb.select(search)
-        # else:
-        #     search+=" 1=1"
-        #     self.update_words=self.mydb.select(search)
-
-        # self.update_table.setRowCount(len(self.update_words))
-        # for items in range(0,len(self.update_words)):
-        #     newItem = QTableWidgetItem(self.update_words[items][1])
-        #     self.update_table.setItem(items,0,newItem)
-        #     newItem = QTableWidgetItem(self.update_words[items][2])
-        #     self.update_table.setItem(items,1,newItem)
-
 
     def update_page_search(self):
         search="select rowid,* from words where "
@@ -675,14 +657,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
-            # newItem = QTableWidgetItem(self.update_words[items][2])
-            # self.update_table.setItem(items,1,newItem)
-            # newItem = QTableWidgetItem(self.update_words[items][3])
-            # self.update_table.setItem(items,2,newItem)
-            # newItem = QTableWidgetItem(self.update_words[items][4])
-            # self.update_table.setItem(items,3,newItem)
-            # newItem = QTableWidgetItem(self.update_words[items][6])
-            # self.update_table.setItem(items,4,newItem) 
 
     def play(self,word):
         try:
@@ -721,10 +695,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.exam_english_lable.setStyleSheet('''QWidget{background-color:#66FFCC;}''')
             QApplication.processEvents()#刷新样式
             self.exam_english_lable.setText("")
-            # if self.forgeted == 0:
-                # english=self.words[self.words_index][1]
-                # chinese=self.exam_chinese_label.text()
-                # self.mydb.update(f"update words set wrong_times=0 where english='{english}' and chinese = '{chinese}'")
             english=self.words[self.words_index][1]
             if self.checkBox_voice.isChecked():
                 self.play(english)
