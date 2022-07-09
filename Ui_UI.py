@@ -14,8 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(900, 500)
-        MainWindow.setMinimumSize(QtCore.QSize(900, 500))
+        MainWindow.resize(900, 550)
+        MainWindow.setMinimumSize(QtCore.QSize(900, 550))
         MainWindow.setMaximumSize(QtCore.QSize(65535, 65535))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -445,7 +445,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.frame_6)
         self.verticalLayout_16.setObjectName("verticalLayout_16")
         self.selection_word = QtWidgets.QLabel(self.frame_6)
-        self.selection_word.setMinimumSize(QtCore.QSize(0, 50))
+        self.selection_word.setMinimumSize(QtCore.QSize(0, 70))
+        self.selection_word.setMaximumSize(QtCore.QSize(16777215, 70))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(30)
