@@ -671,7 +671,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             search+=" 1=1"
         
-        search += " and (english= '"+self.search_edit.text()+"')"
+        search += " and (english like '%"+self.search_edit.text()+"%')"
+
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
