@@ -2,7 +2,7 @@ import sqlite3
 
 class db():
     def __init__(self,dbname="words.db"):
-        self.con = sqlite3.connect("forgot.db")
+        self.con = sqlite3.connect(dbname)
         self.cursor=self.con.cursor()
         sql = "CREATE TABLE IF NOT EXISTS words(english text not null,chinese text not null,posd text not null,insert_date text not null,wrong_times INTEGER not null)"
         self.cursor.execute(sql)

@@ -4,14 +4,14 @@ import sys
 from time import sleep
 from os import getcwd,path
 from requests import get
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView
-from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
-from PyQt5.QtCore import Qt,QUrl
-from PyQt5.QtGui import QPixmap,QIcon
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView 
+from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
+from PyQt5.QtCore import Qt,QUrl 
+from PyQt5.QtGui import QPixmap,QIcon 
 from time import localtime,strftime
 import datetime
 from random import randrange,shuffle
-
+from base64 import b64decode
 
 class EmptyDelegate(QItemDelegate):
     def __init__(self,parent):
@@ -23,7 +23,8 @@ class EmptyDelegate(QItemDelegate):
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def __init__(self):
         super().__init__()
-        self.mydb=db.db()
+        self.mydb=db.db("db/forgot.db")
+        self.myOxford=db.db("db/Oxford.db")
         self.get_all_list()
         self.get_all_insert_date()
         self.player = QMediaPlayer() 
@@ -261,6 +262,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setWordWrap(True)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        
           
     def condef(self):
         self.left_first_button.clicked.connect(self.changepage_main)
@@ -307,19 +311,29 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play(self.selection_word.text())
     
     def show_defined_selection(self,Item):
-        
+        try:
+            Oxford_data=self.myOxford.select("select * from words where english='"+Item.text()+"'")
+            self.play_voice.setText(Oxford_data[0][1])
+            b64decode(Oxford_data[0][2]).decode()
+            self.Oxford_info_box.setText(b64decode(Oxford_data[0][2]).decode())
+        except:
+            self.play_voice.setText("")
+            self.Oxford_info_box.setText("")
+
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
         self.words_list.setText("组别名称："+self.update_words[self.update_table.currentRow()][6])
 
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][3])
+        newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.word_info_table.setItem(0,0,newItem)
         
         newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][2])
         self.word_info_table.setItem(0,1,newItem)
         
         self.word_info_table.resizeRowsToContents()#自动调整行高度
+
         # self.word_info_table.resizeColumnsToContents()
         
         
@@ -891,28 +905,40 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
-        self.update_words=self.mydb.select(f"select rowid,* from words  order by 5 desc")
+        self.update_words=self.mydb.select(f"select rowid,* from words -- order by 5 desc")
         self.update_table.setColumnWidth(0,130)
-        # self.update_table.setColumnWidth(1,420)
-        # self.update_table.setColumnWidth(2,30)
-        # self.update_table.setColumnWidth(3,80)
-        # self.update_table.setColumnWidth(4,50)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
+        try:
+            Oxford_data=self.myOxford.select("select * from words where english='"+self.update_words[0][1]+"'")
+            self.play_voice.setText(Oxford_data[0][1])
+            b64decode(Oxford_data[0][2]).decode()
+            self.Oxford_info_box.setText(b64decode(Oxford_data[0][2]).decode())
+            self.Oxford_info_box.setText("aggressive	<font color=red>aggressive</font><br><font color=\"#F17D1F\" size=4>/əˈgresɪv; ə`ɡrɛsɪv/</font> adj<br><font color=green>1</font><br><font color=red>(a) (of people or animals) apt or ready to attack; offensive; quarrelsome （指人或动物）侵略的, 好攻击的, 好寻衅的, 好争吵的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>dogs trained to be aggressive 训练成攻击型的狗</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>Aggressive nations threaten world peace. 侵略成性的国家威胁世界和平.</font><br><font color=red>(b) (of things or actions) for or of an attack; offensive （指事物或行动）攻击性的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>aggressive weapons 攻击性的武器.</font><br><font color=green>2 (often approv 常作褒义) forceful; self-assertive 强有力的; 坚持己见的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>A good salesman must be aggressive if he wants to succeed. 要做个好推销员一定要有闯劲才能成功. </font><br>")
             
+        except:
+            self.play_voice.setText("")
+            self.Oxford_info_box.setText("")
         self.selection_word.setText(self.update_words[0][1])
         self.insert_date.setText("添加日期："+self.update_words[0][4])
         self.words_list.setText("组别名称："+self.update_words[0][6])
+
+
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[0][3])
+        newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.word_info_table.setItem(0,0,newItem)
         newItem = QTableWidgetItem(self.update_words[0][2])
         self.word_info_table.setItem(0,1,newItem)    
-    
+
         self.word_info_table.resizeRowsToContents()#自调整高度
-        # self.word_info_table.resizeColumnsToContents()#自调整高度
+        self.tabWidget.setCurrentIndex(2)#切换单词解释界面
+        # self.word_info_table.resizeColumnsToContents()#自调整宽度
+        
+        print(1)
+
 
     def changepage_exam(self):
         self.Stacked.setCurrentIndex(3)
