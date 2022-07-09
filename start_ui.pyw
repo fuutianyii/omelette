@@ -170,7 +170,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         QScrollBar::add-line:horizontal{
             background: rgba(0,0,0,0);
         }
-        """) #设置tableweigh样式
+        """) #设置tableweigh样式圆角滚动条
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
         #取消虚线框
@@ -333,10 +333,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setItem(0,1,newItem)
         
         self.word_info_table.resizeRowsToContents()#自动调整行高度
-
-        # self.word_info_table.resizeColumnsToContents()
-        
-        
+        # self.word_info_table.resizeColumnsToContents()#自动调整列宽
         
     def insert_to_add_chinese_table(self):
         self.part_of_speech_dic={}
@@ -620,14 +617,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setRowCount(self.update_table.rowCount()+1)
             newItem = QTableWidgetItem(items[1])
             self.update_table.setItem(self.update_table.rowCount()-1,0,newItem)
-            # newItem = QTableWidgetItem(items[2])
-            # self.update_table.setItem(self.update_table.rowCount()-1,1,newItem)
-            # newItem = QTableWidgetItem(items[3])            
-            # self.update_table.setItem(self.update_table.rowCount()-1,2,newItem)
-            # newItem = QTableWidgetItem(items[4])
-            # self.update_table.setItem(self.update_table.rowCount()-1,3,newItem)
-            # newItem = QTableWidgetItem(items[6])
-            # self.update_table.setItem(self.update_table.rowCount()-1,4,newItem)
 
     def filter_date(self,index):
         date=self.all_insert_dates[index-1][0]
@@ -936,9 +925,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.resizeRowsToContents()#自调整高度
         self.tabWidget.setCurrentIndex(2)#切换单词解释界面
         # self.word_info_table.resizeColumnsToContents()#自调整宽度
-        
-        print(1)
-
 
     def changepage_exam(self):
         self.Stacked.setCurrentIndex(3)
@@ -989,7 +975,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.mydb.insert(english,ch,posd,self.datetime,0,self.group)
         self.add_english_input_edit.setText("")
         self.clear_add_chinese_table()
-        # self.part_of_speech_dic={}
         self.Add_Stack.setCurrentIndex(0)
 
 if __name__ == '__main__':
