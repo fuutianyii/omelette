@@ -4,7 +4,7 @@ import sys
 from time import sleep
 from os import getcwd,path
 from requests import get
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl
 from PyQt5.QtGui import QPixmap,QIcon
@@ -244,7 +244,24 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play_voice.setIcon(icon)
         self.play_voice.setStyleSheet('text-align:left;background:rgba(0,0,0,0);')
 
-
+        self.word_info_table.setColumnCount(2)
+        self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.word_info_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
+        self.word_info_table.setColumnWidth(0, 40)
+        self.word_info_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.word_info_table.setFocusPolicy(Qt.NoFocus)
+        #取消虚线框
+        self.word_info_table.setShowGrid(False)
+        #取消网格线
+        self.word_info_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        #不可写
+        self.word_info_table.horizontalHeader().setVisible(False)
+        self.word_info_table.verticalHeader().setVisible(False)
+        self.word_info_table.setStyleSheet("QTableWidget{border:none;font-size:15px}")
+        self.word_info_table.setWordWrap(True)
+        # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+          
     def condef(self):
         self.left_first_button.clicked.connect(self.changepage_main)
         self.left_second_button.clicked.connect(self.changepage_add)
@@ -270,13 +287,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.radom_exam_button.clicked.connect(self.random_exam)
         self.review_Forgotten_button.clicked.connect(self.forgoten_exam)
         self.remove_forget_pushButton.clicked.connect(self.reset_wrong_times)
-        self.update_table.itemClicked.connect(self.show_selection)
+        self.update_table.itemClicked.connect(self.show_defined_selection)
         self.play_voice.clicked.connect(self.play_the_word)
         self.start_exam.clicked.connect(self.exam_choose_words)
         self.filter_list_comboBox.currentIndexChanged.connect(self.filter_list)
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
         self.search_forget_words.clicked.connect(self.select_forget_words)
-
+        
 
     def get_all_insert_date(self):
         search="select insert_date From words Group By insert_date;"
@@ -289,16 +306,24 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def play_the_word(self):
         self.play(self.selection_word.text())
     
-    def show_selection(self,Item):
+    def show_defined_selection(self,Item):
+        
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
         self.words_list.setText("组别名称："+self.update_words[self.update_table.currentRow()][6])
-        self.defined_page_label.setAlignment(Qt.AlignLeft|Qt.AlignTop)
-        data="<p><span style='color:rgba(192,192,192,1);font-size:25px;'>"+self.update_words[self.update_table.currentRow()][3]+"   </span><span style='font-size:18px;'>"+self.update_words[self.update_table.currentRow()][2]+"</span></p>"
-        self.defined_page_label.setText(data)
-        # print(self.update_words[Item][0])
-        
 
+        self.word_info_table.setRowCount(1)
+        newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][3])
+        self.word_info_table.setItem(0,0,newItem)
+        
+        newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][2])
+        self.word_info_table.setItem(0,1,newItem)
+        
+        self.word_info_table.resizeRowsToContents()#自动调整行高度
+        # self.word_info_table.resizeColumnsToContents()
+        
+        
+        
     def insert_to_add_chinese_table(self):
         self.part_of_speech_dic={}
         self.clear_add_chinese_table()
@@ -519,10 +544,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         for index in range(0,tablelen)[::5]:#设置步长为4
             row_index=self.update_table.selectedIndexes()[index+1].row() #获取行号
             row_id=self.update_words[row_index][0]
-            #english=self.update_table.selectedIndexes()[index].data() #获取第一列的数据
-            #chinese=self.update_table.selectedIndexes()[index+1].data() #获取第二列的数据
             sql=f"delete from words where rowid={row_id}"
             self.mydb.delete(sql)
+            
+        
         self.changepage_update()#刷新一波
         msg_box = QMessageBox(QMessageBox.Warning, '警告', f'成功删除{rows}个单词')
         msg_box.exec_()
@@ -574,7 +599,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             search+=" 1=1"
         search += " and (wrong_times != 0)"
-        print(search)
         self.update_words=self.mydb.select(search)
 
         for items in self.update_words:
@@ -582,14 +606,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setRowCount(self.update_table.rowCount()+1)
             newItem = QTableWidgetItem(items[1])
             self.update_table.setItem(self.update_table.rowCount()-1,0,newItem)
-            newItem = QTableWidgetItem(items[2])
-            self.update_table.setItem(self.update_table.rowCount()-1,1,newItem)
-            newItem = QTableWidgetItem(items[3])            
-            self.update_table.setItem(self.update_table.rowCount()-1,2,newItem)
-            newItem = QTableWidgetItem(items[4])
-            self.update_table.setItem(self.update_table.rowCount()-1,3,newItem)
-            newItem = QTableWidgetItem(items[6])
-            self.update_table.setItem(self.update_table.rowCount()-1,4,newItem)
+            # newItem = QTableWidgetItem(items[2])
+            # self.update_table.setItem(self.update_table.rowCount()-1,1,newItem)
+            # newItem = QTableWidgetItem(items[3])            
+            # self.update_table.setItem(self.update_table.rowCount()-1,2,newItem)
+            # newItem = QTableWidgetItem(items[4])
+            # self.update_table.setItem(self.update_table.rowCount()-1,3,newItem)
+            # newItem = QTableWidgetItem(items[6])
+            # self.update_table.setItem(self.update_table.rowCount()-1,4,newItem)
 
     def filter_date(self,index):
         date=self.all_insert_dates[index-1][0]
@@ -605,7 +629,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
 
-
     def filter_list(self,index):
         list_one=self.all_lists[index-1][0]
         if index==0:
@@ -615,12 +638,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search=f"select rowid,* from words where list='{list_one}'"
             self.list=list_one
         self.update_words=self.mydb.select(search)
-        print(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
-
 
     def update_page_search(self):
         search="select rowid,* from words where "
@@ -648,11 +669,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search+=" 1=1"
         
         search += " and (english= '"+self.search_edit.text()+"')"
-        print(search)
         self.update_words=self.mydb.select(search)
-
-
-
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
@@ -884,14 +901,18 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
-            newItem = QTableWidgetItem(self.update_words[items][2])
-            self.update_table.setItem(items,1,newItem)
-            newItem = QTableWidgetItem(self.update_words[items][3])
-            self.update_table.setItem(items,2,newItem)
-            newItem = QTableWidgetItem(self.update_words[items][4])
-            self.update_table.setItem(items,3,newItem)
-            newItem = QTableWidgetItem(self.update_words[items][6])
-            self.update_table.setItem(items,4,newItem) 
+            
+        self.selection_word.setText(self.update_words[0][1])
+        self.insert_date.setText("添加日期："+self.update_words[0][4])
+        self.words_list.setText("组别名称："+self.update_words[0][6])
+        self.word_info_table.setRowCount(1)
+        newItem = QTableWidgetItem(self.update_words[0][3])
+        self.word_info_table.setItem(0,0,newItem)
+        newItem = QTableWidgetItem(self.update_words[0][2])
+        self.word_info_table.setItem(0,1,newItem)    
+    
+        self.word_info_table.resizeRowsToContents()#自调整高度
+        # self.word_info_table.resizeColumnsToContents()#自调整高度
 
     def changepage_exam(self):
         self.Stacked.setCurrentIndex(3)

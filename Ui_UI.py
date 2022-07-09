@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'f:\words_helper\UI.ui'
+# Form implementation generated from reading ui file 'c:\word_helper\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -493,14 +493,11 @@ class Ui_MainWindow(object):
         self.defined_page.setObjectName("defined_page")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.defined_page)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
-        self.defined_page_label = QtWidgets.QLabel(self.defined_page)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        self.defined_page_label.setFont(font)
-        self.defined_page_label.setText("")
-        self.defined_page_label.setWordWrap(True)
-        self.defined_page_label.setObjectName("defined_page_label")
-        self.verticalLayout_17.addWidget(self.defined_page_label)
+        self.word_info_table = QtWidgets.QTableWidget(self.defined_page)
+        self.word_info_table.setObjectName("word_info_table")
+        self.word_info_table.setColumnCount(0)
+        self.word_info_table.setRowCount(0)
+        self.verticalLayout_17.addWidget(self.word_info_table)
         self.tabWidget.addTab(self.defined_page, "")
         self.verticalLayout_16.addWidget(self.tabWidget)
         self.horizontalLayout_14.addWidget(self.frame_6)
