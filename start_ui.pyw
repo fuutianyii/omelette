@@ -1,17 +1,17 @@
 import Ui_UI    
 import db
 import sys
+import datetime
 from time import sleep
 from os import getcwd,path
 from requests import get
+from time import localtime,strftime
+from random import randrange,shuffle
+from base64 import b64decode
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView 
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
-from PyQt5.QtGui import QPixmap,QIcon 
-from time import localtime,strftime
-import datetime
-from random import randrange,shuffle
-from base64 import b64decode
+from PyQt5.QtGui import QPixmap,QIcon
 
 class EmptyDelegate(QItemDelegate):
     def __init__(self,parent):
