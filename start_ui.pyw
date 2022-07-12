@@ -23,8 +23,8 @@ class EmptyDelegate(QItemDelegate):
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def __init__(self):
         super().__init__()
-        # self.mydb=db.db("db/words.db")
-        self.mydb=db.db("db/forgot.db")
+        self.mydb=db.db("db/words.db")
+        # self.mydb=db.db("db/forgot.db")
         self.myOxford=db.db("db/Oxford.db")
         self.get_all_list()
         self.get_all_insert_date()
