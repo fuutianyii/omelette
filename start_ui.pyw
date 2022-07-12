@@ -183,6 +183,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # self.update_table.verticalHeader().setVisible(False)
         self.update_table.setColumnCount(1)
         self.update_table.setRowCount(self.update_table.rowCount()+1)
+        self.update_table.setColumnWidth(0,130)
+        
+
 
         self.filter_list_comboBox.addItem("全部分组")
         for list_one in self.all_lists:
@@ -282,7 +285,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.exam_calendarWidget.clicked.connect(self.start_choose_exam)
         # self.update.clicked.connect(self.update_all_words)
         self.forget_pushButton.clicked.connect(self.display_forget)
-        # self.search_forget_words.clicked.connect(self.select_forget_words)
         # self.delete_choose.clicked.connect(self.delete_words)
         self.exam_english_lable.returnPressed.connect(self.exam_submit)
         self.change_calendar.clicked.connect(self.changepage_exam_calendar)
@@ -335,6 +337,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.word_info_table.resizeRowsToContents()#自动调整行高度
         # self.word_info_table.resizeColumnsToContents()#自动调整列宽
+
         
     def insert_to_add_chinese_table(self):
         self.part_of_speech_dic={}
@@ -593,11 +596,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         group=""
         search_filter=[]
         if self.date=="全部时间":
-            search_filter.append(f" (list != '') ")
+            search_filter.append(f" (insert_date != '') ")
         else:
             search_filter.append(f"(insert_date='{self.date}')")
        
-        if group != "全部分组":
+        if group == "全部分组":
             search_filter.append(f" (list !='')")
         else:
             search_filter.append(f"(list='{self.list}')")
@@ -679,6 +682,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
+        return self.update_words
 
     def play(self,word):
         try:
@@ -798,7 +802,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.forget_label.setText("")
             if (self.words[self.words_index][5] !=0):
                 self.remove_forget_pushButton.setHidden(False)
-                self.forget_pushButton.setHidden(False)
+                self.forget_pushButton.setHiddfen(False)
             else:
                 self.remove_forget_pushButton.setHidden(True)
                 self.forget_pushButton.setHidden(False)
@@ -896,9 +900,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
-        self.update_words=self.mydb.select(f"select rowid,* from words -- order by 5 desc")
-        self.update_table.setColumnWidth(0,130)
+        self.update_words=self.update_page_search()
         self.update_table.setRowCount(len(self.update_words))
+        
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
@@ -907,7 +911,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.play_voice.setText(Oxford_data[0][1])
             b64decode(Oxford_data[0][2]).decode()
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][2]).decode())
-            self.Oxford_info_box.setText("aggressive	<font color=red>aggressive</font><br><font color=\"#F17D1F\" size=4>/əˈgresɪv; ə`ɡrɛsɪv/</font> adj<br><font color=green>1</font><br><font color=red>(a) (of people or animals) apt or ready to attack; offensive; quarrelsome （指人或动物）侵略的, 好攻击的, 好寻衅的, 好争吵的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>dogs trained to be aggressive 训练成攻击型的狗</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>Aggressive nations threaten world peace. 侵略成性的国家威胁世界和平.</font><br><font color=red>(b) (of things or actions) for or of an attack; offensive （指事物或行动）攻击性的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>aggressive weapons 攻击性的武器.</font><br><font color=green>2 (often approv 常作褒义) forceful; self-assertive 强有力的; 坚持己见的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>A good salesman must be aggressive if he wants to succeed. 要做个好推销员一定要有闯劲才能成功. </font><br>")
+            # self.Oxford_info_box.setText("aggressive	<font color=red>aggressive</font><br><font color=\"#F17D1F\" size=4>/əˈgresɪv; ə`ɡrɛsɪv/</font> adj<br><font color=green>1</font><br><font color=red>(a) (of people or animals) apt or ready to attack; offensive; quarrelsome （指人或动物）侵略的, 好攻击的, 好寻衅的, 好争吵的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>dogs trained to be aggressive 训练成攻击型的狗</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>Aggressive nations threaten world peace. 侵略成性的国家威胁世界和平.</font><br><font color=red>(b) (of things or actions) for or of an attack; offensive （指事物或行动）攻击性的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>aggressive weapons 攻击性的武器.</font><br><font color=green>2 (often approv 常作褒义) forceful; self-assertive 强有力的; 坚持己见的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>A good salesman must be aggressive if he wants to succeed. 要做个好推销员一定要有闯劲才能成功. </font><br>")
             
         except:
             self.play_voice.setText("")
