@@ -23,8 +23,8 @@ class EmptyDelegate(QItemDelegate):
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def __init__(self):
         super().__init__()
-        self.mydb=db.db("db/words.db")
-        # self.mydb=db.db("db/forgot.db")
+        # self.mydb=db.db("db/words.db")
+        self.mydb=db.db("db/forgot.db")
         self.myOxford=db.db("db/Oxford.db")
         self.get_all_list()
         self.get_all_insert_date()
@@ -600,7 +600,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             search_filter.append(f"(insert_date='{self.date}')")
        
-        if group == "全部分组":
+        if self.list == "全部分组":
             search_filter.append(f" (list !='')")
         else:
             search_filter.append(f"(list='{self.list}')")
@@ -615,7 +615,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search+=" 1=1"
         search += " and (wrong_times != 0)"
         self.update_words=self.mydb.select(search)
-
         for items in self.update_words:
             setline=self.update_table.rowCount()+1
             self.update_table.setRowCount(self.update_table.rowCount()+1)
