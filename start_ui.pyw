@@ -130,9 +130,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         background: rgba(0,0,0,0);
         }
 
-
-
-
         QScrollBar:horizontal{ 
             height:8px;  
             border-style:flat;
@@ -184,9 +181,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setColumnCount(1)
         self.update_table.setRowCount(self.update_table.rowCount()+1)
         self.update_table.setColumnWidth(0,130)
-        
-
-
         self.filter_list_comboBox.addItem("全部分组")
         for list_one in self.all_lists:
             self.filter_list_comboBox.addItem(list_one[0])
@@ -269,7 +263,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         
-          
     def condef(self):
         self.left_first_button.clicked.connect(self.changepage_main)
         self.left_second_button.clicked.connect(self.changepage_add)
@@ -301,7 +294,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
         self.search_forget_words.clicked.connect(self.select_forget_words)
         
-
     def get_all_insert_date(self):
         search="select insert_date From words Group By insert_date;"
         self.all_insert_dates=self.mydb.select(search)
@@ -338,7 +330,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.resizeRowsToContents()#自动调整行高度
         # self.word_info_table.resizeColumnsToContents()#自动调整列宽
 
-        
     def insert_to_add_chinese_table(self):
         self.part_of_speech_dic={}
         self.clear_add_chinese_table()
@@ -561,8 +552,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             row_id=self.update_words[row_index][0]
             sql=f"delete from words where rowid={row_id}"
             self.mydb.delete(sql)
-            
-        
         self.changepage_update()#刷新一波
         msg_box = QMessageBox(QMessageBox.Warning, '警告', f'成功删除{rows}个单词')
         msg_box.exec_()
@@ -675,7 +664,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search+=" 1=1"
         
         search += " and (english like '%"+self.search_edit.text()+"%')"
-
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
@@ -918,8 +906,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.selection_word.setText(self.update_words[0][1])
         self.insert_date.setText("添加日期："+self.update_words[0][4])
         self.words_list.setText("组别名称："+self.update_words[0][6])
-
-
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[0][3])
         newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
