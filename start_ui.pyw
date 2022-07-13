@@ -23,8 +23,8 @@ class EmptyDelegate(QItemDelegate):
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def __init__(self):
         super().__init__()
-        # self.mydb=db.db("db/words.db")
-        self.mydb=db.db("db/forgot.db")
+        self.mydb=db.db("db/words.db")
+        # self.mydb=db.db("db/forgot.db")
         self.myOxford=db.db("db/Oxford.db")
         self.get_all_list()
         self.get_all_insert_date()
@@ -65,8 +65,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.add_english_lable.setText("填入你的英文")
         self.add_part_of_speech_label.setText("选择词性")
         self.add_chinese_lable.setText("填入对应的中文")
-        # self.add_chinese_input_table_widget.horizontalHeader().setVisible(False)
-        # self.add_chinese_input_table_widget.verticalHeader().setVisible(False)
+        self.add_chinese_input_table_widget.horizontalHeader().setVisible(False)
+        self.add_chinese_input_table_widget.verticalHeader().setVisible(False)
         self.add_chinese_input_table_widget.setColumnCount(2)
         self.add_chinese_input_table_widget.setColumnWidth(0,75)
         self.add_chinese_input_table_widget.setColumnWidth(1,610)
@@ -241,7 +241,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
         self.play_voice.setIcon(icon)
-        self.play_voice.setStyleSheet('text-align:left;background:rgba(0,0,0,0);')
+        self.play_voice.setStyleSheet('text-align:left;background:rgba(0,0,0,0);border:none;')
 
         self.word_info_table.setColumnCount(2)
         self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -646,11 +646,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         group=""
         search_filter=[]
         if self.date=="全部时间":
-            search_filter.append(f" (list != '') ")
+            search_filter.append(f" (insert_date != '') ")
         else:
             search_filter.append(f"(insert_date='{self.date}')")
        
-        if group != "全部分组":
+        if self.list == "全部分组":
             search_filter.append(f" (list !='')")
         else:
             search_filter.append(f"(list='{self.list}')")

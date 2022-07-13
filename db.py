@@ -8,7 +8,7 @@ class db():
         self.cursor.execute(sql)
 
     def insert(self,english,chinese,posd,insert_date,wrong_times,list):
-        sql=f"INSERT INTO words VALUES ('{english}', '{chinese}', '{posd}', '{insert_date}', {wrong_times},{list});"
+        sql=f"INSERT INTO words VALUES ('{english}', '{chinese}', '{posd}', '{insert_date}', {wrong_times},'{list}');"
         self.cursor.execute(sql)
         self.con.commit()
 
