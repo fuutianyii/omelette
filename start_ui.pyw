@@ -20,7 +20,7 @@ class EmptyDelegate(QItemDelegate):
     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
         return None
 
-class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
+class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
         super().__init__()
         self.mydb=db.db("db/words.db")
@@ -246,7 +246,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setColumnCount(2)
         self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.word_info_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
-        self.word_info_table.setColumnWidth(0, 40)
+        self.word_info_table.setColumnWidth(0, 50)
         self.word_info_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.word_info_table.setFocusPolicy(Qt.NoFocus)
         #取消虚线框
@@ -773,8 +773,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def today_exam(self):
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
         if self.checkBox_random.isChecked():
-            shuffle(self.words)
-        # self.words=self.words[::-1]
+            # shuffle(self.words)
+            self.words=self.words[::-1]
         if len(self.words)==0:
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
