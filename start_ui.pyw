@@ -242,7 +242,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
         self.play_voice.setIcon(icon)
         self.play_voice.setStyleSheet('text-align:left;background:rgba(0,0,0,0);border:none;')
-
         self.word_info_table.setColumnCount(2)
         self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.word_info_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
@@ -663,7 +662,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             search+=" 1=1"
         
-        search += " and (english like '%"+self.search_edit.text()+"%')"
+        search += " and ((english like '%"+self.search_edit.text()+"%' ) or (chinese like '%"+self.search_edit.text()+"%' ))"
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
