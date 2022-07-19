@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>550</height>
+    <width>1118</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1258,6 +1258,13 @@
                     <item>
                      <layout class="QVBoxLayout" name="verticalLayout_18">
                       <item>
+                       <widget class="QPushButton" name="add_word">
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
                        <widget class="QLabel" name="insert_date">
                         <property name="minimumSize">
                          <size>
@@ -1300,7 +1307,7 @@
                   <item>
                    <widget class="QTabWidget" name="tabWidget">
                     <property name="currentIndex">
-                     <number>2</number>
+                     <number>0</number>
                     </property>
                     <widget class="QWidget" name="youdao_page">
                      <attribute name="title">

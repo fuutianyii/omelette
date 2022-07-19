@@ -1,5 +1,6 @@
-import Ui_UI    
+import Ui_UI
 import db
+import youdao
 import sys
 import datetime
 from time import sleep
@@ -23,6 +24,7 @@ class EmptyDelegate(QItemDelegate):
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
         super().__init__()
+        self.youdao=youdao
         self.mydb=db.db("db/words.db")
         # self.mydb=db.db("db/forgot.db")
         self.myOxford=db.db("db/Oxford.db")
@@ -287,7 +289,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.review_Forgotten_button.clicked.connect(self.forgoten_exam)
         self.remove_forget_pushButton.clicked.connect(self.reset_wrong_times)
         self.update_table.itemClicked.connect(self.show_defined_selection)
-        self.play_voice.clicked.connect(self.play_the_word)
+        self.play_voice.clicked.connect(self.play_the_word_uk)
         self.start_exam.clicked.connect(self.exam_choose_words)
         self.filter_list_comboBox.currentIndexChanged.connect(self.filter_list)
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
@@ -301,8 +303,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         search="select list From words Group By list;"
         self.all_lists=self.mydb.select(search)
 
-    def play_the_word(self):
-        self.play(self.selection_word.text())
+    def play_the_word_uk(self):
+        self.play(self.selection_word.text(),1)
     
     def show_defined_selection(self,Item):
         try:
@@ -670,11 +672,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setItem(items,0,newItem)
         return self.update_words
 
-    def play(self,word):
+    def play(self,word,type):
         try:
             if path.exists(f"mp3/voice_{word}.mp3") == True:
                 # mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}.mp3".replace("\\", "/")
-                mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}.mp3".replace("\\", "/")
+                mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}_{type}.mp3".replace("\\", "/")
                 url = QUrl.fromLocalFile(mp3_path)
                 content = QMediaContent(url)  # 加载音乐
                 self.player.setMedia(content)     # 关联 QMediaPlayer控件与音乐地址
@@ -686,21 +688,32 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box.exec_()
 
     def getmp3(self,word):
-        try:
+        # try:
             # respond=get(f"https://fanyi.baidu.com/gettts?lan=en&text={word}&spd=3&source=web")
             respond=get(f"https://dict.youdao.com/dictvoice?audio={word}&type=1")
             if respond.status_code == 200:
                 data=respond.content
-                w = open(f"mp3/voice_{word}.mp3","wb") 
+                w = open(f"mp3/voice_{word}_1.mp3","wb") 
                 w.write(data)
                 w.close()
                 self.play(word)
             else:
                 msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载音频文件失败，请检查你的网络环境')
                 msg_box.exec_()
-        except:
-            msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载失败')
-            msg_box.exec_()
+
+            respond=get(f"https://dict.youdao.com/dictvoice?audio={word}&type=2")
+            if respond.status_code == 200:
+                data=respond.content
+                w = open(f"mp3/voice_{word}_2.mp3","wb") 
+                w.write(data)
+                w.close()
+                self.play(word)
+            else:
+                msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载音频文件失败，请检查你的网络环境')
+                msg_box.exec_()
+        # except:
+        #     msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载失败')
+        #     msg_box.exec_()
 
     def exam_submit(self):
         if  self.exam_english_lable.text() == self.words[self.words_index][1]:
