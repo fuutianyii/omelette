@@ -9,7 +9,7 @@ from requests import get
 from time import localtime,strftime
 from random import randrange,shuffle
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView 
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView,QSizePolicy
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
@@ -21,10 +21,12 @@ class EmptyDelegate(QItemDelegate):
     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
         return None
 
+# https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng
+
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
         super().__init__()
-        self.youdao=youdao
+        self.youdao=youdao.youdao_api()
         self.mydb=db.db("db/words.db")
         # self.mydb=db.db("db/forgot.db")
         self.myOxford=db.db("db/Oxford.db")
@@ -35,7 +37,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.setupUi(self)
         self.remake_ui()
         self.condef()
-        self.autostart()
+        self.autostart()    
         self.lens=1
         self.group=""
         self.date="全部时间"
@@ -49,29 +51,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def autostart(self):
         self.Stacked.setCurrentIndex(0)
-        self.Add_Stack.setCurrentIndex(0)
 
     def remake_ui(self):
         #居中
+
         self.hello_text.setAlignment(Qt.AlignCenter)
         self.forget_label.setAlignment(Qt.AlignCenter)
-        self.add_english_lable.setAlignment(Qt.AlignCenter)
-        self.add_part_of_speech_label.setAlignment(Qt.AlignCenter)
-        self.add_chinese_lable.setAlignment(Qt.AlignCenter)
-        self.part_of_speech_dic={}#添加的单词
         #更改字符
         time_str=strftime("今天是：%Y年%m月%d日",localtime())
         #num=0 #这里获取录入了多少个单词
         self.all_words_num=self.mydb.select("SELECT Count(*) FROM words")[0][0]
         self.hello_text.setText(time_str+f"\n\n已录入{self.all_words_num}个的单词")
-        self.add_english_lable.setText("填入你的英文")
-        self.add_part_of_speech_label.setText("选择词性")
-        self.add_chinese_lable.setText("填入对应的中文")
-        self.add_chinese_input_table_widget.horizontalHeader().setVisible(False)
-        self.add_chinese_input_table_widget.verticalHeader().setVisible(False)
-        self.add_chinese_input_table_widget.setColumnCount(2)
-        self.add_chinese_input_table_widget.setColumnWidth(0,75)
-        self.add_chinese_input_table_widget.setColumnWidth(1,610)
+        self.online_youdao_textBoswer.setStyleSheet("font-size:20px")
+        self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px")
         self.update_table.setStyleSheet("""
         QTableWidget
         {
@@ -241,9 +233,24 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.search_forget_words.setStyleSheet("background:rgba(0,0,0,0);")
 
         icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+        self.star.setIcon(icon)
+        self.star.setStyleSheet("background:rgba(0,0,0,0);")
+
+        icon = QIcon()
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
-        self.play_voice.setIcon(icon)
-        self.play_voice.setStyleSheet('text-align:left;background:rgba(0,0,0,0);border:none;')
+        self.play_voice_1.setIcon(icon)
+        self.play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.play_voice_1.adjustSize()
+        self.play_voice_2.setIcon(icon)
+        self.play_voice_2.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.play_voice_2.adjustSize()
+        self.online_play_voice_1.setIcon(icon)
+        self.online_play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.online_play_voice_1.adjustSize()
+        self.online_play_voice_2.setIcon(icon)
+        self.online_play_voice_2.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.online_play_voice_2.adjustSize()
         self.word_info_table.setColumnCount(2)
         self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.word_info_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
@@ -265,17 +272,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         
     def condef(self):
+        self.english_input_edit.returnPressed.connect(self.display_online)
         self.left_first_button.clicked.connect(self.changepage_main)
         self.left_second_button.clicked.connect(self.changepage_add)
         self.left_third_button.clicked.connect(self.changepage_update)
         self.left_forth_button.clicked.connect(self.changepage_exam)
-        self.add_english_input_next.clicked.connect(self.change_add_frame_to_part_of_speech)
-        self.add_english_input_edit.returnPressed.connect(self.change_add_frame_to_part_of_speech)
-        self.add_part_of_speech_input_next.clicked.connect(self.change_add_frame_to_chinese)
-        self.add_part_of_speech_input_last.clicked.connect(self.back_add_english_widget)
-        self.add_chinese_input_last.clicked.connect(self.back_add_frame_to_part_of_speech)
+        # self.add_english_input_next.clicked.connect(self.change_add_frame_to_part_of_speech)
+        # self.add_english_input_edit.returnPressed.connect(self.change_add_frame_to_part_of_speech)
+        # self.add_part_of_speech_input_next.clicked.connect(self.change_add_frame_to_chinese)
+        # self.add_part_of_speech_input_last.clicked.connect(self.back_add_english_widget)
+        # self.add_chinese_input_last.clicked.connect(self.back_add_frame_to_part_of_speech)
+        # self.add_chinese_input_next.clicked.connect(self.complete_one)
         self.search_edit.returnPressed.connect(self.update_page_search)
-        self.add_chinese_input_next.clicked.connect(self.complete_one)
+        self.star.clicked.connect(self.star_the_word)
         self.exam_calendarWidget.clicked.connect(self.start_choose_exam)
         # self.update.clicked.connect(self.update_all_words)
         self.forget_pushButton.clicked.connect(self.display_forget)
@@ -289,12 +298,56 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.review_Forgotten_button.clicked.connect(self.forgoten_exam)
         self.remove_forget_pushButton.clicked.connect(self.reset_wrong_times)
         self.update_table.itemClicked.connect(self.show_defined_selection)
-        self.play_voice.clicked.connect(self.play_the_word_uk)
+        self.play_voice_1.clicked.connect(self.play_the_word_uk)
+        self.play_voice_2.clicked.connect(self.play_the_word_us)
         self.start_exam.clicked.connect(self.exam_choose_words)
         self.filter_list_comboBox.currentIndexChanged.connect(self.filter_list)
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
         self.search_forget_words.clicked.connect(self.select_forget_words)
+
+
+    def star_the_word(self):
+        if self.list_line.text().replace(" ", "") == "":
+            msg_box = QMessageBox(QMessageBox.Warning, '警告', '请输入list')
+            msg_box.exec_()
+        else:
+            self.online_dict[0][0]
+            for word in self.online_dict:
+                self.mydb.insert(word[0],word[4],word[3],self.datetime,0,self.list_line.text().replace(" ", ""))
+            msg_box = QMessageBox(QMessageBox.Warning, '提示', '添加成功')
+            msg_box.exec_()
         
+    def display_online(self):
+        self.online_dict=self.youdao.main_no_print_online(self.english_input_edit.text()) 
+        self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
+        self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
+        display_data="<table><tr>"
+        for data in self.online_dict:
+            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+        display_data+="</table>"+data[5].replace("\n","<br>")
+        display_data+="<h2>例句</h2>"+data[6]
+        self.online_youdao_textBoswer.setText(display_data)
+        try:
+            Oxford_data=self.myOxford.select("select * from words where english='"+self.english_input_edit.text()+"'")
+            b64decode(Oxford_data[0][1]).decode()
+            self.online_Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
+        except:
+            self.online_Oxford_info_box.setText("暂无数据")
+        search=f"select english from words where english='{self.english_input_edit.text()}'"
+        if len(self.mydb.select(search)) ==  0:
+            icon = QIcon()
+            icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+            self.star.setIcon(icon)
+            self.star.setStyleSheet("background:rgba(0,0,0,0);")
+        else:
+            icon = QIcon()
+            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
+            self.star.setIcon(icon)
+            self.star.setStyleSheet("background:rgba(0,0,0,0);")
+        QApplication.processEvents()
+            
+
+
     def get_all_insert_date(self):
         search="select insert_date From words Group By insert_date;"
         self.all_insert_dates=self.mydb.select(search)
@@ -306,15 +359,23 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def play_the_word_uk(self):
         self.play(self.selection_word.text(),1)
     
+    def play_the_word_us(self):
+        self.play(self.selection_word.text(),2)
+
     def show_defined_selection(self,Item):
         try:
             Oxford_data=self.myOxford.select("select * from words where english='"+Item.text()+"'")
-            self.play_voice.setText(Oxford_data[0][1])
-            b64decode(Oxford_data[0][2]).decode()
-            self.Oxford_info_box.setText(b64decode(Oxford_data[0][2]).decode())
+
+            b64decode(Oxford_data[0][1]).decode()
+            self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
         except:
-            self.play_voice.setText("")
-            self.Oxford_info_box.setText("")
+            self.Oxford_info_box.setText("暂无数据")
+
+
+        phonetic_symbol=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
+        print(phonetic_symbol[0][0])
+        self.play_voice_1.setText(phonetic_symbol[0][0]+"/英  ")
+        self.play_voice_2.setText(phonetic_symbol[0][1]+"/美  ")
 
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
@@ -674,7 +735,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def play(self,word,type):
         try:
-            if path.exists(f"mp3/voice_{word}.mp3") == True:
+            if path.exists(f"mp3/voice_{word}_{type}.mp3") == True:
                 # mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}.mp3".replace("\\", "/")
                 mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}_{type}.mp3".replace("\\", "/")
                 url = QUrl.fromLocalFile(mp3_path)
@@ -683,12 +744,17 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 self.player.play()                          # 播放
             else:
                 self.getmp3(word)
+                mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}_{type}.mp3".replace("\\", "/")
+                url = QUrl.fromLocalFile(mp3_path)
+                content = QMediaContent(url)  # 加载音乐
+                self.player.setMedia(content)     # 关联 QMediaPlayer控件与音乐地址
+                self.player.play()                          # 播放
         except:
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '播放失败')
             msg_box.exec_()
 
     def getmp3(self,word):
-        # try:
+        try:
             # respond=get(f"https://fanyi.baidu.com/gettts?lan=en&text={word}&spd=3&source=web")
             respond=get(f"https://dict.youdao.com/dictvoice?audio={word}&type=1")
             if respond.status_code == 200:
@@ -696,7 +762,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 w = open(f"mp3/voice_{word}_1.mp3","wb") 
                 w.write(data)
                 w.close()
-                self.play(word)
+                
             else:
                 msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载音频文件失败，请检查你的网络环境')
                 msg_box.exec_()
@@ -707,13 +773,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 w = open(f"mp3/voice_{word}_2.mp3","wb") 
                 w.write(data)
                 w.close()
-                self.play(word)
+                # self.play(word)
             else:
                 msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载音频文件失败，请检查你的网络环境')
                 msg_box.exec_()
-        # except:
-        #     msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载失败')
-        #     msg_box.exec_()
+        except:
+            msg_box = QMessageBox(QMessageBox.Warning, '警告', '下载失败')
+            msg_box.exec_()
 
     def exam_submit(self):
         if  self.exam_english_lable.text() == self.words[self.words_index][1]:
@@ -907,13 +973,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setItem(items,0,newItem)
         try:
             Oxford_data=self.myOxford.select("select * from words where english='"+self.update_words[0][1]+"'")
-            self.play_voice.setText(Oxford_data[0][1])
-            b64decode(Oxford_data[0][2]).decode()
-            self.Oxford_info_box.setText(b64decode(Oxford_data[0][2]).decode())
+            # self.play_voice_1.setText(Oxford_data[0][1])
+            b64decode(Oxford_data[0][1]).decode()
+            self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
             # self.Oxford_info_box.setText("aggressive	<font color=red>aggressive</font><br><font color=\"#F17D1F\" size=4>/əˈgresɪv; ə`ɡrɛsɪv/</font> adj<br><font color=green>1</font><br><font color=red>(a) (of people or animals) apt or ready to attack; offensive; quarrelsome （指人或动物）侵略的, 好攻击的, 好寻衅的, 好争吵的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>dogs trained to be aggressive 训练成攻击型的狗</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>Aggressive nations threaten world peace. 侵略成性的国家威胁世界和平.</font><br><font color=red>(b) (of things or actions) for or of an attack; offensive （指事物或行动）攻击性的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>aggressive weapons 攻击性的武器.</font><br><font color=green>2 (often approv 常作褒义) forceful; self-assertive 强有力的; 坚持己见的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>A good salesman must be aggressive if he wants to succeed. 要做个好推销员一定要有闯劲才能成功. </font><br>")
             
         except:
-            self.play_voice.setText("")
+            self.play_voice_1.setText("")
             self.Oxford_info_box.setText("")
         self.selection_word.setText(self.update_words[0][1])
         self.insert_date.setText("添加日期："+self.update_words[0][4])
@@ -939,46 +1005,46 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def changepage_exam_main(self):
         self.exam_stacked.setCurrentIndex(0)
 
-    def back_add_english_widget(self):
-        self.group=self.list_lineEdit_2.text()
-        self.list_lineEdit_1.setText(self.group)
-        self.Add_Stack.setCurrentIndex(0)
+    # def back_add_english_widget(self):
+    #     self.group=self.list_lineEdit_2.text()
+    #     self.list_lineEdit_1.setText(self.group)
+    #     self.Add_Stack.setCurrentIndex(0)
     
-    def back_add_frame_to_part_of_speech(self):
-        self.group=self.list_lineEdit_3.text()
-        self.list_lineEdit_2.setText(self.group)
-        self.Add_Stack.setCurrentIndex(1)
+    # def back_add_frame_to_part_of_speech(self):
+    #     self.group=self.list_lineEdit_3.text()
+    #     self.list_lineEdit_2.setText(self.group)
+    #     self.Add_Stack.setCurrentIndex(1)
 
-    def change_add_frame_to_part_of_speech(self):
-        self.group=self.list_lineEdit_1.text()
-        self.list_lineEdit_2.setText(self.group)
-        self.Add_Stack.setCurrentIndex(1)
+    # def change_add_frame_to_part_of_speech(self):
+    #     self.group=self.list_lineEdit_1.text()
+    #     self.list_lineEdit_2.setText(self.group)
+    #     self.Add_Stack.setCurrentIndex(1)
 
-    def change_add_frame_to_chinese(self):
-        self.group=self.list_lineEdit_2.text()
-        self.list_lineEdit_3.setText(self.group)
-        self.Add_Stack.setCurrentIndex(2)
-        self.insert_to_add_chinese_table()
+    # def change_add_frame_to_chinese(self):
+    #     self.group=self.list_lineEdit_2.text()
+    #     self.list_lineEdit_3.setText(self.group)
+    #     self.Add_Stack.setCurrentIndex(2)
+    #     self.insert_to_add_chinese_table()
     
-    def complete_one(self):
-        self.group=self.list_lineEdit_3.text()
-        for ch in range(0,len(self.part_of_speech_dic)):
-            if (self.add_chinese_input_table_widget.item(ch, 1) == None) or (self.add_chinese_input_table_widget.item(ch, 1).text() == ""):
-                    msg_box = QMessageBox(QMessageBox.Warning, '警告', '含义不能为空')
-                    msg_box.exec_()
-                    return 0
-            else:
-                chinese=self.add_chinese_input_table_widget.item(ch, 1).text()
-                self.part_of_speech_dic[self.add_chinese_input_table_widget.item(ch, 0).text()]=chinese
+    # def complete_one(self):
+    #     self.group=self.list_lineEdit_3.text()
+    #     for ch in range(0,len(self.part_of_speech_dic)):
+    #         if (self.add_chinese_input_table_widget.item(ch, 1) == None) or (self.add_chinese_input_table_widget.item(ch, 1).text() == ""):
+    #                 msg_box = QMessageBox(QMessageBox.Warning, '警告', '含义不能为空')
+    #                 msg_box.exec_()
+    #                 return 0
+    #         else:
+    #             chinese=self.add_chinese_input_table_widget.item(ch, 1).text()
+    #             self.part_of_speech_dic[self.add_chinese_input_table_widget.item(ch, 0).text()]=chinese
 
-        english=self.add_english_input_edit.text()
-        if self.group == "":
-            self.group=self.mydb.select("select list from words order by rowid desc;")[0][0]
-        for (posd,ch) in self.part_of_speech_dic.items():
-            self.mydb.insert(english,ch,posd,self.datetime,0,self.group)
-        self.add_english_input_edit.setText("")
-        self.clear_add_chinese_table()
-        self.Add_Stack.setCurrentIndex(0)
+    #     english=self.add_english_input_edit.text()
+    #     if self.group == "":
+    #         self.group=self.mydb.select("select list from words order by rowid desc;")[0][0]
+    #     for (posd,ch) in self.part_of_speech_dic.items():
+    #         self.mydb.insert(english,ch,posd,self.datetime,0,self.group)
+    #     self.add_english_input_edit.setText("")
+    #     self.clear_add_chinese_table()
+    #     self.Add_Stack.setCurrentIndex(0)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
