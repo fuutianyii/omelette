@@ -314,8 +314,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.online_dict[0][0]
             for word in self.online_dict:
                 self.mydb.insert(word[0],word[4],word[3],self.datetime,0,self.list_line.text().replace(" ", ""))
+            icon = QIcon()  
+            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
+            self.star.setIcon(icon)
+            self.star.setStyleSheet("background:rgba(0,0,0,0);")
             msg_box = QMessageBox(QMessageBox.Warning, '提示', '添加成功')
             msg_box.exec_()
+
         
     def display_online(self):
         self.online_dict=self.youdao.main_no_print_online(self.english_input_edit.text()) 
@@ -373,7 +378,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
 
         phonetic_symbol=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
-        print(phonetic_symbol[0][0])
+        # print(phonetic_symbol[0][0])
         self.play_voice_1.setText(phonetic_symbol[0][0]+"/英  ")
         self.play_voice_2.setText(phonetic_symbol[0][1]+"/美  ")
 
