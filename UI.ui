@@ -160,7 +160,7 @@
       <item>
        <widget class="QStackedWidget" name="Stacked">
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -758,13 +758,13 @@
                        <widget class="QLabel" name="insert_date">
                         <property name="minimumSize">
                          <size>
-                          <width>80</width>
+                          <width>200</width>
                           <height>25</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>80</width>
+                          <width>200</width>
                           <height>25</height>
                          </size>
                         </property>
@@ -782,13 +782,13 @@
                        <widget class="QLabel" name="words_list">
                         <property name="minimumSize">
                          <size>
-                          <width>80</width>
+                          <width>200</width>
                           <height>25</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>80</width>
+                          <width>200</width>
                           <height>25</height>
                          </size>
                         </property>
@@ -815,6 +815,11 @@
                      <attribute name="title">
                       <string>有道</string>
                      </attribute>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <item>
+                       <widget class="QTextBrowser" name="youdao_textBrowswer"/>
+                      </item>
+                     </layout>
                     </widget>
                     <widget class="QWidget" name="niujin_page">
                      <attribute name="title">

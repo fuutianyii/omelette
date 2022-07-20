@@ -85,8 +85,10 @@ class youdao_api():
         self.cursor.execute(sql)
         data=self.cursor.fetchall()
         if len(data)!=0:
+            # print("off-line")
             return data
         else:
+            # print("on-line")
             # youdao=youdao_api()
             word_dict={}
             result = self.get_result(word)
@@ -117,7 +119,7 @@ class youdao_api():
                     web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'",""))+"\n"
                     # print('{}: {}'.format(e['key'], str(e['value']).replace("[","").replace("]","").replace("\'","")))
             word_dict["web"]=web_data
-            return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng")
+            return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/{word}/#keyfrom=dict.main.moreblng")
             html=return_data.text
             pattern=re.compile(r'<div id="bilingual" class="trans-container  tab-content" style="display:block">(.*?)</div>',re.S)
             sentence_pattern=re.findall(pattern, html)[0]

@@ -63,6 +63,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.all_words_num=self.mydb.select("SELECT Count(*) FROM words")[0][0]
         self.hello_text.setText(time_str+f"\n\n已录入{self.all_words_num}个的单词")
         self.online_youdao_textBoswer.setStyleSheet("font-size:20px")
+        self.youdao_textBrowswer.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
         self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px")
         self.update_table.setStyleSheet("""
         QTableWidget
@@ -268,8 +269,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setWordWrap(True)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.online_Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
         
     def condef(self):
         self.english_input_edit.returnPressed.connect(self.display_online)
@@ -311,15 +313,26 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '请输入list')
             msg_box.exec_()
         else:
-            self.online_dict[0][0]
-            for word in self.online_dict:
-                self.mydb.insert(word[0],word[4],word[3],self.datetime,0,self.list_line.text().replace(" ", ""))
-            icon = QIcon()  
-            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
-            self.star.setIcon(icon)
-            self.star.setStyleSheet("background:rgba(0,0,0,0);")
-            msg_box = QMessageBox(QMessageBox.Warning, '提示', '添加成功')
-            msg_box.exec_()
+            search=f"select english from words where english='{self.english_input_edit.text()}'"
+            if len(self.mydb.select(search)) ==  0:
+                self.online_dict[0][0]
+                for word in self.online_dict:
+                    self.mydb.insert(word[0],word[4],word[3],self.datetime,0,self.list_line.text().replace(" ", ""))
+                icon = QIcon()
+                icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
+                self.star.setIcon(icon)
+                self.star.setStyleSheet("background:rgba(0,0,0,0);")
+                msg_box = QMessageBox(QMessageBox.Warning, '提示', '添加成功')
+                msg_box.exec_()
+            else:
+                icon = QIcon()
+                icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+                self.star.setIcon(icon)
+                self.star.setStyleSheet("background:rgba(0,0,0,0);")
+                delete=f"delete from words where english='{self.english_input_edit.text()}'"
+                self.mydb.delete(delete)
+                msg_box = QMessageBox(QMessageBox.Warning, '提示', '删除成功')
+                msg_box.exec_()
 
         
     def display_online(self):
@@ -370,17 +383,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def show_defined_selection(self,Item):
         try:
             Oxford_data=self.myOxford.select("select * from words where english='"+Item.text()+"'")
-
             b64decode(Oxford_data[0][1]).decode()
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
         except:
             self.Oxford_info_box.setText("暂无数据")
-
-
-        phonetic_symbol=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
+        define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
-        self.play_voice_1.setText(phonetic_symbol[0][0]+"/英  ")
-        self.play_voice_2.setText(phonetic_symbol[0][1]+"/美  ")
+        self.play_voice_1.setText(define_word[0][1]+"/英  ")
+        self.play_voice_2.setText(define_word[0][2]+"/美  ")
 
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
@@ -396,6 +406,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.word_info_table.resizeRowsToContents()#自动调整行高度
         # self.word_info_table.resizeColumnsToContents()#自动调整列宽
+
+        # define_word=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
+        display_data="<table><tr>"
+        for data in define_word:
+            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+        display_data+="</table>"+data[5].replace("\n","<br>")
+        display_data+="<h2>例句</h2>"+b64decode(data[6]).decode()
+        self.youdao_textBrowswer.setText(display_data)
 
     def insert_to_add_chinese_table(self):
         self.part_of_speech_dic={}
@@ -966,13 +984,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
 
     def changepage_add(self):
+        self.english_input_edit.setText("struggle")
+        self.display_online()
         self.Stacked.setCurrentIndex(1)
 
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
         self.update_words=self.update_page_search()
         self.update_table.setRowCount(len(self.update_words))
-        
+        #######
+
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
@@ -987,8 +1008,23 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.play_voice_1.setText("")
             self.Oxford_info_box.setText("")
         self.selection_word.setText(self.update_words[0][1])
+        define_word=self.youdao.main_no_print(self.update_words[0][1],f"select * from words where (english='{self.update_words[0][1]}')")
+        # print(phonetic_symbol[0][0])
+        self.play_voice_1.setText(define_word[0][1]+"/英  ")
+        self.play_voice_2.setText(define_word[0][2]+"/美  ")
         self.insert_date.setText("添加日期："+self.update_words[0][4])
         self.words_list.setText("组别名称："+self.update_words[0][6])
+
+
+        
+        display_data="<table><tr>"
+        for data in define_word:
+            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+        display_data+="</table>"+data[5].replace("\n","<br>")
+        display_data+="<h2>例句</h2>"+b64decode(data[6]).decode()
+        
+        self.youdao_textBrowswer.setText(display_data)
+
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[0][3])
         newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
