@@ -94,7 +94,7 @@ class youdao_api():
             result = self.get_result(word)
             
             if 'basic' in result:
-                basic_dict={}
+                basic_dict={}   
                 basic = result['basic']
                 explains = basic['explains']
                 if len(explains) > 0:
@@ -117,12 +117,17 @@ class youdao_api():
                 web_data=""
                 for e in result['web']:
                     web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'",""))+"\n"
+            else:
+                web_data=""
                     # print('{}: {}'.format(e['key'], str(e['value']).replace("[","").replace("]","").replace("\'","")))
             word_dict["web"]=web_data
             return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/{word}/#keyfrom=dict.main.moreblng")
             html=return_data.text
             pattern=re.compile(r'<div id="bilingual" class="trans-container  tab-content" style="display:block">(.*?)</div>',re.S)
-            sentence_pattern=re.findall(pattern, html)[0]
+            if len(re.findall(pattern, html)) !=0:
+                sentence_pattern=re.findall(pattern, html)[0]
+            else:
+                sentence_pattern="暂无例句"
             b64sentence_pattern=base64.b64encode(sentence_pattern.encode()).decode()
             for w in word_dict['base_dict']:
                 # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")

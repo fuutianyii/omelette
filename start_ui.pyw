@@ -687,7 +687,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 search+=search_filter[i]
         else:
             search+=" 1=1"
-        search += " and (wrong_times != 0)"
+        search += " and (wrong_times != 0) order by 6 desc"
         self.update_words=self.mydb.select(search)
         for items in self.update_words:
             setline=self.update_table.rowCount()+1
