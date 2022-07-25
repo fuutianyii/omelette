@@ -54,7 +54,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def remake_ui(self):
         #居中
-
         self.hello_text.setAlignment(Qt.AlignCenter)
         self.forget_label.setAlignment(Qt.AlignCenter)
         #更改字符
