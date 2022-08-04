@@ -81,7 +81,6 @@ class youdao_api():
 
 
     def main_no_print(self,word,sql):
-        
         self.cursor.execute(sql)
         data=self.cursor.fetchall()
         if len(data)!=0:
@@ -102,7 +101,10 @@ class youdao_api():
                         if e.find(".") != -1:
                             # print("词性：",e[:e.find(".")])
                             # print("词意：",e[e.find(" ")+1:])
-                            basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            if (e[:e.find(".")] == "n") & ((e[e.find(" ")+1:].find("人名")) == -1):
+                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            elif(e[:e.find(".")] != "n"):
+                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
                 word_dict['base_dict']=basic_dict
                 phonetic_dict={}
                 if 'uk-phonetic' in basic:
@@ -158,7 +160,10 @@ class youdao_api():
                         if e.find(".") != -1:
                             # print("词性：",e[:e.find(".")])
                             # print("词意：",e[e.find(" ")+1:])
-                            basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            if (e[:e.find(".")] == "n") & ((e[e.find(" ")+1:].find("人名")) == -1):
+                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            elif(e[:e.find(".")] != "n"):
+                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
                 word_dict['base_dict']=basic_dict
                 phonetic_dict={}
                 if 'uk-phonetic' in basic:
@@ -189,7 +194,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main_no_print_online("twin")
+    word=youdao.main("jeans")
         # n = input("input:")
         # youdao=youdao_api()
         # result = youdao.get_result(n)

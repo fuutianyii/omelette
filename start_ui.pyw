@@ -302,6 +302,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play_voice_1.clicked.connect(self.play_the_word_uk)
         self.play_voice_2.clicked.connect(self.play_the_word_us)
         self.start_exam.clicked.connect(self.exam_choose_words)
+        
+        # self.filter_list_comboBox.currentIndexChanged.connect(self.update_page_search)
+        # self.filter_date_comboBox.currentIndexChanged.connect(self.update_page_search)
         self.filter_list_comboBox.currentIndexChanged.connect(self.filter_list)
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
         self.search_forget_words.clicked.connect(self.select_forget_words)
@@ -700,8 +703,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search=f"select rowid,* from words where insert_date!=''"
             self.date="全部时间"
         else:
-            search=f"select rowid,* from words where insert_date='{date}'"
             self.date=date
+            if self.list=="全部分组":
+                search=f"select rowid,* from words where insert_date='{date}'"
+            else:
+                search=f"select rowid,* from words where insert_date='{date}' and  list='{self.list}"
+
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
@@ -714,8 +721,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             search=f"select rowid,* from words where list!=''"
             self.list="全部分组"
         else:
-            search=f"select rowid,* from words where list='{list_one}'"
             self.list=list_one
+            if self.date=="全部时间":
+                search=f"select rowid,* from words where list='{list_one}'"
+            else:
+                search=f"select rowid,* from words where list='{list_one}' and  insert_date='{self.date}'"
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
