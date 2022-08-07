@@ -707,7 +707,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             if self.list=="全部分组":
                 search=f"select rowid,* from words where insert_date='{date}'"
             else:
-                search=f"select rowid,* from words where insert_date='{date}' and  list='{self.list}"
+                search=f"select rowid,* from words where insert_date='{date}' and  list='{self. list}"
 
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
