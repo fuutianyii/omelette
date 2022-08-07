@@ -820,7 +820,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.exam_english_lable.setText("")
             english=self.words[self.words_index][1]
             if self.checkBox_voice.isChecked():
-                self.play(english)
+                self.play(english,1)
                 sleep(1)
             self.exam_change()
         else:
