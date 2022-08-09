@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.leftframe_top.setStyleSheet("")
         self.leftframe_top.setObjectName("leftframe_top")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.leftframe_top)
-        self.verticalLayout_2.setContentsMargins(20, -1, -1, -1)
+        self.verticalLayout_2.setContentsMargins(15, -1, -1, -1)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.left_first_button = QtWidgets.QPushButton(self.leftframe_top)
         self.left_first_button.setMinimumSize(QtCore.QSize(50, 50))
