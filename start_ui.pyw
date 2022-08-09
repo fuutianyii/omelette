@@ -387,17 +387,15 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setItem(0,1,newItem)
         
         self.word_info_table.resizeRowsToContents()#自动调整行高度
-        # self.word_info_table.resizeColumnsToContents()#自动调整列宽
+        self.word_info_table.resizeColumnsToContents()#自动调整列宽
 
-        # define_word=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
-        
-        
-        # display_data="<table><tr>"
-        # for data in define_word:
-        #     display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
-        # display_data+="</table>"+data[5].replace("\n","<br>")
-        # display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
-        # self.youdao_textBrowswer.setText(display_data)
+        display_data="<table><tr>"
+        for data in define_word:
+            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+        display_data+="</table>"+data[5].replace("\n","<br>")
+        display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
+
+        self.youdao_textBrowswer.setText(display_data)
 
 
     def update_all_words(self):

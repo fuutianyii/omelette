@@ -183,8 +183,10 @@ class youdao_api():
             return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/{word}/#keyfrom=dict.main.moreblng")
             html=return_data.text
             pattern=re.compile(r'<div id="bilingual" class="trans-container  tab-content" style="display:block">(.*?)</div>',re.S)
-            sentence_pattern=re.findall(pattern, html)[0]
-
+            if len(re.findall(pattern, html)) !=0:
+                sentence_pattern=re.findall(pattern, html)[0]
+            else:
+                sentence_pattern="暂无例句"
             word_list=[]
             for w in word_dict['base_dict']:
                 # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
