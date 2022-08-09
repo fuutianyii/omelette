@@ -53,116 +53,61 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
 
     def remake_ui(self):
+        self.seach_input_edit.setPlaceholderText("搜索单词")
+        self.seach_input_edit.setStyleSheet("border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:25px 20px")
+        self.leftframe.setStyleSheet("background:rgba(240,240,240,1);")
+        self.homepage_left.setStyleSheet("background:rgba(240,240,240,1);")
         #居中
-        self.hello_text.setAlignment(Qt.AlignCenter)
         self.forget_label.setAlignment(Qt.AlignCenter)
+        # self.hello_text.setAlignment(Qt.AlignCenter)
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/homepage.png"), QIcon.Normal, QIcon.Off)
+        self.left_first_button.setIcon(icon)
+        self.left_first_button.setStyleSheet("background:rgba(0,0,0,0);")
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
+        self.left_second_button.setIcon(icon)
+        self.left_second_button.setStyleSheet("background:rgba(0,0,0,0);")
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star_book.png"), QIcon.Normal, QIcon.Off)
+        self.left_third_button.setIcon(icon)
+        self.left_third_button.setStyleSheet("background:rgba(0,0,0,0);")
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
+        self.left_forth_button.setIcon(icon)
+        self.left_forth_button.setStyleSheet("background:rgba(0,0,0,0);")
+
         #更改字符
-        time_str=strftime("今天是：%Y年%m月%d日",localtime())
+        time_str=strftime("%Y %m %d",localtime())
+        time_list=time_str.split(" ")
+        
+        month_list=["January","February","March","April","May","June","July","August","September","October","November","December"]
+        month=month_list[int(time_list[2])]
+        if time_list[2]=="01":
+            time_list[2]="1st"
+        elif time_list[2]=="02":
+            time_list[2]="2nd"
+        elif time_list[2]=="03":
+            time_list[2]="3rd"
+        else:
+            time_list[2]=str(int(time_list[2]))+"th"
+        self.hello_text.setText(month +" "+time_list[2])
         #num=0 #这里获取录入了多少个单词
         self.all_words_num=self.mydb.select("SELECT Count(*) FROM words")[0][0]
-        self.hello_text.setText(time_str+f"\n\n已录入{self.all_words_num}个的单词")
-        self.online_youdao_textBoswer.setStyleSheet("font-size:20px")
-        self.youdao_textBrowswer.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
-        self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px")
-        self.update_table.setStyleSheet("""
-        QTableWidget
-        {
-            border:none;
-            selection-background-color:white;
-            selection-color:black;
-        }
-        QScrollBar:vertical{ 
-            width:8px;  
-            border-style:flat;
-            border-radius: 4px;
-            border:0px;
-            background: rgba(0,0,0,0);
-        } 
-        QScrollBar::handle:vertical{ 
-            background: rgba(0,0,0,0.20);
-            border-radius: 4px;
-            width:8px; 
-            min-height:91px; 
-            border-style:flat;
-        }
-        QScrollBar::handle:vertical::hover{ 
-            background: rgba(0,0,0,0.40);
-            border-radius: 4px;
-            width:8px; 
-        }
-        QScrollBar::handle:vertical::pressed{ 
-            background: rgba(0,0,0,0.40);
-            border-radius:4px;
-            width:8px; 
-        }
-        QScrollBar::sub-page:horizontal {
-            background: rgba(0,0,0,0);
-            border-style:flat;
-        }
-        QScrollBar::add-page:horizontal {
-            background: rgba(0,0,0,0);
-            border-style:flat;
-        }
-        QScrollBar::sub-line:horizontal {
-        background: rgba(0,0,0,0);
-        }
-        QScrollBar::add-line:horizontal{
-        background: rgba(0,0,0,0);
-        }
-        QScrollBar::sub-page:vertical {
-            background: rgba(0,0,0,0);
-        border-style:flat;
-        }
-        QScrollBar::add-page:vertical {
-        background: rgba(0,0,0,0);
-        border-style:flat;
-        }
-        QScrollBar::add-line:vertical{
-        background: rgba(0,0,0,0);
-        }
-        QScrollBar::sub-line:vertical {
-        background: rgba(0,0,0,0);
-        }
-
-        QScrollBar:horizontal{ 
-            height:8px;  
-            border-style:flat;
-            border-radius: 4px;
-            border:0px;
-            background: rgba(0,0,0,0);
-        } 
-        QScrollBar::handle:horizontal{ 
-            background: rgba(0,0,0,0.20);
-            border-radius: 4px;
-            height:8px; 
-            min-width:91px; 
-            border-style:flat;
-        }
-        QScrollBar::handle:horizontal::hover{ 
-            background: rgba(0,0,0,0.40);
-            border-radius: 4px;
-            height:8px; 
-        }
-        QScrollBar::handle:horizontal::pressed{ 
-            background: rgba(0,0,0,0.40);
-            border-radius:4px;
-            height:8px; 
-        }
-        QScrollBar::sub-page:horizontal {
-            background: rgba(0,0,0,0);
-            border-style:flat;
-        }
-        QScrollBar::add-page:horizontal {
-        background: rgba(0,0,0,0);
-            border-style:flat;
-        }
-        QScrollBar::sub-line:horizontal {
-        background: rgba(0,0,0,0);
-        }
-        QScrollBar::add-line:horizontal{
-            background: rgba(0,0,0,0);
-        }
-        """) #设置tableweigh样式圆角滚动条
+        self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.online_youdao_textBoswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        self.youdao_textBrowswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        
+        self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        
+        self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px;background:rgba(240,240,240,1)")
+        self.update_table.setStyleSheet("""QTableWidget{border:none;selection-background-color:white;selection-color:black;}QScrollBar:vertical{ width:8px;border-style:flat;border-radius: 4px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:vertical{ background: rgba(0,0,0,0.20);border-radius: 4px;width:8px; min-height:91px; border-style:flat;}QScrollBar::handle:vertical::hover{ background: rgba(0,0,0,0.40);border-radius: 4px;width:8px; }QScrollBar::handle:vertical::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;width:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}QScrollBar::sub-page:vertical {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:vertical {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-line:vertical{background: rgba(0,0,0,0);}QScrollBar::sub-line:vertical {background: rgba(0,0,0,0);}QScrollBar:horizontal{ height:8px;border-style:flat;border-radius: 4px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:horizontal{ background: rgba(0,0,0,0.20);border-radius: 4px;height:8px; min-width:91px; border-style:flat;}QScrollBar::handle:horizontal::hover{ background: rgba(0,0,0,0.40);border-radius: 4px;height:8px; }QScrollBar::handle:horizontal::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;height:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}""")
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
         #取消虚线框
@@ -200,7 +145,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 image: url(:/res/work/dateDown.png);
             }
             """)
-        self.search_edit.setStyleSheet("border: none;border-radius: 10px;")
+        self.search_edit.setStyleSheet("border: none;border-radius: 10px;font-size:15px;background:rgba(240,240,240,1)")
         self.search_edit.setPlaceholderText("搜索单词")
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
@@ -240,10 +185,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
         self.play_voice_1.setIcon(icon)
-        self.play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.play_voice_1.setStyleSheet('text-align:center;background:rgba(235,235,235,0.9);border:none;border-radius:10px;vertical-align: middle;')
         self.play_voice_1.adjustSize()
         self.play_voice_2.setIcon(icon)
-        self.play_voice_2.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
+        self.play_voice_2.setStyleSheet('text-align:center;background:rgba(235,235,235,0.9);border:none;border-radius:10px;vertical-align: middle;')
         self.play_voice_2.adjustSize()
         self.online_play_voice_1.setIcon(icon)
         self.online_play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,0.8);border:none;border-radius:10px;')
@@ -264,16 +209,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         #不可写
         self.word_info_table.horizontalHeader().setVisible(False)
         self.word_info_table.verticalHeader().setVisible(False)
-        self.word_info_table.setStyleSheet("QTableWidget{border:none;font-size:15px}")
+        self.word_info_table.setStyleSheet("QTableWidget{border:none;font-size:15px}QTableWidget::item::selected {background:rgb(255,255,255);}")
         self.word_info_table.setWordWrap(True)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
-        self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
-        self.online_Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:20px;background:rgba(0,0,0,0);}")
-        
+        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(245,245,245);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.online_Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+        self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(245,245,245);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        QApplication.processEvents()
+
+
     def condef(self):
         self.english_input_edit.returnPressed.connect(self.display_online)
+        self.seach_input_edit.returnPressed.connect(self.homepage_to_search)
         self.left_first_button.clicked.connect(self.changepage_main)
         self.left_second_button.clicked.connect(self.changepage_add)
         self.left_third_button.clicked.connect(self.changepage_update)
@@ -337,6 +285,38 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 msg_box.exec_()
 
         
+    def homepage_to_search(self):
+        self.Stacked.setCurrentIndex(1)
+        self.english_input_edit.setText(self.seach_input_edit.text())
+        self.online_dict=self.youdao.main_no_print_online(self.seach_input_edit.text()) 
+        self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
+        self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
+        display_data="<table><tr>"
+        for data in self.online_dict:
+            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+        display_data+="</table>"+data[5].replace("\n","<br>")
+        display_data+="<h2>例句</h2>"+data[6]
+        self.online_youdao_textBoswer.setText(display_data)
+        try:
+            Oxford_data=self.myOxford.select("select * from words where english='"+self.english_input_edit.text()+"'")
+            b64decode(Oxford_data[0][1]).decode()
+            self.online_Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
+        except:
+            self.online_Oxford_info_box.setText("暂无数据")
+        search=f"select english from words where english='{self.english_input_edit.text()}'"
+        if len(self.mydb.select(search)) ==  0:
+            icon = QIcon()
+            icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+            self.star.setIcon(icon)
+            self.star.setStyleSheet("background:rgba(0,0,0,0);")
+        else:
+            icon = QIcon()
+            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
+            self.star.setIcon(icon)
+            self.star.setStyleSheet("background:rgba(0,0,0,0);")
+        QApplication.processEvents()
+
+
     def display_online(self):
         self.online_dict=self.youdao.main_no_print_online(self.english_input_edit.text()) 
         self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
@@ -391,8 +371,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.Oxford_info_box.setText("暂无数据")
         define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
-        self.play_voice_1.setText(define_word[0][1]+"/英  ")
-        self.play_voice_2.setText(define_word[0][2]+"/美  ")
+        self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
+        self.play_voice_label_2.setText("美 /"+define_word[0][2]+"/")
 
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
@@ -410,210 +390,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # self.word_info_table.resizeColumnsToContents()#自动调整列宽
 
         # define_word=self.youdao.main_no_print(Item.text(),f"select phonetic_symbol_uk,phonetic_symbol_us from words where (english='{Item.text()}') limit 0,1")
-        display_data="<table><tr>"
-        for data in define_word:
-            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
-        display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h2>例句</h2>"+b64decode(data[6]).decode()
-        self.youdao_textBrowswer.setText(display_data)
-
-    def insert_to_add_chinese_table(self):
-        self.part_of_speech_dic={}
-        self.clear_add_chinese_table()
-        if self.check_n.isChecked():
-            self.add_chinese_textedit("n")
-            
-        if self.check_u.isChecked():
-            self.add_chinese_textedit("u")
-
-        if self.check_c.isChecked():
-            self.add_chinese_textedit("c")
-
-        if self.check_v.isChecked():
-            self.add_chinese_textedit("v")
-            
-        if self.check_vi.isChecked():
-            self.add_chinese_textedit("vi")
-            
-        if self.check_vt.isChecked():
-            self.add_chinese_textedit("vt")
-            
-        if self.check_auxv.isChecked():
-            self.add_chinese_textedit("aux_v")
-            
-        if self.check_model_verb.isChecked():
-            self.add_chinese_textedit("model_verb")
-            
-        if self.check_conj.isChecked():
-            self.add_chinese_textedit("conj")
-            
-        if self.check_adj.isChecked():
-            self.add_chinese_textedit("adj")
-            
-        if self.check_adv.isChecked():
-            self.add_chinese_textedit("adv")
-
-        if self.check_art.isChecked():
-            self.add_chinese_textedit("art")
-            
-        if self.check_prep.isChecked():
-            self.add_chinese_textedit("prep")
-            
-        if self.check_pron.isChecked():
-            self.add_chinese_textedit("pron")
-            
-        if self.check_num.isChecked():
-            self.add_chinese_textedit("num")
-            
-        if self.check_int.isChecked():
-            self.add_chinese_textedit("int")
-
-    def add_chinese_textedit(self,part_of_speech):
-        if part_of_speech=="n":
-            self.part_of_speech_dic["n"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("n")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
+        
+        
+        # display_data="<table><tr>"
+        # for data in define_word:
+        #     display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+        # display_data+="</table>"+data[5].replace("\n","<br>")
+        # display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
+        # self.youdao_textBrowswer.setText(display_data)
 
 
-        elif part_of_speech=="u":
-            self.part_of_speech_dic["u"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("u")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-
-
-        elif part_of_speech=="c":
-            self.part_of_speech_dic["c"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("c")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-
-
-        elif part_of_speech=="v":
-            self.part_of_speech_dic["v"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("v")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="vi":
-            self.part_of_speech_dic["vi"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("vi")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="vt":
-            self.part_of_speech_dic["vt"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("vt")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="aux_v":
-            self.part_of_speech_dic["aux_v"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("aux_v")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="model_verb":
-            self.part_of_speech_dic["model_verb"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("model_verb")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="conj":
-            self.part_of_speech_dic["conj"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("conj")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="adj":
-            self.part_of_speech_dic["adj"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("adj")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="adv":
-            self.part_of_speech_dic["adv"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("adv")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="art":
-            self.part_of_speech_dic["art"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("art")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="prep":
-            self.part_of_speech_dic["prep"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("prep")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="pron":
-            self.part_of_speech_dic["pron"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("pron")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="num":
-            self.part_of_speech_dic["num"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("num")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-            
-
-        elif part_of_speech=="int":
-            self.part_of_speech_dic["int"]=""
-            self.add_chinese_input_table_widget.setRowCount(self.add_chinese_input_table_widget.rowCount()+1)
-            newItem = QTableWidgetItem("int")
-            self.add_chinese_input_table_widget.setItem(self.add_chinese_input_table_widget.rowCount()-1,0,newItem)
-            self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))
-            self.lens+=1
-
-        self.add_chinese_input_table_widget.setItemDelegateForColumn(0,EmptyDelegate(self))#禁止编辑第一列
-            
     def update_all_words(self):
         for i in range(0,self.update_table.rowCount()):
             english=self.update_table.item(i, 0).text()
@@ -993,7 +779,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
 
     def changepage_add(self):
-        self.english_input_edit.setText("struggle")
+        self.english_input_edit.setText("random")
         self.display_online()
         self.Stacked.setCurrentIndex(1)
 
@@ -1019,8 +805,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.selection_word.setText(self.update_words[0][1])
         define_word=self.youdao.main_no_print(self.update_words[0][1],f"select * from words where (english='{self.update_words[0][1]}')")
         # print(phonetic_symbol[0][0])
-        self.play_voice_1.setText(define_word[0][1]+"/英  ")
-        self.play_voice_2.setText(define_word[0][2]+"/美  ")
+        self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
+        self.play_voice_label_2.setText("美 /"+define_word[0][2]+"/")
         self.insert_date.setText("添加日期："+self.update_words[0][4])
         self.words_list.setText("组别名称："+self.update_words[0][6])
 
@@ -1028,12 +814,15 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         display_data="<table><tr>"
         for data in define_word:
-            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
         display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h2>例句</h2>"+b64decode(data[6]).decode()
+        display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
         
         self.youdao_textBrowswer.setText(display_data)
+        self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
+        self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[0][3])
         newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
@@ -1099,5 +888,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window=mainwindow()
+    # from qt_material import apply_stylesheet
+    # apply_stylesheet(app, theme='light_amber.xml')
     window.show() 
     sys.exit(app.exec_())

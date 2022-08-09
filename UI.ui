@@ -25,8 +25,26 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background:rgb(255, 255, 255)</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -47,21 +65,42 @@
          <bool>false</bool>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QFrame" name="leftframe_top">
            <property name="minimumSize">
             <size>
-             <width>80</width>
+             <width>100</width>
              <height>400</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>80</width>
+             <width>100</width>
              <height>400</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
             <item>
              <widget class="QPushButton" name="left_first_button">
               <property name="minimumSize">
@@ -77,7 +116,13 @@
                </size>
               </property>
               <property name="text">
-               <string>主页</string>
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>35</width>
+                <height>35</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -96,7 +141,13 @@
                </size>
               </property>
               <property name="text">
-               <string>查询</string>
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>45</width>
+                <height>45</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -115,7 +166,13 @@
                </size>
               </property>
               <property name="text">
-               <string>单词</string>
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>45</width>
+                <height>45</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -133,8 +190,17 @@
                 <height>50</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="text">
-               <string>测试</string>
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>45</width>
+                <height>45</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -164,33 +230,76 @@
         </property>
         <widget class="QWidget" name="hello_page">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
-           <widget class="QFrame" name="verticalFrame">
-            <property name="minimumSize">
-             <size>
-              <width>400</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>400</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
+           <widget class="QFrame" name="homepage_left">
+            <layout class="QVBoxLayout" name="verticalLayout_22">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
-              <spacer name="verticalSpacer_3">
+              <widget class="QLineEdit" name="seach_input_edit">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_2">
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Maximum</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>20</width>
-                 <height>80</height>
+                 <height>40</height>
                 </size>
                </property>
               </spacer>
@@ -200,7 +309,7 @@
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>150</height>
+                 <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -221,17 +330,76 @@
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
+              <widget class="QLabel" name="sentence_text_english">
+               <property name="minimumSize">
                 <size>
-                 <width>20</width>
-                 <height>40</height>
+                 <width>0</width>
+                 <height>0</height>
                 </size>
                </property>
-              </spacer>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="sentence_text_chinese">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="verticalFrame">
+            <property name="minimumSize">
+             <size>
+              <width>400</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -397,7 +565,7 @@
                 <item>
                  <widget class="QTabWidget" name="online">
                   <property name="currentIndex">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="online_youdao_page">
                    <attribute name="title">
@@ -405,7 +573,13 @@
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
                     <item>
-                     <widget class="QTextBrowser" name="online_youdao_textBoswer"/>
+                     <widget class="QTextBrowser" name="online_youdao_textBoswer">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                       </font>
+                      </property>
+                     </widget>
                     </item>
                    </layout>
                   </widget>
@@ -571,8 +745,8 @@
                      </property>
                      <property name="iconSize">
                       <size>
-                       <width>25</width>
-                       <height>25</height>
+                       <width>30</width>
+                       <height>30</height>
                       </size>
                      </property>
                     </widget>
@@ -581,8 +755,8 @@
                     <widget class="QLineEdit" name="search_edit">
                      <property name="minimumSize">
                       <size>
-                       <width>150</width>
-                       <height>0</height>
+                       <width>400</width>
+                       <height>40</height>
                       </size>
                      </property>
                      <property name="maximumSize">
@@ -590,6 +764,13 @@
                        <width>150</width>
                        <height>16777215</height>
                       </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                       <weight>50</weight>
+                       <bold>false</bold>
+                      </font>
                      </property>
                      <property name="styleSheet">
                       <string notr="true"/>
@@ -657,6 +838,9 @@
                    <height>16777215</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -685,8 +869,14 @@
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>30</pointsize>
+                      <pointsize>36</pointsize>
+                      <weight>9</weight>
+                      <italic>false</italic>
+                      <bold>false</bold>
                      </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 75 36pt &quot;微软雅黑&quot;;</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -705,10 +895,17 @@
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_28">
                        <item>
+                        <widget class="QLabel" name="play_voice_label_1">
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
                         <widget class="QPushButton" name="play_voice_1">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>40</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -724,13 +921,26 @@
                          <property name="text">
                           <string notr="true"/>
                          </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>16</width>
+                           <height>16</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="play_voice_label_2">
+                         <property name="text">
+                          <string/>
+                         </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QPushButton" name="play_voice_2">
                          <property name="minimumSize">
                           <size>
-                           <width>0</width>
+                           <width>40</width>
                            <height>30</height>
                           </size>
                          </property>
@@ -820,6 +1030,14 @@
                   </item>
                   <item>
                    <widget class="QTabWidget" name="tabWidget">
+                    <property name="font">
+                     <font>
+                      <family>微软雅黑</family>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
                     <property name="currentIndex">
                      <number>0</number>
                     </property>
@@ -829,7 +1047,15 @@
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
                       <item>
-                       <widget class="QTextBrowser" name="youdao_textBrowswer"/>
+                       <widget class="QTextBrowser" name="youdao_textBrowswer">
+                        <property name="font">
+                         <font>
+                          <family>微软雅黑</family>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                       </widget>
                       </item>
                      </layout>
                     </widget>
@@ -843,6 +1069,8 @@
                         <property name="font">
                          <font>
                           <family>微软雅黑</family>
+                          <weight>50</weight>
+                          <bold>false</bold>
                          </font>
                         </property>
                        </widget>
@@ -1197,7 +1425,7 @@
               <item>
                <widget class="QCalendarWidget" name="exam_calendarWidget">
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="navigationBarVisible">
                  <bool>true</bool>
