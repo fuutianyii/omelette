@@ -54,7 +54,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def remake_ui(self):
         self.seach_input_edit.setPlaceholderText("搜索单词")
-        self.seach_input_edit.setStyleSheet("border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:25px 20px")
+        self.seach_input_edit.setStyleSheet("border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:0px 20px")
         self.leftframe.setStyleSheet("background:rgba(240,240,240,1);")
         self.homepage_left.setStyleSheet("background:rgba(240,240,240,1);")
         #居中
@@ -85,7 +85,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         time_list=time_str.split(" ")
         
         month_list=["January","February","March","April","May","June","July","August","September","October","November","December"]
-        month=month_list[int(time_list[2])]
+        month=month_list[int(time_list[1])-1]
         if time_list[2]=="01":
             time_list[2]="1st"
         elif time_list[2]=="02":
