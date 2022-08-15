@@ -1,2 +1,4 @@
 db/youdao.db
 db/vocabulary.db
+start.bat
+start_ui.vbs
