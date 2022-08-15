@@ -1,1 +1,0 @@
-pythonw start_ui.pyw
