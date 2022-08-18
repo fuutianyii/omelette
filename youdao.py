@@ -62,6 +62,7 @@ class youdao_api():
             explains = basic['explains']
             if len(explains) > 0:
                 for e in explains:
+                    print(e)
                     if e.find(".") != -1:
                         print("词性：",e[:e.find(".")])
                         print("词意：",e[e.find(" ")+1:])
@@ -196,7 +197,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main("jeans")
+    word=youdao.main("stone")
         # n = input("input:")
         # youdao=youdao_api()
         # result = youdao.get_result(n)
