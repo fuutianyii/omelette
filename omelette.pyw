@@ -14,7 +14,6 @@ from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
 
-
 class EmptyDelegate(QItemDelegate):
     def __init__(self,parent):
         super(EmptyDelegate, self).__init__(parent)
