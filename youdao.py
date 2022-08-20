@@ -102,8 +102,11 @@ class youdao_api():
                         if e.find(".") != -1:
                             # print("词性：",e[:e.find(".")])
                             # print("词意：",e[e.find(" ")+1:])
-                            if (e[:e.find(".")] == "n") & ((e[e.find(" ")+1:].find("人名")) == -1):
-                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            if (e[:e.find(".")] == "n") :
+                                if basic_dict.__contains__("n"):
+                                    basic_dict["n"]+=e[e.find(" ")+1:]  ##n词性的名词有时会独立一个n词性对应人名意思，则会覆盖前面的含义，导致只有人名翻译，没有单词原本意思的翻译
+                                else:
+                                    basic_dict["n"]=e[e.find(" ")+1:]
                             elif(e[:e.find(".")] != "n"):
                                 basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
                 word_dict['base_dict']=basic_dict
@@ -160,11 +163,16 @@ class youdao_api():
                     for e in explains:
                         if e.find(".") != -1:
                             # print("词性：",e[:e.find(".")])
-                            # print("词意：",e[e.find(" ")+1:])
-                            if (e[:e.find(".")] == "n") & ((e[e.find(" ")+1:].find("人名")) == -1):
-                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                            # print("词意：",e[e.find(" ")+1:]) 
+
+                            if (e[:e.find(".")] == "n") :
+                                if basic_dict.__contains__("n"):
+                                    basic_dict["n"]+=e[e.find(" ")+1:]  ##n词性的名词有时会独立一个n词性对应人名意思，则会覆盖前面的含义，导致只有人名翻译，没有单词原本意思的翻译
+                                else:
+                                    basic_dict["n"]=e[e.find(" ")+1:]
                             elif(e[:e.find(".")] != "n"):
                                 basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                    print(e)
                 word_dict['base_dict']=basic_dict
                 phonetic_dict={}
                 if 'uk-phonetic' in basic:
@@ -190,6 +198,7 @@ class youdao_api():
                 sentence_pattern="暂无例句"
             word_list=[]
             for w in word_dict['base_dict']:
+                print(word_dict['web'])
                 # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
                 # sql = "CREATE TABLE IF NOT EXISTS words(english text not null,phonetic_symbol text not null,posd text not null,chinese text not null, web text not null)"
                 word_list.append((word,word_dict['phonetic']['uk-phonetic'],word_dict['phonetic']['us-phonetic'],w,word_dict['base_dict'][w],word_dict['web'],sentence_pattern))
@@ -197,7 +206,8 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main("stone")
+    word=youdao.main_no_print_online("June")
+    print(word)
         # n = input("input:")
         # youdao=youdao_api()
         # result = youdao.get_result(n)
