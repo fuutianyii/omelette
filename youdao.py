@@ -118,13 +118,11 @@ class youdao_api():
                     phonetic_dict['us-phonetic']=basic['us-phonetic']
                     # print('美式发音:' + basic['us-phonetic'])
                 word_dict['phonetic']=phonetic_dict
+            web_data=""
             if 'web' in result:
                 # print('网络翻译：')
-                web_data=""
                 for e in result['web']:
                     web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'",""))+"\n"
-            else:
-                web_data=""
                     # print('{}: {}'.format(e['key'], str(e['value']).replace("[","").replace("]","").replace("\'","")))
             word_dict["web"]=web_data
             return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/{word}/#keyfrom=dict.main.moreblng")
@@ -172,7 +170,7 @@ class youdao_api():
                                     basic_dict["n"]=e[e.find(" ")+1:]
                             elif(e[:e.find(".")] != "n"):
                                 basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
-                    print(e)
+                    # print(e)
                 word_dict['base_dict']=basic_dict
                 phonetic_dict={}
                 if 'uk-phonetic' in basic:
@@ -182,9 +180,9 @@ class youdao_api():
                     phonetic_dict['us-phonetic']=basic['us-phonetic']
                     # print('美式发音:' + basic['us-phonetic'])
                 word_dict['phonetic']=phonetic_dict
+            web_data=""
             if 'web' in result:
                 # print('网络翻译：')
-                web_data=""
                 for e in result['web']:
                     web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'",""))+"\n"
                     # print('{}: {}'.format(e['key'], str(e['value']).replace("[","").replace("]","").replace("\'","")))
@@ -198,7 +196,7 @@ class youdao_api():
                 sentence_pattern="暂无例句"
             word_list=[]
             for w in word_dict['base_dict']:
-                print(word_dict['web'])
+                # print(word_dict['web'])
                 # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
                 # sql = "CREATE TABLE IF NOT EXISTS words(english text not null,phonetic_symbol text not null,posd text not null,chinese text not null, web text not null)"
                 word_list.append((word,word_dict['phonetic']['uk-phonetic'],word_dict['phonetic']['us-phonetic'],w,word_dict['base_dict'][w],word_dict['web'],sentence_pattern))
