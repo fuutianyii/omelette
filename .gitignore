@@ -3,4 +3,4 @@ db/vocabulary.db
 start.bat
 start_ui.vbs
 start_ui.vbs.lnk
-mp3/
+__pycache__
