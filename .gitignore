@@ -4,3 +4,4 @@ start.bat
 start_ui.vbs
 start_ui.vbs.lnk
 __pycache__
+mp3/*
