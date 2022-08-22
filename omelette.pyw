@@ -1,3 +1,14 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+'''
+Author: fuutianyii
+Date: 2022-08-21 09:29:29
+LastEditors: fuutianyii
+LastEditTime: 2022-08-22 10:23:24
+github: https://github.com/fuutianyii
+mail: fuutianyii@gmail.com
+QQ: 1587873181
+'''
 import Ui_UI
 import db
 import youdao
