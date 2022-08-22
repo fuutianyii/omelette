@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-08-22 17:09:02
+LastEditTime: 2022-08-22 18:31:10
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -445,6 +445,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             self.changepage_exam()
             self.words=self.update_words
+            if self.checkBox_random.isChecked():
+                self.words=self.words[::-1]
             self.exam_stacked.setCurrentIndex(2)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
