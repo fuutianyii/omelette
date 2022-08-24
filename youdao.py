@@ -1,4 +1,14 @@
-# -*- coding: UTF-8 -*-
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+'''
+Author: fuutianyii
+Date: 2022-08-23 09:55:31
+LastEditors: fuutianyii
+LastEditTime: 2022-08-24 10:13:06
+github: https://github.com/fuutianyii
+mail: fuutianyii@gmail.com
+QQ: 1587873181
+'''
 import sys
 import os
 import requests
@@ -71,7 +81,8 @@ class youdao_api():
             if 'uk-phonetic' in basic:
                 print('英式发音:' + basic['uk-phonetic']) 
             if 'us-phonetic' in basic:
-                print('美式发音:' + basic['us-phonetic']) 
+                print('美式发音:' + basic['us-phonetic'])
+
             print('')
 
         if 'web' in result:
@@ -114,9 +125,13 @@ class youdao_api():
                 if 'uk-phonetic' in basic:
                     phonetic_dict['uk-phonetic']=basic['uk-phonetic']
                     # print('英式发音:' + basic['uk-phonetic']) 
+                else:
+                    phonetic_dict['uk-phonetic']=""
                 if 'us-phonetic' in basic:
                     phonetic_dict['us-phonetic']=basic['us-phonetic']
                     # print('美式发音:' + basic['us-phonetic'])
+                else:
+                    phonetic_dict['us-phonetic']=""
                 word_dict['phonetic']=phonetic_dict
             web_data=""
             if 'web' in result:
@@ -176,9 +191,14 @@ class youdao_api():
                 if 'uk-phonetic' in basic:
                     phonetic_dict['uk-phonetic']=basic['uk-phonetic']
                     # print('英式发音:' + basic['uk-phonetic']) 
+                else:
+                    phonetic_dict['uk-phonetic']=""
                 if 'us-phonetic' in basic:
                     phonetic_dict['us-phonetic']=basic['us-phonetic']
                     # print('美式发音:' + basic['us-phonetic'])
+                else:
+                    phonetic_dict['us-phonetic']=""
+                    
                 word_dict['phonetic']=phonetic_dict
             web_data=""
             if 'web' in result:
@@ -204,7 +224,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main_no_print_online("June")
+    word=youdao.main_no_print_online("kilometre")
     print(word)
         # n = input("input:")
         # youdao=youdao_api()
