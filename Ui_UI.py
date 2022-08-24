@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'f:\words_helper\UI.ui'
+# Form implementation generated from reading ui file 'c:\omelette\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1118, 581)
+        MainWindow.resize(900, 550)
         MainWindow.setMinimumSize(QtCore.QSize(900, 550))
         MainWindow.setMaximumSize(QtCore.QSize(65535, 65535))
         MainWindow.setStyleSheet("background:rgb(255, 255, 255)")
