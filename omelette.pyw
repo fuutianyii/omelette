@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-08-27 15:22:54
+LastEditTime: 2022-08-29 14:27:03
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -504,8 +504,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             if self.list=="全部分组":
                 search=f"select rowid,* from words where insert_date='{date}'"
             else:
-                search=f"select rowid,* from words where insert_date='{date}' and  list='{self. list}"
-
+                search=f"select rowid,* from words where insert_date='{date}' and  list='{self.list}'"
+        print(search)
         self.update_words=self.mydb.select(search)
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
@@ -793,7 +793,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.english_input_edit.setText("random")
         self.display_online()
         self.Stacked.setCurrentIndex(1)
-
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
         self.update_words=self.update_page_search()
@@ -814,8 +813,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.play_voice_1.setText("")
             self.Oxford_info_box.setText("")
         self.selection_word.setText(self.update_words[0][1])
+        print(self.update_words[0])
+        print(f"select * from words where (english='{self.update_words[0][1]}')")
         define_word=self.youdao.main_no_print(self.update_words[0][1],f"select * from words where (english='{self.update_words[0][1]}')")
-        # print(phonetic_symbol[0][0])
+        
         self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
         self.play_voice_label_2.setText("美 /"+define_word[0][2]+"/")
         self.insert_date.setText("添加日期："+self.update_words[0][4])
