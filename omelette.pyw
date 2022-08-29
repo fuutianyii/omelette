@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-08-23 21:29:00
+LastEditTime: 2022-08-27 15:22:54
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -25,12 +25,12 @@ from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
 
-class EmptyDelegate(QItemDelegate):
-    def __init__(self,parent):
-        super(EmptyDelegate, self).__init__(parent)
+# class EmptyDelegate(QItemDelegate):
+#     def __init__(self,parent):
+#         super(EmptyDelegate, self).__init__(parent)
     
-    def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
-        return None
+#     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
+#         return None
 
 # https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng
 
