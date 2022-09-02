@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-08-29 14:27:03
+LastEditTime: 2022-09-02 19:48:49
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -380,6 +380,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
         except:
             self.Oxford_info_box.setText("暂无数据")
+        print(f"select * from words where (english='{Item.text()}')")
         define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
         self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
