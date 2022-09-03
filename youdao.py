@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-23 09:55:31
 LastEditors: fuutianyii
-LastEditTime: 2022-08-24 10:13:06
+LastEditTime: 2022-09-02 19:55:36
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -115,11 +115,11 @@ class youdao_api():
                             # print("词意：",e[e.find(" ")+1:])
                             if (e[:e.find(".")] == "n") :
                                 if basic_dict.__contains__("n"):
-                                    basic_dict["n"]+=e[e.find(" ")+1:]  ##n词性的名词有时会独立一个n词性对应人名意思，则会覆盖前面的含义，导致只有人名翻译，没有单词原本意思的翻译
+                                    basic_dict["n"]+=e[e.find(" ")+1:].replace("\"","\"\"")  ##n词性的名词有时会独立一个n词性对应人名意思，则会覆盖前面的含义，导致只有人名翻译，没有单词原本意思的翻译
                                 else:
-                                    basic_dict["n"]=e[e.find(" ")+1:]
+                                    basic_dict["n"]=e[e.find(" ")+1:].replace("\"","\"\"")
                             elif(e[:e.find(".")] != "n"):
-                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:]
+                                basic_dict[e[:e.find(".")]]=e[e.find(" ")+1:].replace("\"","\"\"")
                 word_dict['base_dict']=basic_dict
                 phonetic_dict={}
                 if 'uk-phonetic' in basic:
@@ -137,7 +137,7 @@ class youdao_api():
             if 'web' in result:
                 # print('网络翻译：')
                 for e in result['web']:
-                    web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'",""))+"\n"
+                    web_data+=("["+e['key']+"]  "+str(e['value']).replace("[","").replace("]","").replace("\'","").replace("\"",""))+"\n"
                     # print('{}: {}'.format(e['key'], str(e['value']).replace("[","").replace("]","").replace("\'","")))
             word_dict["web"]=web_data
             return_data=requests.get(f"https://dict.youdao.com/example/blng/eng/{word}/#keyfrom=dict.main.moreblng")
@@ -152,6 +152,7 @@ class youdao_api():
                 # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
                 # sql = "CREATE TABLE IF NOT EXISTS words(english text not null,phonetic_symbol text not null,posd text not null,chinese text not null, web text not null)"
                 insert=f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{w}\",\"{word_dict['base_dict'][w]}\",\"{word_dict['web']}\",\"{b64sentence_pattern}\")"
+                # print(insert)
                 self.cursor.execute(insert)
                 self.con.commit()
                 self.cursor.execute(sql)
