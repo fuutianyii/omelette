@@ -225,7 +225,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main_no_print_online("unknown")
+    word=youdao.main_no_print_online("active")
     print(word)
         # n = input("input:")
         # youdao=youdao_api()
