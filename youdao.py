@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-23 09:55:31
 LastEditors: fuutianyii
-LastEditTime: 2022-09-02 19:55:36
+LastEditTime: 2022-09-03 18:50:42
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -225,7 +225,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main_no_print_online("kilometre")
+    word=youdao.main_no_print_online("unknown")
     print(word)
         # n = input("input:")
         # youdao=youdao_api()
