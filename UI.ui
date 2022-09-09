@@ -7,28 +7,31 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>600</height>
+    <height>570</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>600</height>
+    <height>570</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>65535</width>
+    <width>1000</width>
     <height>65535</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>omelette</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background:rgb(255, 255, 255)</string>
+   <string notr="true">border:0px;padding:0px;background:rgb(255, 255, 255)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">border:0px;padding:0px</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
      <number>0</number>
@@ -127,31 +130,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="left_second_button">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>35</width>
-                <height>35</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="left_third_button">
               <property name="minimumSize">
                <size>
@@ -225,10 +203,19 @@
       </item>
       <item>
        <widget class="QStackedWidget" name="Stacked">
+        <property name="styleSheet">
+         <string notr="true">border:0px;padding:0px</string>
+        </property>
         <property name="currentIndex">
          <number>2</number>
         </property>
         <widget class="QWidget" name="hello_page">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border:0px;padding:0px</string>
+         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
            <number>0</number>
@@ -247,6 +234,9 @@
           </property>
           <item>
            <widget class="QFrame" name="homepage_left">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <layout class="QVBoxLayout" name="verticalLayout_22">
              <property name="spacing">
               <number>0</number>
@@ -305,7 +295,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="hello_text">
+              <widget class="QLabel" name="date_text">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -365,7 +355,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="verticalFrame">
+           <widget class="QFrame" name="homepage_right">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
               <width>400</width>
@@ -377,6 +370,9 @@
               <width>400</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border:0px;padding:0px</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <property name="spacing">
@@ -395,7 +391,10 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="hello_picture">
+               <property name="styleSheet">
+                <string notr="true">border:0px;padding:0px</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -591,7 +590,7 @@
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="niujin_page_2">
+                  <widget class="QWidget" name="online_niujin_page">
                    <attribute name="title">
                     <string>牛津</string>
                    </attribute>
@@ -1047,7 +1046,7 @@
                      <string notr="true"/>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>2</number>
                     </property>
                     <widget class="QWidget" name="youdao_page">
                      <attribute name="title">
@@ -1112,7 +1111,7 @@
           <item>
            <widget class="QStackedWidget" name="exam_stacked">
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="exam_main">
              <layout class="QGridLayout" name="gridLayout">

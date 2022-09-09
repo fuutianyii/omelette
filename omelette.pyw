@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 '''
 Author: fuutianyii
-Date: 2022-08-21 09:29:29
+Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-09 15:39:34
+LastEditTime: 2022-09-09 18:07:37
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -14,7 +14,7 @@ import db
 import youdao
 import sys
 import datetime
-from re import compile
+from re import compile,findall
 from time import sleep
 from os import getcwd,path
 from requests import get
@@ -55,6 +55,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.date="全部时间"
         self.list="全部分组"
         self.forgeted=0
+
         
     def  clear_add_chinese_table(self):
         for i in range(1,self.lens+1):
@@ -111,12 +112,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.frame_4.setStyleSheet(self.read_ui("all_frame"))
         self.frame_7.setStyleSheet(self.read_ui("all_frame"))
         self.foetget_frame.setStyleSheet(self.read_ui("all_frame"))
-        self.verticalFrame1.setStyleSheet(self.read_ui("all_frame"))
         
         #单词本页单词列表
         self.update_table.setStyleSheet(self.read_ui("update_table"))
         
-        #单词本页连个筛选器
+        #单词本页的筛选器
         self.filter_list_comboBox.addItem("全部分组")
         self.all_lists=self.sort_list(self.all_lists)
         for list_one in self.all_lists:
@@ -128,38 +128,78 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.filter_date_comboBox.addItem(date)
         self.filter_date_comboBox.setStyleSheet(self.read_ui("all_comboBox"))
         
+        #左侧四个功能按键的frame
+        self.leftframe.setStyleSheet(self.read_ui("leftframe"))
         
-        self.seach_input_edit.setPlaceholderText("搜索单词")
-        self.seach_input_edit.setStyleSheet("border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:0px 20px")
-        self.leftframe.setStyleSheet("background:rgba(240,240,240,1);")
-        self.homepage_left.setStyleSheet("background:rgba(240,240,240,1);")
-        #居中
-        self.forget_label.setAlignment(Qt.AlignCenter)
-        # self.hello_text.setAlignment(Qt.AlignCenter)
+        #按钮
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/homepage.png"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
-        self.left_first_button.setStyleSheet("background:rgba(0,0,0,0);")
+        self.left_first_button.setStyleSheet(self.read_ui("button"))
 
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
-        self.left_second_button.setIcon(icon)
-        self.left_second_button.setStyleSheet("background:rgba(0,0,0,0);")
+        # icon = QIcon()
+        # icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
+        # self.left_second_button.setIcon(icon)
+        # self.left_second_button.setStyleSheet(self.read_ui("button"))
 
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/star_book.png"), QIcon.Normal, QIcon.Off)
         self.left_third_button.setIcon(icon)
-        self.left_third_button.setStyleSheet("background:rgba(0,0,0,0);")
+        self.left_third_button.setStyleSheet(self.read_ui("button"))
 
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
         self.left_forth_button.setIcon(icon)
-        self.left_forth_button.setStyleSheet("background:rgba(0,0,0,0);")
+        self.left_forth_button.setStyleSheet(self.read_ui("button"))
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
+        self.more_functions.setIcon(icon)
+        self.more_functions.setStyleSheet(self.read_ui("button"))
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
+        self.Sync.setIcon(icon)
+        self.Sync.setStyleSheet(self.read_ui("button"))
+    
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
+        self.Sync.setIcon(icon)
+        self.Sync.setStyleSheet(self.read_ui("button"))
+      
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
+        self.display_search_line_edit.setIcon(icon)
+        self.display_search_line_edit.setStyleSheet(self.read_ui("button"))
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/start.png"), QIcon.Normal, QIcon.Off)
+        self.start_exam.setIcon(icon)
+        self.start_exam.setStyleSheet(self.read_ui("button"))
 
-        #更改字符
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/forget.png"), QIcon.Normal, QIcon.Off)
+        self.search_forget_words.setIcon(icon)
+        self.search_forget_words.setStyleSheet(self.read_ui("button"))
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+        self.star.setIcon(icon)
+        self.star.setStyleSheet(self.read_ui("button"))
+        
+        #主页搜索
+        self.seach_input_edit.setPlaceholderText("搜索单词")
+        self.seach_input_edit.setStyleSheet(self.read_ui("search_input_edit"))
+        
+        #主页左侧frame
+        self.homepage_left.setStyleSheet(self.read_ui("homepage_left"))
+        
+        #测试中文居中
+        self.forget_label.setAlignment(Qt.AlignCenter)
+
+        #主页时间显示
         time_str=strftime("%Y %m %d",localtime())
         time_list=time_str.split(" ")
-        
         month_list=["January","February","March","April","May","June","July","August","September","October","November","December"]
         month=month_list[int(time_list[1])-1]
         if time_list[2]=="01":
@@ -170,16 +210,65 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             time_list[2]="3rd"
         else:
             time_list[2]=str(int(time_list[2]))+"th"
-        self.hello_text.setText(month +" "+time_list[2])
-        #num=0 #这里获取录入了多少个单词
-        self.all_words_num=self.mydb.select("SELECT Count(*) FROM words")[0][0]
+        self.date_text.setText(month +" "+time_list[2])
+        self.date_text.setStyleSheet(self.read_ui("date_text"))
+        
+        #主页图片及每日一句
+        if (path.exists("daily/"+month+time_list[2]+"bg.jpg")):
+            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;background-size:10px 10px；}")
+            f=open("daily/"+month+time_list[2]+"en.txt","r")
+            self.sentence_text_english.setText(f.read())
+            f.close()
+            f=open("daily/"+month+time_list[2]+"ch.txt","r")
+            self.sentence_text_chinese.setText(f.read())
+            f.close()
+            self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_english.setWordWrap(True)
+            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_chinese.setWordWrap(True)
+        else:
+            api_data=get("http://open.iciba.com/dsapi/").text
+            c=compile(r'{".*?":".*?",".*?":"(.*?)",".*?":"(.*?)","note":"(.*?)",".*?":".*?",".*?":".*?",".*?":".*?",".*?":"(.*?)"')
+            api=findall(c,api_data)
+            print(api)
+            s=get(api[0][3])
+            f=open("daily/"+month+time_list[2]+"bg.jpg","wb")
+            f.write(s.content)
+            f.close()
+            f=open("daily/"+month+time_list[2]+"en.txt","w")
+            f.write(api[0][1])
+            f.close()
+            f=open("daily/"+month+time_list[2]+"ch.txt","w")
+            f.write(api[0][2])
+            f.close()
+            
+            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
+            self.sentence_text_english.setText(api[0][1])
+            self.sentence_text_chinese.setText(api[0][2])
+            self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_english.setWordWrap(True)
+            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_chinese.setWordWrap(True)
+        
+        self.online_youdao_textBoswer.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.online_Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.youdao_textBrowswer.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.word_info_table.setStyleSheet(self.read_ui("QTextBrowser"))
+        
         self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.online_youdao_textBoswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
-        self.youdao_textBrowswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
-        self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
-        self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
-        self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.word_info_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        
+        self.online_youdao_textBoswer.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.online_Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
+
+        
         self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px;background:rgba(240,240,240,1)")
 
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -190,47 +279,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         #不可写
         self.update_table.horizontalHeader().setVisible(False)
-        self.update_table.verticalHeader().setVisible(False)
+        #self.update_table.verticalHeader().setVisible(False)
         self.update_table.setColumnCount(1)
         self.update_table.setRowCount(self.update_table.rowCount()+1)
         self.update_table.setColumnWidth(0,130)
 
         self.search_edit.setStyleSheet("border: none;border-radius: 10px;font-size:15px;background:rgba(240,240,240,1)")
         self.search_edit.setPlaceholderText("搜索单词")
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/setting.png"), QIcon.Normal, QIcon.Off)
-        self.more_functions.setIcon(icon)
-        self.more_functions.setStyleSheet("background:rgba(0,0,0,0);")
-        
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
-        self.Sync.setIcon(icon)
-        self.Sync.setStyleSheet("background:rgba(0,0,0,0);")
-    
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
-        self.Sync.setIcon(icon)
-        self.Sync.setStyleSheet("background:rgba(0,0,0,0);")
-      
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
-        self.display_search_line_edit.setIcon(icon)
-        self.display_search_line_edit.setStyleSheet("background:rgba(0,0,0,0);")
-        
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/start.png"), QIcon.Normal, QIcon.Off)
-        self.start_exam.setIcon(icon)
-        self.start_exam.setStyleSheet("background:rgba(0,0,0,0);")
 
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/forget.png"), QIcon.Normal, QIcon.Off)
-        self.search_forget_words.setIcon(icon)
-        self.search_forget_words.setStyleSheet("background:rgba(0,0,0,0);")
-
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
-        self.star.setIcon(icon)
-        self.star.setStyleSheet("background:rgba(0,0,0,0);")
 
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
@@ -264,7 +320,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(245,245,245);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
-        self.online_Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
+
         self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(245,245,245);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
 
@@ -273,7 +329,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.english_input_edit.returnPressed.connect(self.display_online)
         self.seach_input_edit.returnPressed.connect(self.homepage_to_search)
         self.left_first_button.clicked.connect(self.changepage_main)
-        self.left_second_button.clicked.connect(self.changepage_add)
+        # self.left_second_button.clicked.connect(self.changepage_add)
         self.left_third_button.clicked.connect(self.changepage_update)
         self.left_forth_button.clicked.connect(self.changepage_exam)
         # self.add_english_input_next.clicked.connect(self.change_add_frame_to_part_of_speech)
@@ -825,10 +881,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def changepage_main(self):
         self.Stacked.setCurrentIndex(0)
 
-    def changepage_add(self):
-        self.english_input_edit.setText("random")
-        self.display_online()
-        self.Stacked.setCurrentIndex(1)
+    # def changepage_add(self):
+    #     self.english_input_edit.setText("random")
+    #     self.display_online()
+    #     self.Stacked.setCurrentIndex(1)
     def changepage_update(self):
         self.Stacked.setCurrentIndex(2)
         self.update_words=self.update_page_search()
@@ -867,10 +923,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
         
         self.youdao_textBrowswer.setText(display_data)
-        self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.word_info_table.setRowCount(1)
         newItem = QTableWidgetItem(self.update_words[0][3])
         newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
@@ -936,7 +989,5 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window=mainwindow()
-    # from qt_material import apply_stylesheet
-    # apply_stylesheet(app, theme='light_amber.xml')
     window.show() 
     sys.exit(app.exec_())

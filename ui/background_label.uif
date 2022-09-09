@@ -1,0 +1,1 @@
+QLabel{background-image:url(background.jpg);background-position: right;background-repeat: no-repeat;}
