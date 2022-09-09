@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-09-09 12:50:55
+LastEditTime: 2022-09-09 15:39:34
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -14,6 +14,7 @@ import db
 import youdao
 import sys
 import datetime
+from re import compile
 from time import sleep
 from os import getcwd,path
 from requests import get
@@ -63,7 +64,71 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def autostart(self):
         self.Stacked.setCurrentIndex(0)
 
+    def read_ui(self,filename):
+        f=open("ui/"+filename+".uif","r")
+        return f.read()
+    
+    def sort_list(self,my_list):##对数据进行净化和排序
+        for i in range(0,len(my_list)):
+            my_list[i]=my_list[i][0]
+        def sort_key(s):
+            re_digits = compile(r'(\d+)')
+            pieces = re_digits.split(s)  # 切成数字与非数字
+            pieces[1::2] = map(int, pieces[1::2])  # 将数字部分转成整数
+            return pieces
+        my_list.sort(key=sort_key)
+        print(my_list)
+        return my_list
+        
+    
     def remake_ui(self):
+        #这里将所有的frame去除边框
+        self.leftframe.setStyleSheet(self.read_ui("all_frame"))
+        self.leftframe_top.setStyleSheet(self.read_ui("all_frame"))
+        self.homepage_left.setStyleSheet(self.read_ui("all_frame"))
+        self.verticalFrame.setStyleSheet(self.read_ui("all_frame"))
+        self.add_english_input_frame.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_12.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_14.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_13.setStyleSheet(self.read_ui("all_frame"))
+        self.search_frame.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_5.setStyleSheet(self.read_ui("all_frame"))
+        self.search_date_time_frame.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_8.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_6.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_11.setStyleSheet(self.read_ui("all_frame"))
+        self.frame.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_10.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_15.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_exam_today.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_review_words.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_radom_exam.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_review_Forgotten.setStyleSheet(self.read_ui("all_frame"))
+        self.option_frame.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_9.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_2.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_3.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_4.setStyleSheet(self.read_ui("all_frame"))
+        self.frame_7.setStyleSheet(self.read_ui("all_frame"))
+        self.foetget_frame.setStyleSheet(self.read_ui("all_frame"))
+        self.verticalFrame1.setStyleSheet(self.read_ui("all_frame"))
+        
+        #单词本页单词列表
+        self.update_table.setStyleSheet(self.read_ui("update_table"))
+        
+        #单词本页连个筛选器
+        self.filter_list_comboBox.addItem("全部分组")
+        self.all_lists=self.sort_list(self.all_lists)
+        for list_one in self.all_lists:
+            self.filter_list_comboBox.addItem(list_one)
+        self.filter_list_comboBox.setStyleSheet(self.read_ui("all_comboBox"))
+        self.all_insert_dates=self.sort_list(self.all_insert_dates)
+        self.filter_date_comboBox.addItem("全部时间")
+        for date in self.all_insert_dates:
+            self.filter_date_comboBox.addItem(date)
+        self.filter_date_comboBox.setStyleSheet(self.read_ui("all_comboBox"))
+        
+        
         self.seach_input_edit.setPlaceholderText("搜索单词")
         self.seach_input_edit.setStyleSheet("border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:0px 20px")
         self.leftframe.setStyleSheet("background:rgba(240,240,240,1);")
@@ -111,14 +176,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_youdao_textBoswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
         self.youdao_textBrowswer.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
-        
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
         self.Oxford_info_box.setStyleSheet("QTextBrowser{border:none;font-size:15px;background:rgba(0,0,0,0);}")
-        
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px;background:rgba(240,240,240,1)")
-        self.update_table.setStyleSheet("""QTableWidget{border:none;selection-background-color:white;selection-color:black;}QScrollBar:vertical{ width:8px;border-style:flat;border-radius: 4px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:vertical{ background: rgba(0,0,0,0.20);border-radius: 4px;width:8px; min-height:91px; border-style:flat;}QScrollBar::handle:vertical::hover{ background: rgba(0,0,0,0.40);border-radius: 4px;width:8px; }QScrollBar::handle:vertical::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;width:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}QScrollBar::sub-page:vertical {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:vertical {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-line:vertical{background: rgba(0,0,0,0);}QScrollBar::sub-line:vertical {background: rgba(0,0,0,0);}QScrollBar:horizontal{ height:8px;border-style:flat;border-radius: 4px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:horizontal{ background: rgba(0,0,0,0.20);border-radius: 4px;height:8px; min-width:91px; border-style:flat;}QScrollBar::handle:horizontal::hover{ background: rgba(0,0,0,0.40);border-radius: 4px;height:8px; }QScrollBar::handle:horizontal::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;height:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}""")
+
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
         #取消虚线框
@@ -127,35 +190,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         #不可写
         self.update_table.horizontalHeader().setVisible(False)
-        # self.update_table.verticalHeader().setVisible(False)
+        self.update_table.verticalHeader().setVisible(False)
         self.update_table.setColumnCount(1)
         self.update_table.setRowCount(self.update_table.rowCount()+1)
         self.update_table.setColumnWidth(0,130)
-        self.filter_list_comboBox.addItem("全部分组")
-        for list_one in self.all_lists:
-            self.filter_list_comboBox.addItem(list_one[0])
-        self.filter_list_comboBox.setStyleSheet("""
-            QComboBox{
-                background: rgba(0,0,0,0);
-                border:none;
-            }
-            QComboBox::down-arrow {
-                image: url(:/res/work/dateDown.png);
-            }
-            """)
-        
-        self.filter_date_comboBox.addItem("全部时间")
-        for date in self.all_insert_dates:
-            self.filter_date_comboBox.addItem(date[0])
-        self.filter_date_comboBox.setStyleSheet("""
-            QComboBox{
-                background: rgba(0,0,0,0);
-                border:none;
-            }
-            QComboBox::down-arrow {
-                image: url(:/res/work/dateDown.png);
-            }
-            """)
+
         self.search_edit.setStyleSheet("border: none;border-radius: 10px;font-size:15px;background:rgba(240,240,240,1)")
         self.search_edit.setPlaceholderText("搜索单词")
         icon = QIcon()
@@ -294,8 +333,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 self.mydb.delete(delete)
                 msg_box = QMessageBox(QMessageBox.Warning, '提示', '删除成功')
                 msg_box.exec_()
-
-        
+   
     def homepage_to_search(self):
         self.Stacked.setCurrentIndex(1)
         self.english_input_edit.setText(self.seach_input_edit.text())
@@ -327,7 +365,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.star.setStyleSheet("background:rgba(0,0,0,0);")
         QApplication.processEvents()
 
-
     def display_online(self):
         self.online_dict=self.youdao.main_no_print_online(self.english_input_edit.text()) 
         self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
@@ -357,8 +394,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.star.setStyleSheet("background:rgba(0,0,0,0);")
         QApplication.processEvents()
             
-
-
     def get_all_insert_date(self):
         search="select insert_date From words Group By insert_date;"
         self.all_insert_dates=self.mydb.select(search)
@@ -496,7 +531,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setItem(self.update_table.rowCount()-1,0,newItem)
 
     def filter_date(self,index):
-        date=self.all_insert_dates[index-1][0]
+        date=self.all_insert_dates[index-1]
         if index==0:
             search=f"select rowid,* from words where insert_date!=''"
             self.date="全部时间"
@@ -514,7 +549,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setItem(items,0,newItem)
 
     def filter_list(self,index):
-        list_one=self.all_lists[index-1][0]
+        list_one=self.all_lists[index-1]
         if index==0:
             search=f"select rowid,* from words where list!=''"
             self.list="全部分组"

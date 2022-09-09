@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\omelette\UI.ui'
+# Form implementation generated from reading ui file '/Users/fty/python/omelette/UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,8 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(900, 550)
-        MainWindow.setMinimumSize(QtCore.QSize(900, 550))
+        MainWindow.resize(1000, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(1000, 600))
         MainWindow.setMaximumSize(QtCore.QSize(65535, 65535))
         MainWindow.setStyleSheet("background:rgb(255, 255, 255)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -149,6 +149,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.frame_12 = QtWidgets.QFrame(self.add_english_input_frame)
         self.frame_12.setMaximumSize(QtCore.QSize(16777215, 150))
+        self.frame_12.setStyleSheet("QHBoxLayout{\n"
+"    border:0px\n"
+"}")
         self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_12.setObjectName("frame_12")
@@ -170,6 +173,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_29 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_29.setObjectName("horizontalLayout_29")
         self.frame_14 = QtWidgets.QFrame(self.frame_12)
+        self.frame_14.setStyleSheet("")
         self.frame_14.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_14.setObjectName("frame_14")
@@ -255,13 +259,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.frame_5)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.filter_list_comboBox = QtWidgets.QComboBox(self.frame_5)
-        self.filter_list_comboBox.setMinimumSize(QtCore.QSize(80, 25))
-        self.filter_list_comboBox.setMaximumSize(QtCore.QSize(80, 25))
+        self.filter_list_comboBox.setMinimumSize(QtCore.QSize(150, 25))
+        self.filter_list_comboBox.setMaximumSize(QtCore.QSize(150, 25))
         self.filter_list_comboBox.setObjectName("filter_list_comboBox")
         self.horizontalLayout_13.addWidget(self.filter_list_comboBox)
         self.filter_date_comboBox = QtWidgets.QComboBox(self.frame_5)
-        self.filter_date_comboBox.setMinimumSize(QtCore.QSize(100, 25))
-        self.filter_date_comboBox.setMaximumSize(QtCore.QSize(100, 25))
+        self.filter_date_comboBox.setMinimumSize(QtCore.QSize(150, 25))
+        self.filter_date_comboBox.setMaximumSize(QtCore.QSize(150, 25))
         self.filter_date_comboBox.setObjectName("filter_date_comboBox")
         self.horizontalLayout_13.addWidget(self.filter_date_comboBox)
         self.search_date_time_frame = QtWidgets.QFrame(self.frame_5)
@@ -292,7 +296,7 @@ class Ui_MainWindow(object):
         self.display_search_line_edit.setObjectName("display_search_line_edit")
         self.horizontalLayout_26.addWidget(self.display_search_line_edit)
         self.search_edit = QtWidgets.QLineEdit(self.search_date_time_frame)
-        self.search_edit.setMinimumSize(QtCore.QSize(400, 40))
+        self.search_edit.setMinimumSize(QtCore.QSize(200, 40))
         self.search_edit.setMaximumSize(QtCore.QSize(150, 16777215))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -704,7 +708,7 @@ class Ui_MainWindow(object):
         self.Stacked.setCurrentIndex(2)
         self.online.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.exam_stacked.setCurrentIndex(0)
+        self.exam_stacked.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
