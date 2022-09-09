@@ -32,7 +32,6 @@ from PyQt5.QtGui import QPixmap,QIcon
 #     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
 #         return None
 
-
 # https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng
 
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
