@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-21 09:29:29
 LastEditors: fuutianyii
-LastEditTime: 2022-09-02 19:48:49
+LastEditTime: 2022-09-09 12:50:55
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -31,6 +31,7 @@ from PyQt5.QtGui import QPixmap,QIcon
     
 #     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
 #         return None
+
 
 # https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng
 
