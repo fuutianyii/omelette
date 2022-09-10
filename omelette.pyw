@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-09 18:07:37
+LastEditTime: 2022-09-10 08:03:43
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -19,9 +19,9 @@ from time import sleep
 from os import getcwd,path
 from requests import get
 from time import localtime,strftime
-from random import randrange,shuffle
+from random import randrange
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView,QSizePolicy
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
@@ -66,8 +66,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
 
     def read_ui(self,filename):
-        f=open("ui/"+filename+".uif","r")
-        return f.read()
+        f=open("ui/"+filename+".uif","rb")
+        return f.read().decode()
     
     def sort_list(self,my_list):##对数据进行净化和排序
         for i in range(0,len(my_list)):
@@ -215,7 +215,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #主页图片及每日一句
         if (path.exists("daily/"+month+time_list[2]+"bg.jpg")):
-            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;background-size:10px 10px；}")
+            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
             f=open("daily/"+month+time_list[2]+"en.txt","r")
             self.sentence_text_english.setText(f.read())
             f.close()
