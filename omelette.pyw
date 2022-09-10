@@ -26,14 +26,6 @@ from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
 
-# class EmptyDelegate(QItemDelegate):
-#     def __init__(self,parent):
-#         super(EmptyDelegate, self).__init__(parent)
-    
-#     def createEditor(self, QWidget, QStyleOptionViewItem, QModelIndex):
-#         return None
-
-# https://dict.youdao.com/example/blng/eng/tutor/#keyfrom=dict.main.moreblng
 
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
