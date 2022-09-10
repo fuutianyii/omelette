@@ -21,7 +21,7 @@ from requests import get
 from time import localtime,strftime
 from random import randrange
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView,QSizePolicy
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
