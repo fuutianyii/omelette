@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'f:\omelette\UI.ui'
+# Form implementation generated from reading ui file '/Users/fty/python/omelette/UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.left_first_button.setMinimumSize(QtCore.QSize(50, 50))
         self.left_first_button.setMaximumSize(QtCore.QSize(50, 50))
         self.left_first_button.setText("")
-        self.left_first_button.setIconSize(QtCore.QSize(25, 25))
+        self.left_first_button.setIconSize(QtCore.QSize(50, 50))
         self.left_first_button.setObjectName("left_first_button")
         self.verticalLayout_2.addWidget(self.left_first_button)
         self.left_third_button = QtWidgets.QPushButton(self.leftframe_top)

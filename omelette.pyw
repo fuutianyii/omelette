@@ -16,21 +16,16 @@ import sys
 import datetime
 from re import compile,findall
 from time import sleep
-from os import getcwd,path
+from os import getcwd,path,chdir
 from requests import get
 from time import localtime,strftime
 from random import randrange
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView,QGraphicsBlurEffect
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView,QGraphicsBlurEffect,QGraphicsBlurEffect
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
-
-
-
-
-from PyQt5.QtWidgets import QGraphicsBlurEffect
-
+# chdir("/Users/fty/python/omelette")
 
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
@@ -52,11 +47,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.date="全部时间"
         self.list="全部分组"
         self.forgeted=0
-        #self.blur(self.hello_picture)#实现毛玻璃
+        self.blur(self.hello_picture)#实现毛玻璃
         
     def blur(self,pic):
         blur = QGraphicsBlurEffect()
-        blur.setBlurRadius(30)
+        blur.setBlurRadius(10)
         blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
         self.setGraphicsEffect(blur)
         pic.setGraphicsEffect(blur)
@@ -138,7 +133,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #按钮
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/homepage.png"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/煎蛋卷"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
         self.left_first_button.setStyleSheet(self.read_ui("button"))
 
