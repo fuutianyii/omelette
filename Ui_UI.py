@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/fty/python/omelette/UI.ui'
+# Form implementation generated from reading ui file 'f:\omelette\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 570)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 570))
-        MainWindow.setMaximumSize(QtCore.QSize(1000, 65535))
+        MainWindow.setMaximumSize(QtCore.QSize(1000, 570))
         MainWindow.setStyleSheet("border:0px;padding:0px;background:rgb(255, 255, 255)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("border:0px;padding:0px")
