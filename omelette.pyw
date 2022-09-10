@@ -21,10 +21,15 @@ from requests import get
 from time import localtime,strftime
 from random import randrange
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView,QGraphicsBlurEffect
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon
+
+
+
+
+from PyQt5.QtWidgets import QGraphicsBlurEffect
 
 
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
@@ -47,8 +52,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.date="全部时间"
         self.list="全部分组"
         self.forgeted=0
-
+        #self.blur(self.hello_picture)#实现毛玻璃
         
+    def blur(self,pic):
+        blur = QGraphicsBlurEffect()
+        blur.setBlurRadius(30)
+        blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
+        self.setGraphicsEffect(blur)
+        pic.setGraphicsEffect(blur)
+        
+        ######
     def  clear_add_chinese_table(self):
         for i in range(1,self.lens+1):
             self.add_chinese_input_table_widget.removeRow(0)
