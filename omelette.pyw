@@ -19,7 +19,7 @@ from time import sleep
 from os import getcwd,path
 from requests import get
 from time import localtime,strftime
-from random import randrange,shuffle
+from random import randrange
 from base64 import b64decode
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QItemDelegate,QMessageBox,QAbstractItemView,QHeaderView,QSizePolicy
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
