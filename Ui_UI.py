@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file '/Users/fty/python/omelette/UI.ui'
 #

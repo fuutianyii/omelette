@@ -1,12 +1,11 @@
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
 '''
 Author: fuutianyii
-Date: 2022-09-09 13:30:38
+Date: 2022-09-10 15:40:08
 LastEditors: fuutianyii
-LastEditTime: 2022-09-09 13:58:11
+LastEditTime: 2022-09-11 15:29:30
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
 '''
-import re
-
-sort_list()

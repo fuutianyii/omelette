@@ -1,5 +1,5 @@
-# !/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
 '''
 Author: fuutianyii
 Date: 2022-08-23 09:55:31
