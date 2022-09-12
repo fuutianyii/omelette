@@ -896,11 +896,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.update_table.setItem(items,0,newItem)
         try:
             Oxford_data=self.myOxford.select("select * from words where english='"+self.update_words[0][1]+"'")
-            # self.play_voice_1.setText(Oxford_data[0][1])
-            b64decode(Oxford_data[0][1]).decode()
+            print("select * from words where english='"+self.update_words[0][1]+"'")
+            print(Oxford_data)
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
-            # self.Oxford_info_box.setText("aggressive	<font color=red>aggressive</font><br><font color=\"#F17D1F\" size=4>/əˈgresɪv; ə`ɡrɛsɪv/</font> adj<br><font color=green>1</font><br><font color=red>(a) (of people or animals) apt or ready to attack; offensive; quarrelsome （指人或动物）侵略的, 好攻击的, 好寻衅的, 好争吵的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>dogs trained to be aggressive 训练成攻击型的狗</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>Aggressive nations threaten world peace. 侵略成性的国家威胁世界和平.</font><br><font color=red>(b) (of things or actions) for or of an attack; offensive （指事物或行动）攻击性的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>aggressive weapons 攻击性的武器.</font><br><font color=green>2 (often approv 常作褒义) forceful; self-assertive 强有力的; 坚持己见的</font><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=blue>A good salesman must be aggressive if he wants to succeed. 要做个好推销员一定要有闯劲才能成功. </font><br>")
-            
         except:
             self.play_voice_1.setText("")
             self.Oxford_info_box.setText("")
