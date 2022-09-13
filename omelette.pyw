@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-13 08:36:54
+LastEditTime: 2022-09-13 15:04:36
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -51,7 +51,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
     def blur(self,pic):
         blur = QGraphicsBlurEffect()
-        blur.setBlurRadius(1)
+        blur.setBlurRadius(0)
         blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
         self.setGraphicsEffect(blur)
         pic.setGraphicsEffect(blur)
