@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-13 15:04:36
+LastEditTime: 2022-09-14 10:59:51
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -930,7 +930,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.word_info_table.setItem(0,1,newItem)    
 
         self.word_info_table.resizeRowsToContents()#自调整高度
-        self.tabWidget.setCurrentIndex(2)#切换单词解释界面
+        self.tabWidget.setCurrentIndex(0)#切换单词解释界面
         # self.word_info_table.resizeColumnsToContents()#自调整宽度
 
     def changepage_exam(self):

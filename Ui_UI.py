@@ -1,6 +1,6 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/fty/python/omelette/UI.ui'
+# Form implementation generated from reading ui file 'c:\omelette\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -708,7 +708,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.Stacked.setCurrentIndex(2)
         self.online.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.exam_stacked.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
