@@ -6,27 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>905</width>
     <height>570</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>1000</width>
-    <height>570</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1000</width>
-    <height>570</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>omelette</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">border:0px;padding:0px;background:rgb(255, 255, 255)</string>
+   <string notr="true">border:0px;padding:0px;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -54,7 +42,7 @@
        <widget class="QFrame" name="leftframe">
         <property name="minimumSize">
          <size>
-          <width>80</width>
+          <width>100</width>
           <height>0</height>
          </size>
         </property>
@@ -87,14 +75,14 @@
           <widget class="QFrame" name="leftframe_top">
            <property name="minimumSize">
             <size>
-             <width>100</width>
-             <height>400</height>
+             <width>60</width>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>100</width>
-             <height>400</height>
+             <width>200</width>
+             <height>65535</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -112,19 +100,13 @@
                 <height>50</height>
                </size>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
               <property name="text">
-               <string/>
+               <string>主页</string>
               </property>
               <property name="iconSize">
                <size>
-                <width>50</width>
-                <height>50</height>
+                <width>25</width>
+                <height>25</height>
                </size>
               </property>
              </widget>
@@ -137,19 +119,13 @@
                 <height>50</height>
                </size>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
               <property name="text">
-               <string/>
+               <string>单词本</string>
               </property>
               <property name="iconSize">
                <size>
-                <width>35</width>
-                <height>35</height>
+                <width>25</width>
+                <height>25</height>
                </size>
               </property>
              </widget>
@@ -162,22 +138,16 @@
                 <height>50</height>
                </size>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
               <property name="text">
-               <string/>
+               <string>设置</string>
               </property>
               <property name="iconSize">
                <size>
-                <width>35</width>
-                <height>35</height>
+                <width>25</width>
+                <height>25</height>
                </size>
               </property>
              </widget>
@@ -204,19 +174,19 @@
       <item>
        <widget class="QStackedWidget" name="Stacked">
         <property name="styleSheet">
-         <string notr="true">border:0px;padding:0px</string>
+         <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
           <bool>true</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">border:0px;padding:0px</string>
+          <string notr="true"/>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="5,3">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -236,6 +206,9 @@
            <widget class="QFrame" name="homepage_left">
             <property name="enabled">
              <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_22">
              <property name="spacing">
@@ -258,7 +231,7 @@
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>100</height>
+                 <height>80</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -361,7 +334,7 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>400</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -472,6 +445,12 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_30" stretch="0,0">
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QPushButton" name="online_play_voice_1">
                        <property name="minimumSize">
@@ -530,13 +509,13 @@
                    <widget class="QLineEdit" name="list_line">
                     <property name="minimumSize">
                      <size>
-                      <width>30</width>
+                      <width>80</width>
                       <height>30</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>60</width>
+                      <width>80</width>
                       <height>30</height>
                      </size>
                     </property>
@@ -569,16 +548,28 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QTabWidget" name="online">
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="online_youdao_page">
                    <attribute name="title">
                     <string>有道</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
                     <item>
                      <widget class="QTextBrowser" name="online_youdao_textBoswer">
                       <property name="font">
@@ -595,6 +586,12 @@
                     <string>牛津</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_27">
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
                     <item>
                      <widget class="QTextBrowser" name="online_Oxford_info_box">
                       <property name="font">
@@ -625,6 +622,9 @@
               <width>0</width>
               <height>50</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">margin:0px;padding:0px;</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -852,6 +852,9 @@
                </item>
                <item>
                 <widget class="QFrame" name="frame_6">
+                 <property name="styleSheet">
+                  <string notr="true">margin:0px;padding:0px;</string>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -864,13 +867,13 @@
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>70</height>
+                      <height>30</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
-                      <height>70</height>
+                      <height>30</height>
                      </size>
                     </property>
                     <property name="font">
@@ -1043,16 +1046,19 @@
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true"/>
+                     <string notr="true">margin:0px;padding:0px;</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>2</number>
                     </property>
                     <widget class="QWidget" name="youdao_page">
                      <attribute name="title">
                       <string>有道</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
                       <item>
                        <widget class="QTextBrowser" name="youdao_textBrowswer">
                         <property name="font">
@@ -1061,6 +1067,9 @@
                           <weight>50</weight>
                           <bold>false</bold>
                          </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">margin:0px;padding:0px;</string>
                         </property>
                        </widget>
                       </item>
@@ -1071,6 +1080,9 @@
                       <string>牛津</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_19">
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
                       <item>
                        <widget class="QTextBrowser" name="Oxford_info_box">
                         <property name="font">
@@ -1089,6 +1101,9 @@
                       <string>自定义</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_17">
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
                       <item>
                        <widget class="QTableWidget" name="word_info_table"/>
                       </item>

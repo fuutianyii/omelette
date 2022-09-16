@@ -1,1 +1,1 @@
-QLineEdit{border:0px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:0px 20px}
+QLineEdit{border:0px;font-size:20px;background:rgba(255,255,255,1);border-radius: 15px;margin:10px;padding:0px 20px}
