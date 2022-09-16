@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-08-23 09:55:31
 LastEditors: fuutianyii
-LastEditTime: 2022-09-03 18:50:42
+LastEditTime: 2022-09-16 10:27:29
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -225,7 +225,7 @@ class youdao_api():
         
 if __name__ == '__main__':
     youdao=youdao_api()
-    word=youdao.main_no_print_online("active")
+    word=youdao.main_no_print_online("hello")
     print(word)
         # n = input("input:")
         # youdao=youdao_api()

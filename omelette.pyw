@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-14 10:59:51
+LastEditTime: 2022-09-16 10:11:32
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -216,11 +216,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         #主页图片及每日一句
         if (path.exists("daily/"+month+time_list[2]+"bg.jpg")):
             self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
-            f=open("daily/"+month+time_list[2]+"en.txt","r")
-            self.sentence_text_english.setText(f.read())
+            f=open("daily/"+month+time_list[2]+"en.txt","rb")
+            self.sentence_text_english.setText(f.read().decode())
             f.close()
-            f=open("daily/"+month+time_list[2]+"ch.txt","r")
-            self.sentence_text_chinese.setText(f.read())
+            f=open("daily/"+month+time_list[2]+"ch.txt","rb")
+            self.sentence_text_chinese.setText(f.read().decode())
             f.close()
             self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
             self.sentence_text_english.setWordWrap(True)
@@ -235,11 +235,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             f=open("daily/"+month+time_list[2]+"bg.jpg","wb")
             f.write(s.content)
             f.close()
-            f=open("daily/"+month+time_list[2]+"en.txt","w")
-            f.write(api[0][1])
+            f=open("daily/"+month+time_list[2]+"en.txt","wb")
+            f.write(api[0][1].encode())
             f.close()
-            f=open("daily/"+month+time_list[2]+"ch.txt","w")
-            f.write(api[0][2])
+            f=open("daily/"+month+time_list[2]+"ch.txt","wb")
+            f.write(api[0][2].encode())
             f.close()
             
             self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
