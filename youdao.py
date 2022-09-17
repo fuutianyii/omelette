@@ -216,11 +216,12 @@ class youdao_api():
             else:
                 sentence_pattern="暂无例句"
             word_list=[]
-            for w in word_dict['base_dict']:
-                # print(word_dict['web'])
-                # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
-                # sql = "CREATE TABLE IF NOT EXISTS words(english text not null,phonetic_symbol text not null,posd text not null,chinese text not null, web text not null)"
-                word_list.append((word,word_dict['phonetic']['uk-phonetic'],word_dict['phonetic']['us-phonetic'],w,word_dict['base_dict'][w],word_dict['web'],sentence_pattern))
+            if 'base_dict' in list(word_dict.keys()):
+                for w in word_dict['base_dict']:
+                    # print(word_dict['web'])
+                    # print(f"INSERT INTO words VALUES (\"{word}\",\"{word_dict['phonetic']['uk-phonetic']}\",\"{word_dict['phonetic']['us-phonetic']}\",\"{word_dict['base_dict'][w]}\",\"{w}\",\"{word_dict['web']}\")")
+                    # sql = "CREATE TABLE IF NOT EXISTS words(english text not null,phonetic_symbol text not null,posd text not null,chinese text not null, web text not null)"
+                    word_list.append((word,word_dict['phonetic']['uk-phonetic'],word_dict['phonetic']['us-phonetic'],w,word_dict['base_dict'][w],word_dict['web'],sentence_pattern))
             return word_list
         
 if __name__ == '__main__':

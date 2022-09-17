@@ -97,9 +97,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def remake_ui(self):
         #使用本地字体
         fontDb = QFontDatabase()
-        fontID = fontDb.addApplicationFont("QDHT.otf")  # 此处的路径为qrc文件中的字体路径
+        fontID = fontDb.addApplicationFont(":QDHT.otf")  # 此处的路径为qrc文件中的字体路径
         fontFamilies = fontDb.applicationFontFamilies(fontID)
-        font=QFont(fontFamilies[0])
+        if fontFamilies!=[]:
+            font=QFont(fontFamilies[0])
+        else:
+            print("Have no the font family")
+            font=QFont("Hiragino Sans GB W3")
         self.date_text.setFont(font)
         self.date_text.setFont(font)
         self.sentence_text_chinese.setFont(font)
@@ -123,8 +127,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.exam_english_lable.setFont(font)
         self.word_info.setFont(font)
         self.update_table.setFont(font)
-        self.play_voice_label_1.setFont(font)
-        self.play_voice_label_2.setFont(font)
+        # self.play_voice_label_1.setFont(font)
+        # self.play_voice_label_2.setFont(font)
         self.filter_list_comboBox.setFont(font)
         self.filter_date_comboBox.setFont(font)
         self.start_exam.setFont(font)
@@ -152,7 +156,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.verticalFrame.setStyleSheet(self.read_ui("all_frame"))
         self.add_english_input_frame.setStyleSheet(self.read_ui("all_frame"))
         self.frame_12.setStyleSheet(self.read_ui("all_frame"))
-        self.frame_14.setStyleSheet(self.read_ui("all_frame"))
         self.frame_13.setStyleSheet(self.read_ui("all_frame"))
         self.search_frame.setStyleSheet(self.read_ui("all_frame"))
         self.frame_5.setStyleSheet(self.read_ui("all_frame"))
@@ -174,6 +177,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.frame_4.setStyleSheet(self.read_ui("all_frame"))
         self.frame_7.setStyleSheet(self.read_ui("all_frame"))
         self.foetget_frame.setStyleSheet(self.read_ui("all_frame"))
+        
+        
+        #测试页中文
+        self.exam_chinese_label.setStyleSheet(self.read_ui("exam_chinese_label"))
+        
+        #词性
+        self.part_of_speech_label.setStyleSheet(self.read_ui("exam_chinese_label"))
         
         #单词本页单词列表
         self.update_table.setStyleSheet(self.read_ui("update_table"))
@@ -331,24 +341,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.online_Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
         self.youdao_textBrowswer.setStyleSheet(self.read_ui("QTextBrowser"))
         self.word_info.setStyleSheet(self.read_ui("QTextBrowser"))
-        
-        
 
-        
+        self.word_info.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        
+        self.word_info.setTextInteractionFlags(Qt.NoTextInteraction)
         self.online_youdao_textBoswer.setTextInteractionFlags(Qt.NoTextInteraction)
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         self.online_Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
-
-        
-        
 
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
@@ -368,16 +373,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/voice.png"), QIcon.Normal, QIcon.Off)
         self.play_voice_1.setIcon(icon)
-        self.play_voice_1.setStyleSheet('text-align:center;background:rgba(235,235,235,0.9);border:none;border-radius:10px;vertical-align: middle;')
+        self.play_voice_1.setStyleSheet(self.read_ui("play_voice"))
         self.play_voice_1.adjustSize()
         self.play_voice_2.setIcon(icon)
-        self.play_voice_2.setStyleSheet('text-align:center;background:rgba(235,235,235,0.9);border:none;border-radius:10px;vertical-align: middle;')
+        self.play_voice_2.setStyleSheet(self.read_ui("play_voice"))
         self.play_voice_2.adjustSize()
         self.online_play_voice_1.setIcon(icon)
-        self.online_play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,1);border:none;border-radius:10px;')
+        self.online_play_voice_1.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_1.adjustSize()
         self.online_play_voice_2.setIcon(icon)
-        self.online_play_voice_2.setStyleSheet('text-align:left;background:rgba(255,255,255,1);border:none;border-radius:10px;')
+        self.online_play_voice_2.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_2.adjustSize()
 
 
@@ -386,7 +391,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
-        # self.online.setStyleSheet("QTabWidget{border:none;background:rgba(255,255,255)}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
         
         
@@ -438,8 +442,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Sync.clicked.connect(self.reverse_words_list)
         
         
-        self.online_play_voice_1.clicked.connect(self.play_the_word_uk)
-        self.online_play_voice_2.clicked.connect(self.play_the_word_us)
+        self.online_play_voice_1.clicked.connect(self.online_play_the_word_uk)
+        self.online_play_voice_2.clicked.connect(self.online_play_the_word_us)
 
 
     def star_the_word(self):
@@ -469,65 +473,52 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 msg_box.exec_()
    
     def homepage_to_search(self):
-        self.Stacked.setCurrentIndex(1)
-        self.english_input_edit.setText(self.seach_input_edit.text())
-        self.online_dict=self.youdao.main_no_print_online(self.seach_input_edit.text()) 
-        self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
-        self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
-        display_data="<table><tr>"
-        for data in self.online_dict:
-            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
-        display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h2>例句</h2>"+data[6]
-        self.online_youdao_textBoswer.setText(display_data)
-        try:
-            Oxford_data=self.myOxford.select("select * from words where english='"+self.english_input_edit.text()+"'")
-            b64decode(Oxford_data[0][1]).decode()
-            self.online_Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
-        except:
-            self.online_Oxford_info_box.setText("暂无数据")
-        search=f"select english from words where english='{self.english_input_edit.text()}'"
-        if len(self.mydb.select(search)) ==  0:
-            icon = QIcon()
-            icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
-            self.star.setIcon(icon)
-            self.star.setStyleSheet("background:rgba(0,0,0,0);")
-        else:
-            icon = QIcon()
-            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
-            self.star.setIcon(icon)
-            self.star.setStyleSheet("background:rgba(0,0,0,0);")
-        QApplication.processEvents()
+        self.online_search(self.seach_input_edit)
 
     def display_online(self):
-        self.online_dict=self.youdao.main_no_print_online(self.english_input_edit.text()) 
-        self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
-        self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
-        display_data="<table><tr>"
-        for data in self.online_dict:
-            display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
-        display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h2>例句</h2>"+data[6]
-        self.online_youdao_textBoswer.setText(display_data)
-        try:
-            Oxford_data=self.myOxford.select("select * from words where english='"+self.english_input_edit.text()+"'")
-            b64decode(Oxford_data[0][1]).decode()
-            self.online_Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
-        except:
-            self.online_Oxford_info_box.setText("暂无数据")
-        search=f"select english from words where english='{self.english_input_edit.text()}'"
-        if len(self.mydb.select(search)) ==  0:
-            icon = QIcon()
-            icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
-            self.star.setIcon(icon)
-            self.star.setStyleSheet("background:rgba(0,0,0,0);")
-        else:
-            icon = QIcon()
-            icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
-            self.star.setIcon(icon)
-            self.star.setStyleSheet("background:rgba(0,0,0,0);")
-        QApplication.processEvents()
+        self.online_search(self.english_input_edit)
+    
+    def online_search(self,edit):
+        if edit.text()=="":
+            return 0
+        self.Stacked.setCurrentIndex(1)
+        self.english_input_edit.setText(edit.text())
+        self.online_dict=self.youdao.main_no_print_online(edit.text())
+        if self.online_dict != []:
+            self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
+            self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
+            display_data="<table><tr>"
+            for data in self.online_dict:
+                display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="</table>"+data[5].replace("\n","<br>")
+            display_data+="<h2>例句</h2>"+data[6]
+            self.online_youdao_textBoswer.setText(display_data)
+
+            Oxford_data=self.myOxford.select("select * from words where english='"+edit.text()+"'")
             
+            if (Oxford_data != "") and (Oxford_data != []):
+                b64decode(Oxford_data[0][1]).decode()
+                self.online_Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
+            else:
+                self.online_Oxford_info_box.setText("暂无数据")
+            
+            
+            search=f"select english from words where english='{edit.text()}'"
+            if len(self.mydb.select(search)) ==  0:
+                icon = QIcon()
+                icon.addPixmap(QPixmap("ico/star.png"), QIcon.Normal, QIcon.Off)
+                self.star.setIcon(icon)
+                self.star.setStyleSheet("background:rgba(0,0,0,0);")
+            else:
+                icon = QIcon()
+                icon.addPixmap(QPixmap("ico/un_star.png"), QIcon.Normal, QIcon.Off)
+                self.star.setIcon(icon)
+                self.star.setStyleSheet("background:rgba(0,0,0,0);")
+        else:
+            self.online_youdao_textBoswer.setText("暂无数据")
+            self.online_Oxford_info_box.setText("暂无数据")
+        QApplication.processEvents()
+    
     def get_all_insert_date(self):
         search="select insert_date From words Group By insert_date;"
         self.all_insert_dates=self.mydb.select(search)
@@ -536,6 +527,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         search="select list From words Group By list;"
         self.all_lists=self.mydb.select(search)
 
+    def online_play_the_word_uk(self):
+        self.online_play(self.english_input_edit.text(),1)
+    def online_play_the_word_us(self):
+        self.online_play(self.english_input_edit.text(),2)
+        
     def play_the_word_uk(self):
         self.play(self.selection_word.text(),1)
     
@@ -552,8 +548,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         print(f"select * from words where (english='{Item.text()}')")
         define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
-        self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
-        self.play_voice_label_2.setText("美 /"+define_word[0][2]+"/")
+        self.play_voice_1.setText("英 /"+define_word[0][1]+"/")
+        self.play_voice_2.setText("美 /"+define_word[0][2]+"/")
 
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
@@ -738,7 +734,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def play(self,word,type):
         try:
             if path.exists(f"mp3/voice_{word}_{type}.mp3") == True:
-                # mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}.mp3".replace("\\", "/")
                 mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}_{type}.mp3".replace("\\", "/")
                 url = QUrl.fromLocalFile(mp3_path)
                 content = QMediaContent(url)  # 加载音乐
@@ -747,6 +742,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             else:
                 self.getmp3(word)
                 mp3_path=getcwd().replace("\\", "/")+f"\\mp3\\voice_{word}_{type}.mp3".replace("\\", "/")
+                print(mp3_path)
                 url = QUrl.fromLocalFile(mp3_path)
                 content = QMediaContent(url)  # 加载音乐
                 self.player.setMedia(content)     # 关联 QMediaPlayer控件与音乐地址
@@ -755,6 +751,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '播放失败')
             msg_box.exec_()
 
+    def online_play(self,word,type):
+        respond=get(f"https://dict.youdao.com/dictvoice?audio={word}&type={type}")
+        if respond.status_code == 200:
+            data=respond.content
+            w = open(f"mp3/online.mp3","wb") 
+            w.write(data)
+            w.close()
+        mp3_path=getcwd().replace("\\", "/")+"/mp3/online.mp3"
+        url=QUrl.fromLocalFile(mp3_path)
+        content = QMediaContent(url)  # 加载音乐
+        self.player.setMedia(content)     # 关联 QMediaPlayer控件与音乐地址
+        self.player.play()                          # 播放
+    
     def getmp3(self,word):
         try:
             # respond=get(f"https://fanyi.baidu.com/gettts?lan=en&text={word}&spd=3&source=web")
@@ -977,10 +986,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
 
 
-    def black_omelette(self):
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/home"), QIcon.Normal, QIcon.Off)
-        self.left_first_button.setIcon(icon)
+
     # def changepage_add(self):
     #     self.english_input_edit.setText("random")
     #     self.display_online()
@@ -1002,7 +1008,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
         
         
-        self.black_omelette()
         self.Stacked.setCurrentIndex(2)
         self.update_words=self.update_page_search()
         self.update_table.setRowCount(len(self.update_words))
@@ -1014,32 +1019,27 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         try:
             Oxford_data=self.myOxford.select("select * from words where english='"+self.update_words[0][1]+"'")
             print("select * from words where english='"+self.update_words[0][1]+"'")
-            print(Oxford_data)
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
         except:
-            self.play_voice_1.setText("")
             self.Oxford_info_box.setText("")
-        self.selection_word.setText(self.update_words[0][1])
-        print(self.update_words[0])
-        print(f"select * from words where (english='{self.update_words[0][1]}')")
-        define_word=self.youdao.main_no_print(self.update_words[0][1],f"select * from words where (english='{self.update_words[0][1]}')")
-        
-        self.play_voice_label_1.setText("英 /"+define_word[0][1]+"/")
-        self.play_voice_label_2.setText("美 /"+define_word[0][2]+"/")
-        self.insert_date.setText("添加日期："+self.update_words[0][4])
-        self.words_list.setText("组别名称："+self.update_words[0][6])
+            
+        if len(self.update_words) !=0 :
+            self.selection_word.setText(self.update_words[0][1])
+            print(f"select * from words where (english='{self.update_words[0][1]}')")
+            define_word=self.youdao.main_no_print(self.update_words[0][1],f"select * from words where (english='{self.update_words[0][1]}')")
+            self.play_voice_1.setText("英 /"+define_word[0][1]+"/")
+            self.play_voice_2.setText("美 /"+define_word[0][2]+"/")
+            self.insert_date.setText("添加日期："+self.update_words[0][4])
+            self.words_list.setText("组别名称："+self.update_words[0][6])
+            display_data="<table><tr>"
+            for data in define_word:
+                display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="</table>"+data[5].replace("\n","<br>")
+            display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
+            
+            self.youdao_textBrowswer.setText(display_data)
 
-
-        
-        display_data="<table><tr>"
-        for data in define_word:
-            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
-        display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
-        
-        self.youdao_textBrowswer.setText(display_data)
-
-        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
+            self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
 
     def changepage_exam(self):
         icon = QIcon()
@@ -1058,7 +1058,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(0)
         
         
-        self.black_omelette()
         self.left_first_button.setStyleSheet(self.read_ui("button"))
         self.Stacked.setCurrentIndex(3)
         self.exam_stacked.setCurrentIndex(0)

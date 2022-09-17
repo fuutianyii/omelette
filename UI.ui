@@ -440,6 +440,18 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_8">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QLineEdit" name="english_input_edit">
                   <property name="sizePolicy">
@@ -465,56 +477,35 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_29">
                   <item>
-                   <widget class="QFrame" name="frame_14">
-                    <property name="styleSheet">
+                   <widget class="QPushButton" name="online_play_voice_1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>10</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="text">
                      <string notr="true"/>
                     </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="online_play_voice_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>10</width>
+                      <height>30</height>
+                     </size>
                     </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_30" stretch="0,0">
-                     <property name="topMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="QPushButton" name="online_play_voice_1">
-                       <property name="minimumSize">
-                        <size>
-                         <width>10</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string notr="true"/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="online_play_voice_2">
-                       <property name="minimumSize">
-                        <size>
-                         <width>10</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string notr="true"/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                    <property name="text">
+                     <string notr="true"/>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -579,7 +570,13 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
                 <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
@@ -595,7 +592,13 @@
                     <string>有道</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
                     <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
                      <number>0</number>
                     </property>
                     <property name="bottomMargin">
@@ -617,7 +620,13 @@
                     <string>牛津</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_27">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
                     <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
                      <number>0</number>
                     </property>
                     <property name="bottomMargin">
@@ -943,7 +952,7 @@
                      <string notr="true">font: 75 36pt &quot;微软雅黑&quot;;</string>
                     </property>
                     <property name="text">
-                     <string>groud</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
@@ -1024,13 +1033,6 @@
                           <number>0</number>
                          </property>
                          <item>
-                          <widget class="QLabel" name="play_voice_label_1">
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
                           <widget class="QPushButton" name="play_voice_1">
                            <property name="minimumSize">
                             <size>
@@ -1055,13 +1057,6 @@
                              <width>16</width>
                              <height>16</height>
                             </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="play_voice_label_2">
-                           <property name="text">
-                            <string/>
                            </property>
                           </widget>
                          </item>
@@ -1125,6 +1120,15 @@
                       <string>有道</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
@@ -1149,6 +1153,15 @@
                       <string>牛津</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_19">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
@@ -1170,6 +1183,15 @@
                       <string>自定义</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_17">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
