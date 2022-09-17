@@ -27,9 +27,9 @@ from PyQt5.QtCore import Qt,QUrl
 from PyQt5.QtGui import QPixmap,QIcon,QFont
 # chdir("/Users/fty/python/omelette")
 
-from acrylic import AcrylicLabel
-from PyQt5.QtGui import QPalette,QColor,QBrush
-from PyQt5.QtWidgets import QApplication
+# from acrylic import AcrylicLabel
+# from PyQt5.QtGui import QPalette,QColor,QBrush
+# from PyQt5.QtWidgets import QApplication
 
 
 
@@ -95,6 +95,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     
     def remake_ui(self):
 
+        ####调整窗口大小
         
         self.desktop = QApplication.desktop()
         self.screenRect = self.desktop.screenGeometry()
@@ -107,14 +108,15 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         else:
             self.setFixedSize(900,self.screenheight//2)
         
- 
-        # self.Stacked.setStyleSheet("QStackedWidget{background-color:rgba{0,0,0}}")
+
+        # self.setStyleSheet("#MainWindow{background-image:url(daily/September17thbg.jpg);}")
+        self.Stacked.setStyleSheet("QStackedWidget{background:rgba(235,235,235,1)}")
         
 
         #这里将所有的frame去除边框
         # self.leftframe.setStyleSheet("background-image::none;")
-        self.leftframe.setStyleSheet("background-image:none;background:rgba(255,255,255,0.2);}")
-        self.leftframe_top.setStyleSheet("background-image:none;background:rgba(255,255,255,0);}")
+        self.leftframe.setStyleSheet("background-image:none;background:rgba(235,235,235,1);}")
+        self.leftframe_top.setStyleSheet("background-image:none;background:rgba(235,235,235,0);}")
         
         # blur = QGraphicsBlurEffect()
         # blur.setBlurRadius(5)
@@ -125,7 +127,11 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # blur.setBlurRadius(5)
         # blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
         # self.hello_picture.setGraphicsEffect(blur)
-        self.hello_picture.setStyleSheet("background:rgba(255,255,255,0);")
+        
+        # self.hello_page.setStyleSheet("background:none;")
+        # self.homepage_left.setStyleSheet("background:none;")
+        self.homepage_left.setStyleSheet("#homepage_left{background:rgba(255,255,255,0);}")
+        # self.hello_picture.setStyleSheet("background:rgba(255,255,255,0);")
         # self.blur(self.hello_picture,9)
         
         #########
@@ -135,9 +141,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         
         # self.hello_page.setStyleSheet("QWidget#hello_page{background-image:url(daily/September16thbg.jpg);}")
-        self.hello_page.setStyleSheet("background:none;")
+        
         self.homepage_right.setStyleSheet("background:none;")
-        self.homepage_left.setStyleSheet("background:none;")
+        
         # op = QGraphicsOpacityEffect()
         # op.setOpacity(0)#透明
         # self.homepage_left.setGraphicsEffect(op)
@@ -190,7 +196,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #按钮
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/煎蛋卷"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/home-light"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
         self.left_first_button.setStyleSheet(self.read_ui("button"))
 
@@ -304,7 +310,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #主页图片及每日一句
         if (path.exists("daily/"+month+time_list[2]+"bg.jpg")):
-            # self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
+            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
             f=open("daily/"+month+time_list[2]+"en.txt","rb")
             self.sentence_text_english.setText(f.read().decode())
             f.close()
@@ -331,7 +337,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             f.write(api[0][2].encode())
             f.close()
             
-            # self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
+            self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
             self.sentence_text_english.setText(api[0][1])
             self.sentence_text_chinese.setText(api[0][2])
             self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
@@ -343,7 +349,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
         self.online_Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
         self.youdao_textBrowswer.setStyleSheet(self.read_ui("QTextBrowser"))
-        self.word_info_table.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.word_info.setStyleSheet(self.read_ui("QTextBrowser"))
         
         
 
@@ -352,7 +358,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.word_info_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
         
         self.online_youdao_textBoswer.setTextInteractionFlags(Qt.NoTextInteraction)
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
@@ -392,42 +398,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.online_play_voice_2.setIcon(icon)
         self.online_play_voice_2.setStyleSheet('text-align:left;background:rgba(240,240,240,1);border:none;border-radius:10px;')
         self.online_play_voice_2.adjustSize()
-        self.word_info_table.setColumnCount(2)
-        self.word_info_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.word_info_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
-        self.word_info_table.setColumnWidth(0, 50)
-        self.word_info_table.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.word_info_table.setFocusPolicy(Qt.NoFocus)
-        #取消虚线框
-        self.word_info_table.setShowGrid(False)
-        #取消网格线
-        self.word_info_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        #不可写
-        self.word_info_table.horizontalHeader().setVisible(False)
-        self.word_info_table.verticalHeader().setVisible(False)
-        self.word_info_table.setStyleSheet("QTableWidget{border:none;font-size:15px}QTableWidget::item::selected {background:rgb(255,255,255);}")
-        self.word_info_table.setWordWrap(True)
-        # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
-        # self.word_info_table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(240,240,240,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
 
-        self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{background:rgb(255,255,255);}QTabBar::tab:selected{background:rgb(240,240,240,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+
+        
+        
+        
+        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(235,235,235,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+
+        self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(235,235,235,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
         
         
-        w = AcrylicLabel(20, QColor(105, 114, 168, 102))
-        p=w.setImage("daily/"+month+time_list[2]+"bg.jpg")
-        palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(p))
-        self.setPalette(palette)
-        self.adjustSize()
+  
         
-        w = AcrylicLabel(20, QColor(105, 114, 168, 102))
-        p=w.setImage("daily/"+month+time_list[2]+"bg.jpg")
-        palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(p))
-        self.setPalette(palette)
-        self.adjustSize()
         # op = QGraphicsOpacityEffect()
         # op.setOpacity(0.5)
         # self.hello_picture.setGraphicsEffect(op)
@@ -589,16 +572,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
         self.words_list.setText("组别名称："+self.update_words[self.update_table.currentRow()][6])
 
-        self.word_info_table.setRowCount(1)
-        newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][3])
-        newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
-        self.word_info_table.setItem(0,0,newItem)
+        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
         
-        newItem = QTableWidgetItem(self.update_words[self.update_table.currentRow()][2])
-        self.word_info_table.setItem(0,1,newItem)
         
-        self.word_info_table.resizeRowsToContents()#自动调整行高度
-        self.word_info_table.resizeColumnsToContents()#自动调整列宽
 
         display_data="<table><tr>"
         for data in define_word:
@@ -988,13 +964,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def changepage_main(self):
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/煎蛋卷"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/home-light"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
         self.Stacked.setCurrentIndex(0)
 
     def black_omelette(self):
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/煎蛋卷-black"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/home"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
     # def changepage_add(self):
     #     self.english_input_edit.setText("random")
@@ -1038,16 +1014,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.youdao_textBrowswer.setText(display_data)
 
-        self.word_info_table.setRowCount(1)
-        newItem = QTableWidgetItem(self.update_words[0][3])
-        newItem.setTextAlignment(Qt.AlignLeft | Qt.AlignTop)
-        self.word_info_table.setItem(0,0,newItem)
-        newItem = QTableWidgetItem(self.update_words[0][2])
-        self.word_info_table.setItem(0,1,newItem)    
-
-        self.word_info_table.resizeRowsToContents()#自调整高度
-        self.tabWidget.setCurrentIndex(0)#切换单词解释界面
-        # self.word_info_table.resizeColumnsToContents()#自调整宽度
+        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
 
     def changepage_exam(self):
         self.black_omelette()

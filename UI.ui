@@ -13,9 +13,6 @@
   <property name="windowTitle">
    <string>omelette</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">border:0px;padding:0px;</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">border:0px;padding:0px</string>
@@ -38,6 +35,9 @@
     </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QFrame" name="leftframe">
         <property name="minimumSize">
@@ -92,12 +92,21 @@
             <property name="leftMargin">
              <number>15</number>
             </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QPushButton" name="left_first_button">
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>50</height>
+                <height>30</height>
                </size>
               </property>
               <property name="text">
@@ -105,8 +114,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>25</width>
-                <height>25</height>
+                <width>20</width>
+                <height>20</height>
                </size>
               </property>
              </widget>
@@ -116,7 +125,7 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>50</height>
+                <height>30</height>
                </size>
               </property>
               <property name="text">
@@ -124,8 +133,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>25</width>
-                <height>25</height>
+                <width>20</width>
+                <height>20</height>
                </size>
               </property>
              </widget>
@@ -135,7 +144,7 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>50</height>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -146,8 +155,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>25</width>
-                <height>25</height>
+                <width>20</width>
+                <height>20</height>
                </size>
               </property>
              </widget>
@@ -177,7 +186,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
@@ -633,6 +642,18 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_15">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QFrame" name="frame_5">
                <property name="frameShape">
@@ -642,6 +663,18 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QComboBox" name="filter_list_comboBox">
                   <property name="minimumSize">
@@ -683,6 +716,18 @@
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_26">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
                    <item>
                     <widget class="QPushButton" name="more_functions">
                      <property name="minimumSize">
@@ -762,14 +807,14 @@
                     <widget class="QLineEdit" name="search_edit">
                      <property name="minimumSize">
                       <size>
-                       <width>200</width>
-                       <height>40</height>
+                       <width>140</width>
+                       <height>30</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
                        <width>150</width>
-                       <height>16777215</height>
+                       <height>30</height>
                       </size>
                      </property>
                      <property name="font">
@@ -846,7 +891,7 @@
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true"/>
+                  <string notr="true">border-radius: 30px;</string>
                  </property>
                 </widget>
                </item>
@@ -862,12 +907,24 @@
                   <enum>QFrame::Raised</enum>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_16">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <widget class="QLabel" name="selection_word">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>30</height>
+                      <height>45</height>
                      </size>
                     </property>
                     <property name="maximumSize">
@@ -889,7 +946,7 @@
                      <string notr="true">font: 75 36pt &quot;微软雅黑&quot;;</string>
                     </property>
                     <property name="text">
-                     <string/>
+                     <string>groud</string>
                     </property>
                    </widget>
                   </item>
@@ -904,6 +961,18 @@
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_28">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
                         <widget class="QLabel" name="play_voice_label_1">
                          <property name="text">
@@ -1105,7 +1174,7 @@
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QTableWidget" name="word_info_table"/>
+                       <widget class="QTextBrowser" name="word_info"/>
                       </item>
                      </layout>
                     </widget>
