@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>905</width>
-    <height>570</height>
+    <height>580</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>580</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>omelette</string>
@@ -42,13 +54,13 @@
        <widget class="QFrame" name="leftframe">
         <property name="minimumSize">
          <size>
-          <width>100</width>
+          <width>40</width>
           <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>50</width>
           <height>16777215</height>
          </size>
         </property>
@@ -75,13 +87,13 @@
           <widget class="QFrame" name="leftframe_top">
            <property name="minimumSize">
             <size>
-             <width>60</width>
+             <width>40</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>200</width>
+             <width>50</width>
              <height>65535</height>
             </size>
            </property>
@@ -106,11 +118,11 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>30</height>
+                <height>40</height>
                </size>
               </property>
               <property name="text">
-               <string>主页</string>
+               <string/>
               </property>
               <property name="iconSize">
                <size>
@@ -125,11 +137,11 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>30</height>
+                <height>40</height>
                </size>
               </property>
               <property name="text">
-               <string>单词本</string>
+               <string/>
               </property>
               <property name="iconSize">
                <size>
@@ -144,14 +156,14 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>30</height>
+                <height>40</height>
                </size>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
               <property name="text">
-               <string>设置</string>
+               <string/>
               </property>
               <property name="iconSize">
                <size>
@@ -315,6 +327,11 @@
                  <height>100</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -327,6 +344,11 @@
                  <width>16777215</width>
                  <height>100</height>
                 </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
                </property>
                <property name="text">
                 <string/>
@@ -566,7 +588,7 @@
                 <item>
                  <widget class="QTabWidget" name="online">
                   <property name="currentIndex">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="online_youdao_page">
                    <attribute name="title">
@@ -779,31 +801,6 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="display_search_line_edit">
-                     <property name="minimumSize">
-                      <size>
-                       <width>35</width>
-                       <height>35</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>35</width>
-                       <height>35</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>30</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
                     <widget class="QLineEdit" name="search_edit">
                      <property name="minimumSize">
                       <size>
@@ -924,13 +921,13 @@
                     <property name="minimumSize">
                      <size>
                       <width>0</width>
-                      <height>45</height>
+                      <height>0</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
-                      <height>30</height>
+                      <height>165536</height>
                      </size>
                     </property>
                     <property name="font">
@@ -953,92 +950,147 @@
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_27">
                     <item>
-                     <widget class="QFrame" name="frame_11">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_28">
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QLabel" name="play_voice_label_1">
-                         <property name="text">
-                          <string/>
+                     <layout class="QVBoxLayout" name="verticalLayout_18">
+                      <item>
+                       <widget class="QLabel" name="insert_date">
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>15</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>15</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>微软雅黑</family>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="words_list">
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>15</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>15</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>微软雅黑</family>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_11">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_28">
+                         <property name="leftMargin">
+                          <number>0</number>
                          </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="play_voice_1">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>30</height>
-                          </size>
+                         <property name="topMargin">
+                          <number>0</number>
                          </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>200</width>
-                           <height>30</height>
-                          </size>
+                         <property name="rightMargin">
+                          <number>0</number>
                          </property>
-                         <property name="layoutDirection">
-                          <enum>Qt::LeftToRight</enum>
+                         <property name="bottomMargin">
+                          <number>0</number>
                          </property>
-                         <property name="text">
-                          <string notr="true"/>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>16</width>
-                           <height>16</height>
-                          </size>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="play_voice_label_2">
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="play_voice_2">
-                         <property name="minimumSize">
-                          <size>
-                           <width>40</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>200</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="layoutDirection">
-                          <enum>Qt::LeftToRight</enum>
-                         </property>
-                         <property name="text">
-                          <string notr="true"/>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
+                         <item>
+                          <widget class="QLabel" name="play_voice_label_1">
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="play_voice_1">
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="text">
+                            <string notr="true"/>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>16</width>
+                             <height>16</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="play_voice_label_2">
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="play_voice_2">
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="text">
+                            <string notr="true"/>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_11">
@@ -1053,58 +1105,6 @@
                       </property>
                      </spacer>
                     </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_18">
-                      <item>
-                       <widget class="QLabel" name="insert_date">
-                        <property name="minimumSize">
-                         <size>
-                          <width>200</width>
-                          <height>25</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>200</width>
-                          <height>25</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>微软雅黑</family>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="words_list">
-                        <property name="minimumSize">
-                         <size>
-                          <width>200</width>
-                          <height>25</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>200</width>
-                          <height>25</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>微软雅黑</family>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
                    </layout>
                   </item>
                   <item>
@@ -1118,7 +1118,7 @@
                      <string notr="true">margin:0px;padding:0px;</string>
                     </property>
                     <property name="currentIndex">
-                     <number>2</number>
+                     <number>0</number>
                     </property>
                     <widget class="QWidget" name="youdao_page">
                      <attribute name="title">

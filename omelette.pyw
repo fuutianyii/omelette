@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-16 10:11:32
+LastEditTime: 2022-09-17 19:42:21
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -24,7 +24,7 @@ from base64 import b64decode
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView,QGraphicsBlurEffect,QGraphicsBlurEffect,QGraphicsOpacityEffect
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
-from PyQt5.QtGui import QPixmap,QIcon,QFont
+from PyQt5.QtGui import QPixmap,QIcon,QFont,QFontDatabase
 # chdir("/Users/fty/python/omelette")
 
 # from acrylic import AcrylicLabel
@@ -36,6 +36,7 @@ from PyQt5.QtGui import QPixmap,QIcon,QFont
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
         super().__init__()
+
         self.youdao=youdao.youdao_api()
         self.mydb=db.db("db/words.db")
         # self.mydb=db.db("db/forgot.db")
@@ -94,62 +95,60 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
     
     def remake_ui(self):
-
-        ####调整窗口大小
+        #使用本地字体
+        fontDb = QFontDatabase()
+        fontID = fontDb.addApplicationFont("QDHT.otf")  # 此处的路径为qrc文件中的字体路径
+        fontFamilies = fontDb.applicationFontFamilies(fontID)
+        font=QFont(fontFamilies[0])
+        self.date_text.setFont(font)
+        self.date_text.setFont(font)
+        self.sentence_text_chinese.setFont(font)
+        self.sentence_text_english.setFont(font)
+        self.seach_input_edit.setFont(font)
+        self.left_first_button.setFont(font)
+        self.left_third_button.setFont(font)
+        self.left_forth_button.setFont(font)
+        self.english_input_edit.setFont(font)
+        self.online_youdao_textBoswer.setFont(font)
+        self.online_Oxford_info_box.setFont(font)
+        self.search_edit.setFont(font)
+        self.selection_word.setFont(font)
+        self.insert_date.setFont(font)
+        self.words_list.setFont(font)
+        self.tabWidget.setFont(font)
+        self.youdao_textBrowswer.setFont(font)
+        self.Oxford_info_box.setFont(font)
+        self.exam_chinese_label.setFont(font)
+        self.part_of_speech_label.setFont(font)
+        self.exam_english_lable.setFont(font)
+        self.word_info.setFont(font)
+        self.update_table.setFont(font)
+        self.play_voice_label_1.setFont(font)
+        self.play_voice_label_2.setFont(font)
+        self.filter_list_comboBox.setFont(font)
+        self.filter_date_comboBox.setFont(font)
+        self.start_exam.setFont(font)
+        self.search_forget_words.setFont(font)
         
+        ####调整窗口大小
         self.desktop = QApplication.desktop()
         self.screenRect = self.desktop.screenGeometry()
         self.screenheight = self.screenRect.height()
         self.screenwidth = self.screenRect.width()
         print("Screen height {}".format(self.screenheight))
-        print("Screen width {}".format(self.screenwidth))
-        if self.screenwidth//2  <700:
-            self.setFixedSize(self.screenwidth//2,self.screenheight//2)
+        print("Screen width {}".format(self.screenwidth))#938*580
+        print(self.screenwidth//2,self.screenheight//2)
+        if self.screenheight//2 <580:
+            self.resize(self.screenwidth//2,self.screenheight//2)
         else:
-            self.setFixedSize(900,self.screenheight//2)
-        
+            self.resize(900,580)
 
-        # self.setStyleSheet("#MainWindow{background-image:url(daily/September17thbg.jpg);}")
         self.Stacked.setStyleSheet("QStackedWidget{background:rgba(235,235,235,1)}")
-        
-
-        #这里将所有的frame去除边框
-        # self.leftframe.setStyleSheet("background-image::none;")
         self.leftframe.setStyleSheet("background-image:none;background:rgba(235,235,235,1);}")
         self.leftframe_top.setStyleSheet("background-image:none;background:rgba(235,235,235,0);}")
-        
-        # blur = QGraphicsBlurEffect()
-        # blur.setBlurRadius(5)
-        # blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
-        # self.leftframe.setGraphicsEffect(blur)
-        
-        # blur = QGraphicsBlurEffect()
-        # blur.setBlurRadius(5)
-        # blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
-        # self.hello_picture.setGraphicsEffect(blur)
-        
-        # self.hello_page.setStyleSheet("background:none;")
-        # self.homepage_left.setStyleSheet("background:none;")
         self.homepage_left.setStyleSheet("#homepage_left{background:rgba(255,255,255,0);}")
-        # self.hello_picture.setStyleSheet("background:rgba(255,255,255,0);")
-        # self.blur(self.hello_picture,9)
-        
-        #########
-        
-       
-        
-        
-        
-        # self.hello_page.setStyleSheet("QWidget#hello_page{background-image:url(daily/September16thbg.jpg);}")
-        
+        self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px;background:rgba(255,255,255,1)")
         self.homepage_right.setStyleSheet("background:none;")
-        
-        # op = QGraphicsOpacityEffect()
-        # op.setOpacity(0)#透明
-        # self.homepage_left.setGraphicsEffect(op)
-        # self.homepage_left.setAutoFillBackground(True)
-        
-        
         self.verticalFrame.setStyleSheet(self.read_ui("all_frame"))
         self.add_english_input_frame.setStyleSheet(self.read_ui("all_frame"))
         self.frame_12.setStyleSheet(self.read_ui("all_frame"))
@@ -196,7 +195,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #按钮
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/home-light"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/home_light"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
         self.left_first_button.setStyleSheet(self.read_ui("button"))
 
@@ -229,11 +228,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         icon.addPixmap(QPixmap("ico/sync.png"), QIcon.Normal, QIcon.Off)
         self.Sync.setIcon(icon)
         self.Sync.setStyleSheet(self.read_ui("button"))
-      
-        icon = QIcon()
-        icon.addPixmap(QPixmap("ico/search.png"), QIcon.Normal, QIcon.Off)
-        self.display_search_line_edit.setIcon(icon)
-        self.display_search_line_edit.setStyleSheet(self.read_ui("button"))
         
         icon = QIcon()
         icon.addPixmap(QPixmap("ico/start.png"), QIcon.Normal, QIcon.Off)
@@ -273,36 +267,23 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             time_list[2]="3rd"
         else:
             time_list[2]=str(int(time_list[2]))+"th"
+            
+      
+      
+
+        
+        
         self.date_text.setText(month +" "+time_list[2])
         self.date_text.setStyleSheet(self.read_ui("date_text"))
         
-        font = QFont()
-        font.setFamily("QDHT.otf")
-        self.date_text.setFont(font)
-        self.sentence_text_chinese.setFont(font)
-        self.sentence_text_english.setFont(font)
-        self.seach_input_edit.setFont(font)
-        self.left_first_button.setFont(font)
-        self.left_third_button.setFont(font)
-        self.left_forth_button.setFont(font)
-        self.english_input_edit.setFont(font)
-        self.online_youdao_textBoswer.setFont(font)
-        self.online_Oxford_info_box.setFont(font)
-        self.search_edit.setFont(font)
-        self.selection_word.setFont(font)
-        self.insert_date.setFont(font)
-        self.words_list.setFont(font)
-        self.tabWidget.setFont(font)
-        self.youdao_textBrowswer.setFont(font)
-        self.Oxford_info_box.setFont(font)
-        self.exam_chinese_label.setFont(font)
-        self.part_of_speech_label.setFont(font)
-        self.exam_english_lable.setFont(font)
+
+        self.insert_date.setStyleSheet(self.read_ui("grey_info"))
+        self.words_list.setStyleSheet(self.read_ui("grey_info"))
         
-        self.list_line.setStyleSheet(self.read_ui("black_edit"))
+        self.list_line.setStyleSheet(self.read_ui("white_edit"))
         self.list_line.setPlaceholderText("输入类名")
         
-        self.search_edit.setStyleSheet(self.read_ui("black_edit"))
+        self.search_edit.setStyleSheet(self.read_ui("white_edit"))
         self.search_edit.setPlaceholderText("搜索单词")
         
         
@@ -367,7 +348,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
 
         
-        self.english_input_edit.setStyleSheet("border: none;border-radius: 15px;font-size:40px;padding-left:20px;background:rgba(240,240,240,1)")
+        
 
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
@@ -393,19 +374,19 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play_voice_2.setStyleSheet('text-align:center;background:rgba(235,235,235,0.9);border:none;border-radius:10px;vertical-align: middle;')
         self.play_voice_2.adjustSize()
         self.online_play_voice_1.setIcon(icon)
-        self.online_play_voice_1.setStyleSheet('text-align:left;background:rgba(240,240,240,1);border:none;border-radius:10px;')
+        self.online_play_voice_1.setStyleSheet('text-align:left;background:rgba(255,255,255,1);border:none;border-radius:10px;')
         self.online_play_voice_1.adjustSize()
         self.online_play_voice_2.setIcon(icon)
-        self.online_play_voice_2.setStyleSheet('text-align:left;background:rgba(240,240,240,1);border:none;border-radius:10px;')
+        self.online_play_voice_2.setStyleSheet('text-align:left;background:rgba(255,255,255,1);border:none;border-radius:10px;')
         self.online_play_voice_2.adjustSize()
 
 
         
         
         
-        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(235,235,235,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
-
-        self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(235,235,235,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        # self.online.setStyleSheet("QTabWidget{border:none;background:rgba(255,255,255)}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab { border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(100,149,237,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
         
         
@@ -453,6 +434,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.filter_list_comboBox.currentIndexChanged.connect(self.filter_list)
         self.filter_date_comboBox.currentIndexChanged.connect(self.filter_date)
         self.search_forget_words.clicked.connect(self.select_forget_words)
+        
+        self.Sync.clicked.connect(self.reverse_words_list)
+        
+        
+        self.online_play_voice_1.clicked.connect(self.play_the_word_uk)
+        self.online_play_voice_2.clicked.connect(self.play_the_word_us)
 
 
     def star_the_word(self):
@@ -572,13 +559,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
         self.words_list.setText("组别名称："+self.update_words[self.update_table.currentRow()][6])
 
-        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
+        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
         
         
 
         display_data="<table><tr>"
         for data in define_word:
-            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
         display_data+="</table>"+data[5].replace("\n","<br>")
         display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
 
@@ -642,7 +629,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         for i in range(0,self.update_table.rowCount()+1):
             self.update_table.removeRow(0)
             self.lens=1
-        group=""
         search_filter=[]
         if self.date=="全部时间":
             search_filter.append(f" (insert_date != '') ")
@@ -665,7 +651,18 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         search += " and (wrong_times != 0) order by 6 desc"
         self.update_words=self.mydb.select(search)
         for items in self.update_words:
-            setline=self.update_table.rowCount()+1
+            self.update_table.setRowCount(self.update_table.rowCount()+1)
+            newItem = QTableWidgetItem(items[1])
+            self.update_table.setItem(self.update_table.rowCount()-1,0,newItem)
+
+    def reverse_words_list(self):
+        for i in range(0,self.update_table.rowCount()+1):
+            self.update_table.removeRow(0)
+            self.lens=1
+        
+        
+        self.update_words=self.update_words[::-1]
+        for items in self.update_words:
             self.update_table.setRowCount(self.update_table.rowCount()+1)
             newItem = QTableWidgetItem(items[1])
             self.update_table.setItem(self.update_table.rowCount()-1,0,newItem)
@@ -964,9 +961,21 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def changepage_main(self):
         icon = QIcon()
-        icon.addPixmap(QPixmap("ico/home-light"), QIcon.Normal, QIcon.Off)
+        icon.addPixmap(QPixmap("ico/home_light"), QIcon.Normal, QIcon.Off)
         self.left_first_button.setIcon(icon)
         self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star_book"), QIcon.Normal, QIcon.Off)
+        self.left_third_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting"), QIcon.Normal, QIcon.Off)
+        self.left_forth_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+
+
 
     def black_omelette(self):
         icon = QIcon()
@@ -977,6 +986,22 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     #     self.display_online()
     #     self.Stacked.setCurrentIndex(1)
     def changepage_update(self):
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/home"), QIcon.Normal, QIcon.Off)
+        self.left_first_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star_book_light"), QIcon.Normal, QIcon.Off)
+        self.left_third_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting"), QIcon.Normal, QIcon.Off)
+        self.left_forth_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        
         self.black_omelette()
         self.Stacked.setCurrentIndex(2)
         self.update_words=self.update_page_search()
@@ -1008,15 +1033,31 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         display_data="<table><tr>"
         for data in define_word:
-            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
         display_data+="</table>"+data[5].replace("\n","<br>")
         display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
         
         self.youdao_textBrowswer.setText(display_data)
 
-        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
+        self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
 
     def changepage_exam(self):
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/home"), QIcon.Normal, QIcon.Off)
+        self.left_first_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/star_book"), QIcon.Normal, QIcon.Off)
+        self.left_third_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        icon = QIcon()
+        icon.addPixmap(QPixmap("ico/setting_light"), QIcon.Normal, QIcon.Off)
+        self.left_forth_button.setIcon(icon)
+        self.Stacked.setCurrentIndex(0)
+        
+        
         self.black_omelette()
         self.left_first_button.setStyleSheet(self.read_ui("button"))
         self.Stacked.setCurrentIndex(3)
