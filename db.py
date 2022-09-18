@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-10 15:40:07
 LastEditors: fuutianyii
-LastEditTime: 2022-09-18 13:37:53
+LastEditTime: 2022-09-18 15:02:03
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -15,7 +15,7 @@ class db():
     def __init__(self,dbname="db/words.db"):
         self.con = sqlite3.connect(dbname)
         self.cursor=self.con.cursor()
-        sql = "CREATE TABLE IF NOT EXISTS words(english text not null,chinese text not null,posd text not null,insert_date text not null,wrong_times INTEGER not null，list text not null)"
+        sql = "CREATE TABLE IF NOT EXISTS words(english text not null,chinese text not null,posd text not null,insert_date text not null,wrong_times INTEGER not null,list text not null)"
         self.cursor.execute(sql)
 
     def insert(self,english,chinese,posd,insert_date,wrong_times,list):
