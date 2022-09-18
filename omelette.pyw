@@ -482,11 +482,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         if self.online_dict != []:
             self.online_play_voice_1.setText(self.online_dict[0][1]+"  ")
             self.online_play_voice_2.setText(self.online_dict[0][2]+"  ")
-            display_data="<table><tr>"
-            for data in self.online_dict:
-                display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
-            display_data+="</table>"+data[5].replace("\n","<br>")
-            display_data+="<h2>例句</h2>"+data[6]
+            display_data=""
+            if self.online_dict[0][3]!="":
+                display_data="<table><tr>"
+                for data in self.online_dict:
+                    display_data+="<td>"+data[3]+"</td><td> "+data[4]+"</td></tr><tr>"
+                display_data+="</table>"+data[5].replace("\n","<br>")
+            if self.online_dict[0][5]!="":
+                display_data+=self.online_dict[0][5].replace("\n","<br>")
+            if self.online_dict[0][6]!="":
+                display_data+="<h2>例句</h2>"+self.online_dict[0][6]
             self.online_youdao_textBoswer.setText(display_data)
 
             Oxford_data=self.myOxford.select("select * from words where english='"+edit.text()+"'")
@@ -540,7 +545,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.Oxford_info_box.setText(b64decode(Oxford_data[0][1]).decode())
         except:
             self.Oxford_info_box.setText("暂无数据")
-        print(f"select * from words where (english='{Item.text()}')")
         define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
         self.play_voice_1.setText("英 /"+define_word[0][1]+"/")
@@ -552,14 +556,16 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
         self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
         
-        
-
-        display_data="<table><tr>"
-        for data in define_word:
-            display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
-        display_data+="</table>"+data[5].replace("\n","<br>")
-        display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
-
+        display_data=""
+        if define_word[0][3] != "":
+            display_data="<table><tr>"
+            for data in define_word:
+                    display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="</table>"
+        if define_word[0][5] != "":
+            display_data+=define_word[0][5].replace("\n","<br>")
+        if b64decode(define_word[0][6]).decode() != "暂无例句":
+            display_data+="<h3>例句</h3>"+b64decode(define_word[0][6]).decode()
         self.youdao_textBrowswer.setText(display_data)
 
 
