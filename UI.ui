@@ -198,7 +198,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
@@ -1617,7 +1617,7 @@
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>200</height>
+                  <height>300</height>
                  </size>
                 </property>
                 <property name="frameShape">
@@ -1631,10 +1631,16 @@
                   <layout class="QHBoxLayout" name="horizontalLayout_23">
                    <item>
                     <widget class="QLabel" name="exam_chinese_label">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="maximumSize">
                       <size>
                        <width>65535</width>
-                       <height>90</height>
+                       <height>200</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1647,7 +1653,7 @@
                       <enum>Qt::LeftToRight</enum>
                      </property>
                      <property name="text">
-                      <string>chinese</string>
+                      <string/>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
