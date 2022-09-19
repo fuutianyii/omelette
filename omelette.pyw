@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-17 19:42:21
+LastEditTime: 2022-09-19 14:39:14
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -26,7 +26,6 @@ from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon,QFont,QFontDatabase
 # chdir("/Users/fty/python/omelette")
-
 
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
@@ -52,9 +51,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # self.blur(self.hello_picture)#实现毛玻璃
         
         
-
-
-
         
     def blur(self,pic,radius):
         blur = QGraphicsBlurEffect()
@@ -92,13 +88,14 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     def remake_ui(self):
         #使用本地字体
         fontDb = QFontDatabase()
-        fontID = fontDb.addApplicationFont(":QDHT.otf")  # 此处的路径为qrc文件中的字体路径
+        fontID = fontDb.addApplicationFont("SourceHanSansCN-Medium.otf")  # 此处的路径为qrc文件中的字体路径
         fontFamilies = fontDb.applicationFontFamilies(fontID)
+        print(fontFamilies)
         if fontFamilies!=[]:
             font=QFont(fontFamilies[0])
         else:
             print("Have no the font family")
-            font=QFont("Hiragino Sans GB W3")
+            font=QFont("Source Han Sans CN Medium")
         self.date_text.setFont(font)
         self.date_text.setFont(font)
         self.sentence_text_chinese.setFont(font)
@@ -122,8 +119,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.exam_english_lable.setFont(font)
         self.word_info.setFont(font)
         self.update_table.setFont(font)
-        # self.play_voice_label_1.setFont(font)
-        # self.play_voice_label_2.setFont(font)
         self.filter_list_comboBox.setFont(font)
         self.filter_date_comboBox.setFont(font)
         self.start_exam.setFont(font)
