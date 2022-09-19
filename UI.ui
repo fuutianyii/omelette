@@ -198,7 +198,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
@@ -1573,7 +1573,7 @@
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>80</height>
+                  <height>40</height>
                  </size>
                 </property>
                 <property name="maximumSize">
@@ -1617,7 +1617,7 @@
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>300</height>
+                  <height>400</height>
                  </size>
                 </property>
                 <property name="frameShape">
@@ -1640,7 +1640,7 @@
                      <property name="maximumSize">
                       <size>
                        <width>65535</width>
-                       <height>200</height>
+                       <height>300</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1675,7 +1675,7 @@
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>50</width>
+                     <width>30</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -1683,6 +1683,12 @@
                  </item>
                  <item>
                   <widget class="QLabel" name="part_of_speech_label">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
                    <property name="font">
                     <font>
                      <family>Microsoft YaHei</family>
