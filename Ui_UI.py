@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/fty/Python/omelette/UI.ui'
+# Form implementation generated from reading ui file 'c:\omelette\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -265,13 +265,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
         self.filter_list_comboBox = QtWidgets.QComboBox(self.frame_5)
-        self.filter_list_comboBox.setMinimumSize(QtCore.QSize(150, 25))
-        self.filter_list_comboBox.setMaximumSize(QtCore.QSize(150, 25))
+        self.filter_list_comboBox.setMinimumSize(QtCore.QSize(160, 25))
+        self.filter_list_comboBox.setMaximumSize(QtCore.QSize(160, 25))
         self.filter_list_comboBox.setObjectName("filter_list_comboBox")
         self.horizontalLayout_13.addWidget(self.filter_list_comboBox)
         self.filter_date_comboBox = QtWidgets.QComboBox(self.frame_5)
-        self.filter_date_comboBox.setMinimumSize(QtCore.QSize(150, 25))
-        self.filter_date_comboBox.setMaximumSize(QtCore.QSize(150, 25))
+        self.filter_date_comboBox.setMinimumSize(QtCore.QSize(160, 25))
+        self.filter_date_comboBox.setMaximumSize(QtCore.QSize(160, 25))
         self.filter_date_comboBox.setObjectName("filter_date_comboBox")
         self.horizontalLayout_13.addWidget(self.filter_date_comboBox)
         self.search_date_time_frame = QtWidgets.QFrame(self.frame_5)

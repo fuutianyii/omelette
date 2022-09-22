@@ -710,13 +710,13 @@
                  <widget class="QComboBox" name="filter_list_comboBox">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
@@ -726,13 +726,13 @@
                  <widget class="QComboBox" name="filter_date_comboBox">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
