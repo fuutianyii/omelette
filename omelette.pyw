@@ -27,6 +27,7 @@ from PyQt5.QtCore import Qt,QUrl
 from PyQt5.QtGui import QPixmap,QIcon,QFont,QFontDatabase
 # chdir("/Users/fty/python/omelette")
 
+
 class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):  
     def __init__(self):
         super().__init__()
