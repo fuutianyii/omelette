@@ -96,7 +96,7 @@ QHeaderView::section:vertical:frist {
     padding:3px;
     margin:0px;
     color:black;
-    border: 0px solid #0000ff;
+    border: 0px solid #535353;
     background: white;
     border-top-left-radius:0px;
     border-top-right-radius:0px;
