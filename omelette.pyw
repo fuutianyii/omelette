@@ -49,6 +49,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.date="全部时间"
         self.list="全部分组"
         self.forgeted=0
+        self.forget_word=[]
         # self.blur(self.hello_picture)#实现毛玻璃
         
         
@@ -110,16 +111,24 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.online_Oxford_info_box.setFont(font)
         self.search_edit.setFont(font)
         self.selection_word.setFont(font)
+        self.selection_word_2.setFont(font)
         self.insert_date.setFont(font)
+        self.insert_date_2.setFont(font)
         self.words_list.setFont(font)
+        self.words_list_2.setFont(font)
         self.tabWidget.setFont(font)
+        self.tabWidget_2.setFont(font)
         self.youdao_textBrowswer.setFont(font)
+        self.youdao_textBrowswer_2.setFont(font)
         self.Oxford_info_box.setFont(font)
+        self.Oxford_info_box_2.setFont(font)
         self.exam_chinese_label.setFont(font)
         self.part_of_speech_label.setFont(font)
         self.exam_english_lable.setFont(font)
         self.word_info.setFont(font)
+        self.word_info_2.setFont(font)
         self.update_table.setFont(font)
+        self.update_table_2.setFont(font)
         self.filter_list_comboBox.setFont(font)
         self.filter_date_comboBox.setFont(font)
         self.start_exam.setFont(font)
@@ -178,6 +187,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         #单词本页单词列表
         self.update_table.setStyleSheet(self.read_ui("update_table"))
+        self.update_table_2.setStyleSheet(self.read_ui("update_table"))
+        self.update_table.setStyleSheet(self.read_ui("update_table"))
+        self.update_table_2.setStyleSheet(self.read_ui("update_table"))
+        
         
         #单词本页的筛选器
         self.filter_list_comboBox.addItem("全部分组")
@@ -280,6 +293,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
         self.insert_date.setStyleSheet(self.read_ui("grey_info"))
         self.words_list.setStyleSheet(self.read_ui("grey_info"))
+        self.insert_date_2.setStyleSheet(self.read_ui("grey_info"))
+        self.words_list_2.setStyleSheet(self.read_ui("grey_info"))
         
         self.list_line.setStyleSheet(self.read_ui("white_edit"))
         self.list_line.setPlaceholderText("输入类名")
@@ -329,22 +344,30 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.online_youdao_textBoswer.setStyleSheet(self.read_ui("QTextBrowser"))
         self.Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.Oxford_info_box_2.setStyleSheet(self.read_ui("QTextBrowser"))
         self.online_Oxford_info_box.setStyleSheet(self.read_ui("QTextBrowser"))
         self.youdao_textBrowswer.setStyleSheet(self.read_ui("QTextBrowser"))
+        self.youdao_textBrowswer_2.setStyleSheet(self.read_ui("QTextBrowser"))
         self.word_info.setStyleSheet(self.read_ui("QTextBrowser"))
-
+        self.word_info_2.setStyleSheet(self.read_ui("QTextBrowser"))
         self.word_info.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.word_info_2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_youdao_textBoswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.Oxford_info_box_2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.online_Oxford_info_box.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.youdao_textBrowswer.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
+        self.youdao_textBrowswer_2.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.word_info.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.word_info_2.setTextInteractionFlags(Qt.NoTextInteraction)
         self.online_youdao_textBoswer.setTextInteractionFlags(Qt.NoTextInteraction)
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.youdao_textBrowswer_2.setTextInteractionFlags(Qt.NoTextInteraction)
         self.Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.Oxford_info_box_2.setTextInteractionFlags(Qt.NoTextInteraction)
         self.online_Oxford_info_box.setTextInteractionFlags(Qt.NoTextInteraction)
         self.youdao_textBrowswer.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.youdao_textBrowswer_2.setTextInteractionFlags(Qt.NoTextInteraction)
 
         self.update_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.update_table.setFocusPolicy(Qt.NoFocus)
@@ -359,6 +382,18 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setRowCount(self.update_table.rowCount()+1)
         self.update_table.setColumnWidth(0,130)
 
+        self.update_table_2.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.update_table_2.setFocusPolicy(Qt.NoFocus)
+        #取消虚线框
+        self.update_table_2.setShowGrid(False)
+        #取消网格线
+        self.update_table_2.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        #不可写
+        self.update_table_2.horizontalHeader().setVisible(False)
+        #self.update_table.verticalHeader().setVisible(False)
+        self.update_table_2.setColumnCount(1)
+        self.update_table_2.setRowCount(self.update_table_2.rowCount()+1)
+        self.update_table_2.setColumnWidth(0,130)
 
 
         icon = QIcon()
@@ -369,6 +404,15 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play_voice_2.setIcon(icon)
         self.play_voice_2.setStyleSheet(self.read_ui("play_voice"))
         self.play_voice_2.adjustSize()
+        
+        self.play_voice_3.setIcon(icon)
+        self.play_voice_3.setStyleSheet(self.read_ui("play_voice"))
+        self.play_voice_3.adjustSize()
+        self.play_voice_4.setIcon(icon)
+        self.play_voice_4.setStyleSheet(self.read_ui("play_voice"))
+        self.play_voice_4.adjustSize()
+        
+        
         self.online_play_voice_1.setIcon(icon)
         self.online_play_voice_1.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_1.adjustSize()
@@ -381,6 +425,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         
         self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.tabWidget_2.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgb(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
         
@@ -407,21 +452,24 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         # self.add_chinese_input_next.clicked.connect(self.complete_one)
         self.search_edit.returnPressed.connect(self.update_page_search)
         self.star.clicked.connect(self.star_the_word)
-        self.exam_calendarWidget.clicked.connect(self.start_choose_exam)
+        # self.exam_calendarWidget.clicked.connect(self.start_choose_exam)
         # self.update.clicked.connect(self.update_all_words)
         self.forget_pushButton.clicked.connect(self.display_forget)
         # self.delete_choose.clicked.connect(self.delete_words)
         self.exam_english_lable.returnPressed.connect(self.exam_submit)
         self.change_calendar.clicked.connect(self.changepage_exam_calendar)
-        self.back_exam_main.clicked.connect(self.changepage_exam_main)
         self.exam_today_button.clicked.connect(self.today_exam)
         self.review_words_button.clicked.connect(self.review_words)
         self.radom_exam_button.clicked.connect(self.random_exam)
         self.review_Forgotten_button.clicked.connect(self.forgoten_exam)
         self.remove_forget_pushButton.clicked.connect(self.reset_wrong_times)
         self.update_table.itemClicked.connect(self.show_defined_selection)
+        self.update_table_2.itemClicked.connect(self.show_defined_selection_2)
         self.play_voice_1.clicked.connect(self.play_the_word_uk)
         self.play_voice_2.clicked.connect(self.play_the_word_us)
+        
+        self.play_voice_3.clicked.connect(self.play_the_word_uk_2)
+        self.play_voice_4.clicked.connect(self.play_the_word_us_2)
         self.start_exam.clicked.connect(self.exam_choose_words)
         
         # self.filter_list_comboBox.currentIndexChanged.connect(self.update_page_search)
@@ -533,6 +581,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
     
     def play_the_word_us(self):
         self.play(self.selection_word.text(),2)
+        
+    def play_the_word_uk_2(self):
+        self.play(self.selection_word_2.text(),1)
+    
+    def play_the_word_us_2(self):
+        self.play(self.selection_word_2.text(),2)
 
     def show_defined_selection(self,Item):
         try:
@@ -564,35 +618,35 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             display_data+="<h3>例句</h3>"+b64decode(define_word[0][6]).decode()
         self.youdao_textBrowswer.setText(display_data)
 
+    def show_defined_selection_2(self,Item):
+        try:
+            Oxford_data=self.myOxford.select("select * from words where english='"+Item.text()+"'")
+            b64decode(Oxford_data[0][1]).decode()
+            self.Oxford_info_box_2.setText(b64decode(Oxford_data[0][1]).decode())
+        except:
+            self.Oxford_info_box_2.setText("暂无数据")
+        define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
+        # print(phonetic_symbol[0][0])
+        self.play_voice_3.setText("英 /"+define_word[0][1]+"/")
+        self.play_voice_4.setText("美 /"+define_word[0][2]+"/")
 
-    def update_all_words(self):
-        for i in range(0,self.update_table.rowCount()):
-            english=self.update_table.item(i, 0).text()
-            chinese=self.update_table.item(i, 1).text()
-            posd=self.update_table.item(i, 2).text()
-            insert_date=self.update_table.item(i,3).text()
-            group=self.update_table.item(i,4).text()
-            rowid=self.update_words[i][0]
-            self.mydb.update(f"update words set english='{english}',chinese='{chinese}',insert_date='{insert_date}',list='{group}',posd='{posd}' where rowid={rowid}")
-        msg_box = QMessageBox(QMessageBox.Warning, '提示','更改成功')
-        msg_box.exec_()
+        self.selection_word_2.setText(Item.text())
+        self.insert_date_2.setText("添加日期："+self.forget_word[self.update_table_2.currentRow()][4])
+        self.words_list_2.setText("组别名称："+self.forget_word[self.update_table_2.currentRow()][6])
 
-    def delete_words(self):
-        tablelen=len(self.update_table.selectedIndexes())
-        rows=len(self.update_table.selectedIndexes())//4
-        if tablelen == 0:
-            msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有选中单词')
-            msg_box.exec_()
-            return 0
-        #self.update_table.selectedIndexes() #会一格一格遍历，每一格就是一个列表项
-        for index in range(0,tablelen)[::5]:#设置步长为4
-            row_index=self.update_table.selectedIndexes()[index+1].row() #获取行号
-            row_id=self.update_words[row_index][0]
-            sql=f"delete from words where rowid={row_id}"
-            self.mydb.delete(sql)
-        self.changepage_update()#刷新一波
-        msg_box = QMessageBox(QMessageBox.Warning, '警告', f'成功删除{rows}个单词')
-        msg_box.exec_()
+        self.word_info_2.setText("<table><tr><td><b>"+self.forget_word[self.update_table_2.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.forget_word[self.update_table_2.currentRow()][2]+"</td></tr><tr>")
+        
+        display_data=""
+        if define_word[0][3] != "":
+            display_data="<table><tr>"
+            for data in define_word:
+                    display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="</table>"
+        if define_word[0][5] != "":
+            display_data+=define_word[0][5].replace("\n","<br>")
+        if b64decode(define_word[0][6]).decode() != "暂无例句":
+            display_data+="<h3>例句</h3>"+b64decode(define_word[0][6]).decode()
+        self.youdao_textBrowswer_2.setText(display_data)
             
     def exam_choose_words(self):
         if len(self.update_words)==0:
@@ -603,7 +657,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.words=self.update_words
             if self.checkBox_random.isChecked():
                 self.words=self.words[::-1]
-            self.exam_stacked.setCurrentIndex(2)
+            self.exam_stacked.setCurrentIndex(1)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -676,6 +730,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.update_table.setRowCount(len(self.update_words))
         for items in range(0,len(self.update_words)):
             newItem = QTableWidgetItem(self.update_words[items][1])
+            print(self.update_words[items][1])
             self.update_table.setItem(items,0,newItem)
 
     def filter_list(self,index):
@@ -791,9 +846,13 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def exam_submit(self):
         if  self.exam_english_lable.text() == self.words[self.words_index][1]:
+            self.words_index+=1
             self.exam_english_lable.setStyleSheet('''QWidget{background-color:#66FFCC;}''')
             QApplication.processEvents()#刷新样式
             self.exam_english_lable.setText("")
+            if self.words_index==self.word_num:
+                self.review_examined()
+                return 0
             english=self.words[self.words_index][1]
             if self.checkBox_voice.isChecked():
                 self.play(english,1)
@@ -803,9 +862,47 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.exam_english_lable.setStyleSheet('''QWidget{background-color:#FFB6C1;}''')
             self.exam_english_lable.setText("")
     
+    def review_examined(self):#######
+        if len(self.forget_word)!= 0:
+            self.exam_stacked.setCurrentIndex(2)
+            self.update_table_2.setRowCount(len(self.forget_word))
+            for items in range(0,len(self.forget_word)):
+                newItem = QTableWidgetItem(self.forget_word[items][1])
+                self.update_table_2.setItem(items,0,newItem)
+            try:
+                Oxford_data=self.myOxford.select("select * from words where english='"+self.forget_word[0][1]+"'")
+                print("select * from words where english='"+self.forget_word[0][1]+"'")
+                self.Oxford_info_box_2.setText(b64decode(Oxford_data[0][1]).decode())
+            except:
+                self.Oxford_info_box_2.setText("")
+                
+
+            self.selection_word_2.setText(self.forget_word[0][1])
+            print(f"select * from words where (english='{self.forget_word[0][1]}')")
+            define_word=self.youdao.main_no_print(self.forget_word[0][1],f"select * from words where (english='{self.forget_word[0][1]}')")
+            self.play_voice_3.setText("英 /"+define_word[0][1]+"/")
+            self.play_voice_4.setText("美 /"+define_word[0][2]+"/")
+            self.insert_date_2.setText("添加日期："+self.forget_word[0][4])
+            self.words_list_2.setText("组别名称："+self.forget_word[0][6])
+            display_data="<table><tr>"
+            for data in define_word:
+                display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+            display_data+="</table>"+data[5].replace("\n","<br>")
+            display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
+            
+            self.youdao_textBrowswer_2.setText(display_data)
+
+            self.word_info_2.setText("<table><tr><td><b>"+self.forget_word[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.forget_word[self.update_table.currentRow()][2]+"</td></tr><tr>")
+
+        else:
+            self.exam_stacked.setCurrentIndex(0)
+        
+        
+    
     def display_forget(self):
         if self.forgeted == 0:
             english=self.words[self.words_index][1]
+            self.forget_word.append(self.words[self.words_index])
             wrong_times=self.mydb.select(f"select wrong_times from words where english='{english}'")[0][0]
             wrong_times=self.mydb.update(f"update words set wrong_times={wrong_times+1} where english='{english}'")
             self.forget_label.setText(self.words[self.words_index][1])
@@ -817,10 +914,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
 
     def exam_change(self):
         self.forgeted = 0
-        self.words_index+=1
         if  len(self.words) == self.words_index:
-           self.exam_stacked.setCurrentIndex(0)
-           self.words_index=0
+           self.exam_stacked.setCurrentIndex(1)
         else:
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -833,28 +928,30 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             else:
                 self.remove_forget_pushButton.setHidden(True)
                 self.forget_pushButton.setHidden(False)
+        
+        
                 
-    def start_choose_exam(self):
-        date=str(self.exam_calendarWidget.selectedDate().toPyDate())#获取选中日期并且转为str格式
-        self.words=self.mydb.select(f"select rowid,* from words where insert_date='{date}'")
-        if len(self.words)==0:
-            msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
-            msg_box.exec_()
-        else:
-            self.exam_stacked.setCurrentIndex(2)
-            self.words_index=0
-            self.part_of_speech_label.setText(self.words[self.words_index][3])
-            self.exam_chinese_label.setText(self.words[self.words_index][2])
-            self.word_num=len(self.words)
-            self.progress_label.setText(f"{self.words_index}/{self.word_num}")
-            self.exam_english_lable.setText("")
-            self.forget_label.setText("")
-            if (self.words[self.words_index][5] !=0): 
-                self.remove_forget_pushButton.setHidden(False)
-                self.forget_pushButton.setHidden(False)
-            else:
-                self.remove_forget_pushButton.setHidden(True)
-                self.forget_pushButton.setHidden(False)
+    # def start_choose_exam(self):
+    #     date=str(self.exam_calendarWidget.selectedDate().toPyDate())#获取选中日期并且转为str格式
+    #     self.words=self.mydb.select(f"select rowid,* from words where insert_date='{date}'")
+    #     if len(self.words)==0:
+    #         msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
+    #         msg_box.exec_()
+    #     else:
+    #         self.exam_stacked.setCurrentIndex(2)
+    #         self.words_index=0
+    #         self.part_of_speech_label.setText(self.words[self.words_index][3])
+    #         self.exam_chinese_label.setText(self.words[self.words_index][2])
+    #         self.word_num=len(self.words)
+    #         self.progress_label.setText(f"{self.words_index}/{self.word_num}")
+    #         self.exam_english_lable.setText("")
+    #         self.forget_label.setText("")
+    #         if (self.words[self.words_index][5] !=0): 
+    #             self.remove_forget_pushButton.setHidden(False)
+    #             self.forget_pushButton.setHidden(False)
+    #         else:
+    #             self.remove_forget_pushButton.setHidden(True)
+    #             self.forget_pushButton.setHidden(False)
             
     def today_exam(self):
         self.words=self.mydb.select(f"select rowid,* from words where insert_date='{self.datetime}'")
@@ -865,7 +962,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
         else:
-            self.exam_stacked.setCurrentIndex(2)
+            self.exam_stacked.setCurrentIndex(1)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -899,7 +996,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
         else:
-            self.exam_stacked.setCurrentIndex(2)
+            self.exam_stacked.setCurrentIndex(1)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -927,7 +1024,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
         else:
-            self.exam_stacked.setCurrentIndex(2)
+            self.exam_stacked.setCurrentIndex(1)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -950,7 +1047,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             msg_box = QMessageBox(QMessageBox.Warning, '警告', '没有获取到words')
             msg_box.exec_()
         else:
-            self.exam_stacked.setCurrentIndex(2)
+            self.exam_stacked.setCurrentIndex(1)
             self.words_index=0
             self.part_of_speech_label.setText(self.words[self.words_index][3])
             self.exam_chinese_label.setText(self.words[self.words_index][2])
@@ -1057,13 +1154,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         
         self.left_first_button.setStyleSheet(self.read_ui("button"))
         self.Stacked.setCurrentIndex(3)
+        
         self.exam_stacked.setCurrentIndex(0)
 
     def changepage_exam_calendar(self):
         self.exam_stacked.setCurrentIndex(1)
     
-    def changepage_exam_main(self):
-        self.exam_stacked.setCurrentIndex(0)
 
     # def back_add_english_widget(self):
     #     self.group=self.list_lineEdit_2.text()
