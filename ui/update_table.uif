@@ -1,8 +1,88 @@
-
- 
-QTableWidget{border:none;selection-background-color:rgb(235,235,235);selection-color:black;}QScrollBar:vertical{ width:8px;border-style:none;border-radius: 15px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:vertical{ background: rgba(0,0,0,0.20);border-radius: 15px;width:8px; min-height:91px; border-style:none;}QScrollBar::handle:vertical::hover{ background: rgba(0,0,0,0.40);border-radius: 15px;width:8px; }QScrollBar::handle:vertical::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;width:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}QScrollBar::sub-page:vertical {background: rgba(0,0,0,0);border-style:none;}QScrollBar::add-page:vertical {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-line:vertical{background: rgba(0,0,0,0);}QScrollBar::sub-line:vertical {background: rgba(0,0,0,0);}QScrollBar:horizontal{ height:8px;border-style:flat;border-radius: 15px;border:0px;background: rgba(0,0,0,0);} QScrollBar::handle:horizontal{ background: rgba(0,0,0,0.20);border-radius: 15px;height:8px; min-width:91px; border-style:flat;}QScrollBar::handle:horizontal::hover{ background: rgba(0,0,0,0.40);border-radius: 15px;height:8px; }QScrollBar::handle:horizontal::pressed{ background: rgba(0,0,0,0.40);border-radius:4px;height:8px; }QScrollBar::sub-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::add-page:horizontal {background: rgba(0,0,0,0);border-style:flat;}QScrollBar::sub-line:horizontal {background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);}
-
-
+QTableWidget{
+    border:none;
+    selection-background-color:rgb(235,235,235);
+    selection-color:black;
+}
+QScrollBar:vertical{
+    width:8px;border-style:none;
+    border-radius: 4px;border:0px;
+    background: rgba(0,0,0,0);
+}
+QScrollBar::handle:vertical{
+    background: rgba(0,0,0,0.20);
+    border-radius: 4px;width:8px;
+    min-height:91px;
+    border-style:none;
+}
+QScrollBar::handle:vertical::hover{
+    background: rgba(0,0,0,0.60);
+    border-radius: 4px;width:8px;
+}
+QScrollBar::handle:vertical::pressed{
+    background: rgba(0,0,0,0.60);
+    border-radius: 4px;width:8px;
+}
+QScrollBar::sub-page:horizontal{
+    background: rgba(0,0,0,0);
+    border-style:flat;
+}
+QScrollBar::add-page:horizontal{
+    background: rgba(0,0,0,0);
+    border-style:flat;
+}
+QScrollBar::sub-line:horizontal{
+    background: rgba(0,0,0,0);
+}
+QScrollBar::add-line:horizontal{
+    background: rgba(0,0,0,0);
+}
+QScrollBar::sub-page:vertical{
+    background: rgba(0,0,0,0);
+    border-style:none;
+}
+QScrollBar::add-page:vertical{
+    background: rgba(0,0,0,0);
+    border-style:flat;
+}
+QScrollBar::add-line:vertical{
+    background: rgba(0,0,0,0);
+}
+QScrollBar::sub-line:vertical{
+    background: rgba(0,0,0,0);
+}
+QScrollBar:horizontal{
+    height:8px;
+    border-style:flat;
+    border-radius: 4px;
+    border:0px;
+    background: rgba(0,0,0,0);
+}
+QScrollBar::handle:horizontal{
+    background: rgba(0,0,0,0.20);
+    border-radius:4px;
+    height:8px;
+    min-width:91px;
+    border-style:flat;
+}
+QScrollBar::handle:horizontal::hover{
+    background: rgba(0,0,0,0.60);
+    border-radius: 4px;
+    height:8px;
+}
+QScrollBar::handle:horizontal::pressed{
+    background: rgba(0,0,0,0.60);
+    border-radius: 4px;
+    height:8px;
+}
+QScrollBar::sub-page:horizontal{
+    background: rgba(0,0,0,0);border-style:flat;
+}
+QScrollBar::add-page:horizontal{
+    background: rgba(0,0,0,0);border-style:flat;
+}
+QScrollBar::sub-line:horizontal{
+    background: rgba(0,0,0,0);}QScrollBar::add-line:horizontal{background: rgba(0,0,0,0);
+}
 
 QHeaderView {
     selection-background-color: white;
@@ -16,20 +96,23 @@ QHeaderView::section:vertical:frist {
     padding:3px;
     margin:0px;
     color:black;
-    border: 0px solid #0000ff;
+    border: 0px solid #535353;
     background: white;
     border-top-left-radius:0px;
     border-top-right-radius:0px;
     border-bottom-left-radius:0px;
     border-bottom-right-radius:0px;
 }
-QHeaderView::section:vertical:middle {
+
+
+
+/* QHeaderView::section:vertical:middle {
     padding:3px;
     margin:0px;
     color:#FFFFFF;
     border: 0px solid #0000ff;
     background: #00beac;
-    border-radius:20px;
+    border-radius:4px;
 }
 QHeaderView::section:vertical:last {
     padding:3px;
@@ -41,13 +124,13 @@ QHeaderView::section:vertical:last {
     border-top-right-radius:0px;
     border-bottom-left-radius:15px;
     border-bottom-right-radius:0px;
-}
+} */
 
 
 
 
 
-QHeaderView {
+/* QHeaderView {
     border: 0px solid #00beac;
     selection-background-color: #00beac;
     outline:0px;
@@ -67,13 +150,16 @@ QHeaderView::section:horizontal:frist {
     border-bottom-left-radius:0px;
     border-bottom-right-radius:0px;
 }
+
+
+
 QHeaderView::section:horizontal:middle {
     padding:3px;
     margin:0px;
     color:#FFFFFF;
     border: 0px solid #0000ff;
     background: #00beac;
-    border-radius:20px;
+    border-radius:4px;
 }
 QHeaderView::section:horizontal:last {
     padding:3px;
@@ -86,18 +172,17 @@ QHeaderView::section:horizontal:last {
     border-bottom-left-radius:0px;
     border-bottom-right-radius:0px;
 }
-)
 
 
 
 QHeaderView
 {
 	border:none;
-	border-radius:20px;
+	border-radius:4px;
 }
 
 QTableWidget
 {
 	border:none;
-	border-radius:20px;
-}
+	border-radius:4px;
+} */
