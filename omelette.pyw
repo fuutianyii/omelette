@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-17 19:42:21
+LastEditTime: 2022-09-25 19:06:25
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -21,15 +21,11 @@ from requests import get
 from time import localtime,strftime
 from random import randrange
 from base64 import b64decode
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QHeaderView,QGraphicsBlurEffect,QGraphicsBlurEffect,QGraphicsOpacityEffect
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QMessageBox,QAbstractItemView,QGraphicsBlurEffect,QGraphicsBlurEffect
 from PyQt5.QtMultimedia import QMediaContent,QMediaPlayer 
 from PyQt5.QtCore import Qt,QUrl 
 from PyQt5.QtGui import QPixmap,QIcon,QFont,QFontDatabase
 # chdir("/Users/fty/python/omelette")
-
-# from acrylic import AcrylicLabel
-# from PyQt5.QtGui import QPalette,QColor,QBrush
-# from PyQt5.QtWidgets import QApplication
 
 
 
