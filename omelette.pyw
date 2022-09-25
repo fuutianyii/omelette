@@ -889,14 +889,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
             display_data+="</table>"+data[5].replace("\n","<br>")
             display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
-            
             self.youdao_textBrowswer_2.setText(display_data)
-
-            self.word_info_2.setText("<table><tr><td><b>"+self.forget_word[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.forget_word[self.update_table.currentRow()][2]+"</td></tr><tr>")
-
+            self.word_info_2.setText("<table><tr><td><b>"+self.forget_word[self.update_table_2.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.forget_word[self.update_table_2.currentRow()][2]+"</td></tr><tr>")
         else:
             self.exam_stacked.setCurrentIndex(0)
-        
         
     
     def display_forget(self):

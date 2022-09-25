@@ -15,11 +15,11 @@ QScrollBar::handle:vertical{
     border-style:none;
 }
 QScrollBar::handle:vertical::hover{
-    background: rgba(0,0,0,0.80);
+    background: rgba(0,0,0,0.60);
     border-radius: 4px;width:8px;
 }
 QScrollBar::handle:vertical::pressed{
-    background: rgba(0,0,0,0.80);
+    background: rgba(0,0,0,0.60);
     border-radius: 4px;width:8px;
 }
 QScrollBar::sub-page:horizontal{
@@ -65,12 +65,12 @@ QScrollBar::handle:horizontal{
     border-style:flat;
 }
 QScrollBar::handle:horizontal::hover{
-    background: rgba(0,0,0,0.80);
+    background: rgba(0,0,0,0.60);
     border-radius: 4px;
     height:8px;
 }
 QScrollBar::handle:horizontal::pressed{
-    background: rgba(0,0,0,0.80);
+    background: rgba(0,0,0,0.60);
     border-radius: 4px;
     height:8px;
 }
