@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/fty/Python/omelette/UI.ui'
+# Form implementation generated from reading ui file 'f:\omelette\UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -328,7 +328,6 @@ class Ui_MainWindow(object):
         self.update_table = QtWidgets.QTableWidget(self.search_frame)
         self.update_table.setMinimumSize(QtCore.QSize(150, 0))
         self.update_table.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.update_table.setStyleSheet("")
         self.update_table.setObjectName("update_table")
         self.update_table.setColumnCount(0)
         self.update_table.setRowCount(0)
@@ -813,7 +812,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.Stacked.setCurrentIndex(0)
+        self.Stacked.setCurrentIndex(2)
         self.online.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(2)
         self.exam_stacked.setCurrentIndex(2)
