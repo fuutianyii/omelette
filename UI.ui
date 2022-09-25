@@ -198,7 +198,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
@@ -440,6 +440,18 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_8">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QLineEdit" name="english_input_edit">
                   <property name="sizePolicy">
@@ -465,56 +477,35 @@
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_29">
                   <item>
-                   <widget class="QFrame" name="frame_14">
-                    <property name="styleSheet">
+                   <widget class="QPushButton" name="online_play_voice_1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>10</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="text">
                      <string notr="true"/>
                     </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="online_play_voice_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>10</width>
+                      <height>30</height>
+                     </size>
                     </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
                     </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_30" stretch="0,0">
-                     <property name="topMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="QPushButton" name="online_play_voice_1">
-                       <property name="minimumSize">
-                        <size>
-                         <width>10</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string notr="true"/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="online_play_voice_2">
-                       <property name="minimumSize">
-                        <size>
-                         <width>10</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string notr="true"/>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
+                    <property name="text">
+                     <string notr="true"/>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -579,7 +570,13 @@
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
                 <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
@@ -595,7 +592,13 @@
                     <string>有道</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
                     <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
                      <number>0</number>
                     </property>
                     <property name="bottomMargin">
@@ -617,7 +620,13 @@
                     <string>牛津</string>
                    </attribute>
                    <layout class="QVBoxLayout" name="verticalLayout_27">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
                     <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
                      <number>0</number>
                     </property>
                     <property name="bottomMargin">
@@ -701,13 +710,13 @@
                  <widget class="QComboBox" name="filter_list_comboBox">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
@@ -717,13 +726,13 @@
                  <widget class="QComboBox" name="filter_date_comboBox">
                   <property name="minimumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>150</width>
+                    <width>160</width>
                     <height>25</height>
                    </size>
                   </property>
@@ -888,7 +897,7 @@
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">border-radius: 30px;</string>
+                  <string notr="true"/>
                  </property>
                 </widget>
                </item>
@@ -943,7 +952,7 @@
                      <string notr="true">font: 75 36pt &quot;微软雅黑&quot;;</string>
                     </property>
                     <property name="text">
-                     <string>groud</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
@@ -1024,13 +1033,6 @@
                           <number>0</number>
                          </property>
                          <item>
-                          <widget class="QLabel" name="play_voice_label_1">
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
                           <widget class="QPushButton" name="play_voice_1">
                            <property name="minimumSize">
                             <size>
@@ -1055,13 +1057,6 @@
                              <width>16</width>
                              <height>16</height>
                             </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="play_voice_label_2">
-                           <property name="text">
-                            <string/>
                            </property>
                           </widget>
                          </item>
@@ -1118,13 +1113,22 @@
                      <string notr="true">margin:0px;padding:0px;</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>2</number>
                     </property>
                     <widget class="QWidget" name="youdao_page">
                      <attribute name="title">
                       <string>有道</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
@@ -1149,6 +1153,15 @@
                       <string>牛津</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_19">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
@@ -1170,6 +1183,15 @@
                       <string>自定义</string>
                      </attribute>
                      <layout class="QVBoxLayout" name="verticalLayout_17">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
@@ -1467,83 +1489,6 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="exam_select">
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <item>
-               <widget class="QFrame" name="frame_9">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_18">
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="back_exam_main">
-                   <property name="minimumSize">
-                    <size>
-                     <width>75</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>75</width>
-                     <height>23</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>返回</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCalendarWidget" name="exam_calendarWidget">
-                <property name="autoFillBackground">
-                 <bool>false</bool>
-                </property>
-                <property name="navigationBarVisible">
-                 <bool>true</bool>
-                </property>
-                <property name="dateEditEnabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_17">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Maximum</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="exam">
              <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
@@ -1551,7 +1496,7 @@
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>80</height>
+                  <height>40</height>
                  </size>
                 </property>
                 <property name="maximumSize">
@@ -1595,7 +1540,7 @@
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>200</height>
+                  <height>400</height>
                  </size>
                 </property>
                 <property name="frameShape">
@@ -1609,10 +1554,16 @@
                   <layout class="QHBoxLayout" name="horizontalLayout_23">
                    <item>
                     <widget class="QLabel" name="exam_chinese_label">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="maximumSize">
                       <size>
                        <width>65535</width>
-                       <height>90</height>
+                       <height>300</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1625,7 +1576,7 @@
                       <enum>Qt::LeftToRight</enum>
                      </property>
                      <property name="text">
-                      <string>chinese</string>
+                      <string/>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -1647,7 +1598,7 @@
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>50</width>
+                     <width>30</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -1655,6 +1606,12 @@
                  </item>
                  <item>
                   <widget class="QLabel" name="part_of_speech_label">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
                    <property name="font">
                     <font>
                      <family>Microsoft YaHei</family>
@@ -1786,6 +1743,346 @@
                  </item>
                 </layout>
                </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="review_examined_words">
+             <layout class="QVBoxLayout" name="verticalLayout_31">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <item>
+                 <widget class="QTableWidget" name="update_table_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_9">
+                  <property name="styleSheet">
+                   <string notr="true">margin:0px;padding:0px;</string>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_25">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="selection_word_2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>165536</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                       <pointsize>36</pointsize>
+                       <weight>9</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font: 75 36pt &quot;微软雅黑&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_30">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_28">
+                       <item>
+                        <widget class="QLabel" name="insert_date_2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>200</width>
+                           <height>15</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>200</width>
+                           <height>15</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>微软雅黑</family>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="words_list_2">
+                         <property name="minimumSize">
+                          <size>
+                           <width>200</width>
+                           <height>15</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>200</width>
+                           <height>15</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>微软雅黑</family>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_14">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_31">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QPushButton" name="play_voice_3">
+                            <property name="minimumSize">
+                             <size>
+                              <width>40</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>200</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::LeftToRight</enum>
+                            </property>
+                            <property name="text">
+                             <string notr="true"/>
+                            </property>
+                            <property name="iconSize">
+                             <size>
+                              <width>16</width>
+                              <height>16</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="play_voice_4">
+                            <property name="minimumSize">
+                             <size>
+                              <width>40</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>200</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::LeftToRight</enum>
+                            </property>
+                            <property name="text">
+                             <string notr="true"/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_13">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTabWidget" name="tabWidget_2">
+                     <property name="font">
+                      <font>
+                       <family>微软雅黑</family>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">margin:0px;padding:0px;</string>
+                     </property>
+                     <property name="currentIndex">
+                      <number>2</number>
+                     </property>
+                     <widget class="QWidget" name="youdao_page_2">
+                      <attribute name="title">
+                       <string>有道</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_11">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QTextBrowser" name="youdao_textBrowswer_2">
+                         <property name="font">
+                          <font>
+                           <family>微软雅黑</family>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">margin:0px;padding:0px;</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="niujin_page_2">
+                      <attribute name="title">
+                       <string>牛津</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_29">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QTextBrowser" name="Oxford_info_box_2">
+                         <property name="font">
+                          <font>
+                           <family>微软雅黑</family>
+                           <weight>50</weight>
+                           <bold>false</bold>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="defined_page_2">
+                      <attribute name="title">
+                       <string>自定义</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_30">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QTextBrowser" name="word_info_2"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
