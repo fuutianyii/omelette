@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-25 20:13:30
+LastEditTime: 2022-09-25 20:18:49
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -95,6 +95,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         print(fontFamilies)
         if fontFamilies!=[]:
             font=QFont(fontFamilies[0])
+            font=QFont("Microsoft YaHei")
         else:
             print("Have no the font family")
             font=QFont("Source Han Sans CN Medium")
