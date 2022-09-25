@@ -598,25 +598,27 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.Oxford_info_box.setText("暂无数据")
         define_word=self.youdao.main_no_print(Item.text(),f"select * from words where (english='{Item.text()}')")
         # print(phonetic_symbol[0][0])
-        self.play_voice_1.setText("英 /"+define_word[0][1]+"/")
-        self.play_voice_2.setText("美 /"+define_word[0][2]+"/")
+
 
         self.selection_word.setText(Item.text())
         self.insert_date.setText("添加日期："+self.update_words[self.update_table.currentRow()][4])
         self.words_list.setText("组别名称："+self.update_words[self.update_table.currentRow()][6])
 
         self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
-        
         display_data=""
-        if define_word[0][3] != "":
-            display_data="<table><tr>"
-            for data in define_word:
-                    display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
-            display_data+="</table>"
-        if define_word[0][5] != "":
-            display_data+=define_word[0][5].replace("\n","<br>")
-        if b64decode(define_word[0][6]).decode() != "暂无例句":
-            display_data+="<h3>例句</h3>"+b64decode(define_word[0][6]).decode()
+        if len(define_word)!=0:
+            self.play_voice_1.setText("英 /"+define_word[0][1]+"/")
+            self.play_voice_2.setText("美 /"+define_word[0][2]+"/")
+            
+            if define_word[0][3] != "":
+                display_data="<table><tr>"
+                for data in define_word:
+                        display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
+                display_data+="</table>"
+            if define_word[0][5] != "":
+                display_data+=define_word[0][5].replace("\n","<br>")
+            if b64decode(define_word[0][6]).decode() != "暂无例句":
+                display_data+="<h3>例句</h3>"+b64decode(define_word[0][6]).decode()
         self.youdao_textBrowswer.setText(display_data)
 
     def show_defined_selection_2(self,Item):
