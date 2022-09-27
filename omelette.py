@@ -410,17 +410,12 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.play_voice_4.setStyleSheet(self.read_ui("play_voice"))
         self.play_voice_4.adjustSize()
         
-        
         self.online_play_voice_1.setIcon(icon)
         self.online_play_voice_1.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_1.adjustSize()
         self.online_play_voice_2.setIcon(icon)
         self.online_play_voice_2.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_2.adjustSize()
-
-
-        
-        
         
         self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         self.tabWidget_2.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
