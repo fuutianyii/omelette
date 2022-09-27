@@ -164,9 +164,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.frame_8.setStyleSheet(self.read_ui("all_frame"))
         self.frame_6.setStyleSheet(self.read_ui("all_frame"))
         self.frame_11.setStyleSheet(self.read_ui("all_frame"))
-        self.frame.setStyleSheet(self.read_ui("all_frame"))
-        self.frame_10.setStyleSheet(self.read_ui("all_frame"))
-        self.frame_15.setStyleSheet(self.read_ui("all_frame"))
         self.frame_exam_today.setStyleSheet(self.read_ui("all_frame"))
         self.frame_review_words.setStyleSheet(self.read_ui("all_frame"))
         self.frame_radom_exam.setStyleSheet(self.read_ui("all_frame"))
@@ -458,9 +455,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.forget_pushButton.clicked.connect(self.display_forget)
         # self.delete_choose.clicked.connect(self.delete_words)
         self.exam_english_lable.returnPressed.connect(self.exam_submit)
-        self.change_calendar.clicked.connect(self.changepage_exam_calendar)
         self.exam_today_button.clicked.connect(self.today_exam)
         self.review_words_button.clicked.connect(self.review_words)
+        self.reset_forget_button.clicked.connect(self.reset_forget)
         self.radom_exam_button.clicked.connect(self.random_exam)
         self.review_Forgotten_button.clicked.connect(self.forgoten_exam)
         self.remove_forget_pushButton.clicked.connect(self.reset_wrong_times)
@@ -977,6 +974,10 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 self.remove_forget_pushButton.setHidden(True)
                 self.forget_pushButton.setHidden(False)
 
+
+    def reset_forget(self):
+        self.words=self.mydb.update("update words set wrong_times=0")
+        
     def review_words(self):
         # 1． 第一个记忆周期：5分钟
         # 2． 第二个记忆周期：30分钟
@@ -1156,10 +1157,6 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.Stacked.setCurrentIndex(3)
         
         self.exam_stacked.setCurrentIndex(0)
-
-    def changepage_exam_calendar(self):
-        self.exam_stacked.setCurrentIndex(1)
-    
 
     # def back_add_english_widget(self):
     #     self.group=self.list_lineEdit_2.text()
