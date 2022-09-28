@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-25 20:25:59
+LastEditTime: 2022-09-28 15:19:40
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -803,7 +803,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         respond=get(f"https://dict.youdao.com/dictvoice?audio={word}&type={type}")
         if respond.status_code == 200:
             data=respond.content
-            w = open(f"mp3/online.mp3","wb") 
+            w = open(f"mp3/online_{type}.mp3","wb") 
             w.write(data)
             w.close()
         mp3_path=getcwd().replace("\\", "/")+"/mp3/online.mp3"
