@@ -1126,9 +1126,7 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
                 display_data+="<td ><b>"+data[3]+"</b>.&nbsp;&nbsp;</td><td> "+data[4]+"</td></tr><tr>"
             display_data+="</table>"+data[5].replace("\n","<br>")
             display_data+="<h3>例句</h3>"+b64decode(data[6]).decode()
-            
             self.youdao_textBrowswer.setText(display_data)
-
             self.word_info.setText("<table><tr><td><b>"+self.update_words[self.update_table.currentRow()][3]+"</b>.&nbsp;&nbsp;</td><td> "+self.update_words[self.update_table.currentRow()][2]+"</td></tr><tr>")
 
     def changepage_exam(self):
