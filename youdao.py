@@ -41,7 +41,7 @@ class youdao_api():
     def get_result(self,word):
         time_curtime = int(time.time())
         app_id = '004f7cff636359e8' # 这里填应用ID
-        app_key = 'ivQSM1YCE6SQo1vqhLcaZWO3MDdHinCF' # 这里填应用密钥
+        app_key = 'vETBT0yKKuCwd9meMu57DXhsxJ4nH6so' # 这里填应用密钥
         uu_id = uuid.uuid4()
         sign = hashlib.sha256((app_id + self.truncate(word)  + str(uu_id) + str(time_curtime) + app_key).encode('utf-8')).hexdigest()   # sign生成
         data = {

@@ -6,3 +6,4 @@ start_ui.vbs.lnk
 __pycache__
 mp3/*.mp3
 daily/*
+db/*

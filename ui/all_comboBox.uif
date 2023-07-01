@@ -4,7 +4,7 @@ QComboBox {
     border-radius: 3px;   /* 圆角 */
     padding: 1px 18px 1px 3px;   /* 字体填衬 */
     color: #000;
-    font: normal normal 15px "Microsoft YaHei";
+    font: normal normal 25px "Microsoft YaHei";
     background: white;
 }
 

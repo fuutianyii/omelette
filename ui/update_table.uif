@@ -2,6 +2,7 @@ QTableWidget{
     border:none;
     selection-background-color:rgb(235,235,235);
     selection-color:black;
+    font-size:20px;
 }
 QScrollBar:vertical{
     width:8px;border-style:none;

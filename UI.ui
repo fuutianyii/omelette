@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>905</width>
+    <width>1098</width>
     <height>580</height>
    </rect>
   </property>
@@ -54,7 +54,7 @@
        <widget class="QFrame" name="leftframe">
         <property name="minimumSize">
          <size>
-          <width>40</width>
+          <width>80</width>
           <height>0</height>
          </size>
         </property>
@@ -87,7 +87,7 @@
           <widget class="QFrame" name="leftframe_top">
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>80</width>
              <height>0</height>
             </size>
            </property>
@@ -117,8 +117,8 @@
              <widget class="QPushButton" name="left_first_button">
               <property name="minimumSize">
                <size>
-                <width>50</width>
-                <height>40</height>
+                <width>80</width>
+                <height>80</height>
                </size>
               </property>
               <property name="text">
@@ -126,8 +126,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>20</width>
-                <height>20</height>
+                <width>60</width>
+                <height>60</height>
                </size>
               </property>
              </widget>
@@ -136,8 +136,8 @@
              <widget class="QPushButton" name="left_third_button">
               <property name="minimumSize">
                <size>
-                <width>50</width>
-                <height>40</height>
+                <width>80</width>
+                <height>80</height>
                </size>
               </property>
               <property name="text">
@@ -145,8 +145,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>20</width>
-                <height>20</height>
+                <width>60</width>
+                <height>60</height>
                </size>
               </property>
              </widget>
@@ -155,8 +155,8 @@
              <widget class="QPushButton" name="left_forth_button">
               <property name="minimumSize">
                <size>
-                <width>50</width>
-                <height>40</height>
+                <width>80</width>
+                <height>80</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -167,27 +167,14 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>20</width>
-                <height>20</height>
+                <width>60</width>
+                <height>60</height>
                </size>
               </property>
              </widget>
             </item>
            </layout>
           </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -198,7 +185,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="hello_page">
          <property name="enabled">
@@ -305,7 +292,7 @@
                <property name="font">
                 <font>
                  <family>Microsoft YaHei</family>
-                 <pointsize>20</pointsize>
+                 <pointsize>30</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -330,6 +317,7 @@
                <property name="font">
                 <font>
                  <family>微软雅黑</family>
+                 <pointsize>40</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -348,6 +336,7 @@
                <property name="font">
                 <font>
                  <family>微软雅黑</family>
+                 <pointsize>40</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -584,8 +573,13 @@
                 </property>
                 <item>
                  <widget class="QTabWidget" name="online">
+                  <property name="font">
+                   <font>
+                    <pointsize>25</pointsize>
+                   </font>
+                  </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="online_youdao_page">
                    <attribute name="title">
@@ -687,6 +681,15 @@
              </property>
              <item>
               <widget class="QFrame" name="frame_5">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>60</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -698,26 +701,26 @@
                  <number>0</number>
                 </property>
                 <property name="topMargin">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <property name="rightMargin">
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <item>
                  <widget class="QComboBox" name="filter_list_comboBox">
                   <property name="minimumSize">
                    <size>
                     <width>160</width>
-                    <height>25</height>
+                    <height>50</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>160</width>
-                    <height>25</height>
+                    <height>50</height>
                    </size>
                   </property>
                  </widget>
@@ -727,13 +730,13 @@
                   <property name="minimumSize">
                    <size>
                     <width>160</width>
-                    <height>25</height>
+                    <height>50</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>160</width>
-                    <height>25</height>
+                    <height>50</height>
                    </size>
                   </property>
                  </widget>
@@ -763,14 +766,14 @@
                     <widget class="QPushButton" name="more_functions">
                      <property name="minimumSize">
                       <size>
-                       <width>35</width>
-                       <height>35</height>
+                       <width>45</width>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>35</width>
-                       <height>35</height>
+                       <width>45</width>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="text">
@@ -788,14 +791,14 @@
                     <widget class="QPushButton" name="Sync">
                      <property name="minimumSize">
                       <size>
-                       <width>35</width>
-                       <height>35</height>
+                       <width>45</width>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>35</width>
-                       <height>35</height>
+                       <width>45</width>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="text">
@@ -814,13 +817,13 @@
                      <property name="minimumSize">
                       <size>
                        <width>140</width>
-                       <height>30</height>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>150</width>
-                       <height>30</height>
+                       <width>400</width>
+                       <height>45</height>
                       </size>
                      </property>
                      <property name="font">
@@ -839,6 +842,9 @@
                     <spacer name="horizontalSpacer_9">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Minimum</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -863,14 +869,26 @@
                    <item>
                     <widget class="QPushButton" name="start_exam">
                      <property name="text">
-                      <string>测试</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="search_forget_words">
                      <property name="text">
-                      <string>遗忘</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
                      </property>
                     </widget>
                    </item>
@@ -886,13 +904,13 @@
                 <widget class="QTableWidget" name="update_table">
                  <property name="minimumSize">
                   <size>
-                   <width>150</width>
+                   <width>200</width>
                    <height>0</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>150</width>
+                   <width>200</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -1107,6 +1125,7 @@
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
+                      <pointsize>25</pointsize>
                      </font>
                     </property>
                     <property name="styleSheet">
@@ -1237,7 +1256,7 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>811</width>
+                   <width>974</width>
                    <height>542</height>
                   </rect>
                  </property>
@@ -1255,9 +1274,14 @@
                       <widget class="QPushButton" name="reset_forget_button">
                        <property name="maximumSize">
                         <size>
-                         <width>80</width>
-                         <height>20</height>
+                         <width>400</width>
+                         <height>60</height>
                         </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
                        </property>
                        <property name="text">
                         <string>清空遗忘</string>
@@ -1280,9 +1304,14 @@
                       <widget class="QPushButton" name="review_Forgotten_button">
                        <property name="maximumSize">
                         <size>
-                         <width>80</width>
-                         <height>20</height>
+                         <width>400</width>
+                         <height>60</height>
                         </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
                        </property>
                        <property name="text">
                         <string>复习遗忘</string>
@@ -1305,9 +1334,14 @@
                       <widget class="QPushButton" name="radom_exam_button">
                        <property name="maximumSize">
                         <size>
-                         <width>80</width>
-                         <height>20</height>
+                         <width>400</width>
+                         <height>60</height>
                         </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
                        </property>
                        <property name="text">
                         <string>随机测试</string>
@@ -1330,9 +1364,14 @@
                       <widget class="QPushButton" name="exam_today_button">
                        <property name="maximumSize">
                         <size>
-                         <width>80</width>
-                         <height>20</height>
+                         <width>400</width>
+                         <height>60</height>
                         </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
                        </property>
                        <property name="text">
                         <string>测试本日</string>
@@ -1361,9 +1400,14 @@
                        </property>
                        <property name="maximumSize">
                         <size>
-                         <width>80</width>
-                         <height>20</height>
+                         <width>400</width>
+                         <height>60</height>
                         </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
                        </property>
                        <property name="layoutDirection">
                         <enum>Qt::LeftToRight</enum>
@@ -1406,6 +1450,11 @@
                      </item>
                      <item>
                       <widget class="QCheckBox" name="checkBox_voice">
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
+                       </property>
                        <property name="text">
                         <string>语音</string>
                        </property>
@@ -1413,6 +1462,11 @@
                      </item>
                      <item>
                       <widget class="QCheckBox" name="checkBox_random">
+                       <property name="font">
+                        <font>
+                         <pointsize>20</pointsize>
+                        </font>
+                       </property>
                        <property name="text">
                         <string>乱序</string>
                        </property>

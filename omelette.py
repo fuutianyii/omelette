@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-09-09 15:54:42
 LastEditors: fuutianyii
-LastEditTime: 2022-09-28 15:19:40
+LastEditTime: 2023-04-22 13:08:44
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -312,9 +312,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             f=open("daily/"+month+time_list[2]+"ch.txt","rb")
             self.sentence_text_chinese.setText(f.read().decode())
             f.close()
-            self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_english.setStyleSheet("QLabel{font-size:25px;margin-bottom:10px;}")
             self.sentence_text_english.setWordWrap(True)
-            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:25px;margin-bottom:10px;}")
             self.sentence_text_chinese.setWordWrap(True)
         else:
             api_data=get("http://open.iciba.com/dsapi/").text
@@ -335,9 +335,9 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
             self.hello_picture.setStyleSheet("QLabel{background-image:url(\"daily/"+month+time_list[2]+"bg.jpg\");background-position: right;background-repeat: no-repeat;}")
             self.sentence_text_english.setText(api[0][1])
             self.sentence_text_chinese.setText(api[0][2])
-            self.sentence_text_english.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_english.setStyleSheet("QLabel{font-size:25px;margin-bottom:10px;}")
             self.sentence_text_english.setWordWrap(True)
-            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:20px;margin-bottom:10px;}")
+            self.sentence_text_chinese.setStyleSheet("QLabel{font-size:25px;margin-bottom:10px;}")
             self.sentence_text_chinese.setWordWrap(True)
         
         self.online_youdao_textBoswer.setStyleSheet(self.read_ui("QTextBrowser"))
@@ -417,8 +417,8 @@ class mainwindow(Ui_UI.Ui_MainWindow,QMainWindow):
         self.online_play_voice_2.setStyleSheet(self.read_ui("play_voice"))
         self.online_play_voice_2.adjustSize()
         
-        self.tabWidget.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
-        self.tabWidget_2.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.tabWidget.setStyleSheet("QTabWidget{border:none;font-size:25px}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
+        self.tabWidget_2.setStyleSheet("QTabWidget{border:none;font-size:25px}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         self.online.setStyleSheet("QTabWidget{border:none;}QTabWidget::pane{border:none;}QTabWidget::tab-bar {left: 5px;}QTabBar::tab {border-bottom-color: #C2C7CB;border-top-left-radius: 4px;border-top-right-radius: 4px;min-width: 60px;padding: 2px;}QTabBar::tab:selected{color:rgba(0,0,0,1);}QTabBar::tab:selected{background:rgba(255,255,255,1);}QTabBar::tab:!selected{margin-top:5px;}/*四个下属界面*/#tab,#tab_2,#tab_3,#tab_4{background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #626262,stop:1 #545454)border-radius:6px;}")
         QApplication.processEvents()
         
